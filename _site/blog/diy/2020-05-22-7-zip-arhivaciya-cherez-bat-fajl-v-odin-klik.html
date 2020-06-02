@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>7-zip архивация через BAT-файл, в один клик | Сайт полезных статей по разработке и не только</title>
+	<meta name="description" content="В данной статье детально разберем как создать автоматическую архивацию вашего проекта с помощью 7-zip используя Batch в один клик">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/1.jpg">
+	<link rel="icon" href="img/favicon/best_manual_icon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple_touch_icon_256.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+	<script data-ad-client="ca-pub-6809977052006948" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+    
+    <a href="/" class="logo logo-litera"><img class="img-logo" src="/img/favicon/best_manual_icon.png" alt="site icon">Best-manual.ru</a>
+
+    <div class="search-wrap">
+        <div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+        <div class="search-field">
+            <form action="/search.html" id="cse-search-box">
+                <input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+                <input type="hidden" name="cof" value="FORID:10" />
+                <input type="hidden" name="ie" value="UTF-8" />
+                <input type="text" name="q" placeholder="Поиск по сайту..." />
+            </form>
+        </div>
+    </div>
+
+    <div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+    <nav class="main-menu top-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+    </nav>	 	
+
+</header>
+    
+    <header class="page-header overlay" style="background-image: url(images/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/1.jpg)">
+
+        <div class="page-header-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-7 col-md-8">
+
+                        <div class="page-header-meta">
+
+                            <a href="blog/diy" class="page-category-link">DIY</a><span class="date">22/05/2020</span>
+                            
+                            <h1>7-zip архивация через BAT-файл, в один клик</h1>
+
+                            <div class="item-social">
+                                <div class="item-comments" title="Количество комментариев">
+                                    <i class="fa fa-comment"></i><a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html#disqus_thread" class="item-comments-count">0</a>
+                                </div>
+                                <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html" data-media="https://best-manual.ru/images/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/1.jpg" data-title="7-zip архивация через BAT-файл, в один клик">
+                                    <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                    <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                    <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="article-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <article class="mail-article">
+                        <nav class="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="blog/diy">DIY</a></li>
+                                <li class="active">7-zip архивация через BAT-файл, в один клик</li>
+                            </ul>
+                        </nav>
+                        
+                        <div class="article-body">
+                            <div class="reclama article-top-reclama">
+
+                            </div>
+
+                            <div class="post-body">
+  <h2>Теория по созданию архиватора через BAT-файл</h2>
+  <p> Код нашего скрипта будет состоять из 4-х частей: </p>
+  <ul>
+    <li>
+      <b><span class="code-block console">&lt;путь в программе&gt;</span> </b><br>
+      <p>Путь к программе, в нашем случае <b>7-zip</b> стандартный путь <i>C:\Program Files\7-Zip</i><p>
+    </li>
+    <li>
+      <span class="code-block console"><b>&lt;команда&gt;</b></span><br>
+      <p>Действие, которое мы хотим от <b>7-zip</b></p> 
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Команда</th>
+            <th scope="col">Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>a</td>
+            <td>Добавить файлы в архив</td>
+          </tr>
+          <tr>
+            <td>d</td>
+            <td>Удалить файлы из архива</td>
+          </tr>
+          <tr>
+            <td>e</td>
+            <td>Извлечь файлы из архива</td>
+          </tr>
+          <tr>
+            <td>u</td>
+            <td>Обновить файл в архиве. Если файла нет, создастся новый</td>
+          </tr>
+          <tr>
+            <td>x</td>
+            <td>Извлечь файлы из архива. Пути сохранятся</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <span class="code-block console"><b>&lt;ключи&gt;</b></span><br>
+      <p>Условия (параметры) выполнения нашей команды</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Ключ</th>
+            <th scope="col">Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>-t</td>
+            <td>Тип архива. Например: -tzip, -tgz. Если не указывать тип будет .7z</td>
+          </tr>
+          <tr>
+            <td>-ssw</td>
+            <td>Включить файл в архив, даже если он сейчас открыт и используется</td>
+          </tr>
+          <tr>
+            <td>-mx</td>
+            <td>Уровень сжатия (компресии). 0 - без сжатия, 9 - максимальное сжатие. Пример: -mx5</td>
+          </tr>
+          <tr>
+            <td>-p</td>
+            <td>Задать пароль архиву. Например чтобы задать пароль qwer1234 ключ будет выглядеть так: -pqwer1234</td>
+          </tr>
+          <tr>
+            <td>-o</td>
+            <td>Задает директорию куда надо извель файлы</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </li>
+    <li>
+      <span class="code-block console"><b>&lt;пути к папкам и файлам&gt;</b></span><br>
+      <p>На первом месте идет путь к архиву, на втором путь к данным, которые нужно архивировать. <br>
+        Например: <span style="font-family: monospace;"> G:\archive\archive.7z D:\MyFolder&nbsp;</span>
+      </p> 
+    </li>
+  </ul>
+
+  <h2>Создание архиватора через BAT-файл</h2>
+
+  <p>Задача: создать BAT-файл, который будет сжимать всё содержимое папки <b>project</b> на диске <b>C:/</b> максимальным уровнем сжатия и помещать созданный архив в папку <b>backup</b> на том же диске.</p>
+
+  <ul>
+    <li>
+      <p>На диске <b>C:/</b>, создаем папку <b>project</b>. В эту папку поместите какие нибуть файлы, например, фото</p>
+    </li>
+    <li>
+      <p>В любом путом месте (например, рабочий стол) нажимаете правой кнопкой мыши и выбираем <b>Создать</b>-><b>Текстовый документ</b>.</p>
+    </li>
+    <li>
+      <p>Меняем расширение файла с <b>.txt</b> на <b>.bat</b></p>
+      <p>Если у вас не отображается расширение, на Windows 10 зайдите в "Этот компьютер", перейдите во вкладку <b>Вид</b> и поставте галочку "<i>Расширения имен и файлов</i>"
+        <img src="images/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/change_expantion.png" alt="Окно разрешения изменения расширений файлов" title="Окно разрешения изменения расширений файлов">
+      </p>
+    </li>
+    <li>
+      <p>Кликаем правой кнопкой мыши на созданный файл и нажимаем <b>Изменить</b>. Откроется обычный блокнот, в нем нам и нужно написать скрипт.</p>
+      <p><b>Пример кода:</b></p>
+      <p> <span class="code-block console">&quot;C:\Program Files\7-Zip\7z.exe&quot; a -mx9 C:\backup\archive.7z C:\project</span></p> 
+
+      <p><b>Расшифровка кода:</b></p>
+      <table>
+        <tbody>
+          <tr>
+            <td width="280"><span class="console">&quot;C:\Program Files\7-Zip\7z.exe&quot;</span></td>
+            <td>Наш <b>путь в программе</b>, через которую мы хотим архивировать</td>
+          </tr>
+          <tr>
+            <td><span class="console">a</span></td>
+            <td><b>команда</b> добавить в архив</td>
+          </tr>
+          <tr>
+            <td><span class="console">-mx9</span></td>
+            <td><b>ключ</b>, который указываем что добавить в архив нужно с максимальным уровнем сжатия (об этом говорит цифра 9)</td>
+          </tr>
+          <tr>
+            <td><span class="console">C:\backup\archive.7z</span></td>
+            <td>Первый элемент <b>пути к папкам и файлам</b>, указывает КУДА нужно поместить созданный архив</td>
+          </tr>
+          <tr>
+            <td><span class="console">C:\project</span></td>
+            <td>Второй элемент <b>пути к папкам и файлам</b>, указывает ЧТО нужно архивировать</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <p>Готово! Сохраните внесенные изменения, закройте файл и запустите. Должен создаться архив в нашей папке <b>backup</b></p>
+    </li>
+  </ul>
+  
+  <p>На этом можно было бы остановиться, но обязательно ли постоянно прописывать путь к программе 7zip? Что если не нужно архивировать не все файлы в папке? Как в название архива добавить дату, когда он был сделан?</p>
+  <p>Разберем каждый пункт по порядку.</p>
+
+  <h3>Привязываем путь к программе 7zip к переменной</h3>
+
+  <ul>
+    <li>Нажимаем правой кнопкой мыши на <b>Этот компьютер</b>-><b>Свойства</b> в появившемся окне в списке слева выбираем <b>Дополнительные параметры системы</b>-><b>Переменные среды</b>.</li>
+    <li>В верхнем разделе <i>Переменные среды пользователя для Ваш_user</i> нажимаем <b>Создать</b>. В открывшемся окне указываем значения ниже, после жмем <b>OK</b>
+      <ul class="no-mark">
+        <li><b>Имя переменной</b> - любое удобное имя, которое будет обозначать программу 7zip</li>
+        <li><b>Значение переменной</b> - полный путь к программе с указанием <b>exe</b> файла</li>
+      </ul>
+      <img src="images/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/add_variable_environment.png" alt="Окно пользовательской переменной" title="Добавление пользовательской переменной">
+
+    </li>
+    <li>
+      <u>В этом же разделе</u> выбираем переменную <b>path</b>, нажимаем <b>Изменить</b> и добавляем путь к EXE <i>C:\Program Files\7-Zip\</i>, но его в пути не указываем!
+      <img src="images/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/add_path.png" alt="Окно добавления пути к программе" title="Окно добавления пути к программе">
+    </li>
+    <li>
+      <p>Готово! Теперь код будет выглядеть компактнее, в BAT-файле замените "C:\Program Files\7-Zip\7z.exe" на 7z</p>
+      <p><b>Пример кода:</b></p>
+      <div class="code-block console">7z a -mx9 C:\backup\archive.7z C:\project</div>
+    </li>
+  </ul>
+  
+  <h3>Исключаем ненужные файлы из архивации</h3>
+
+  <p>Для исключения файлов необходимо в <b>конце</b> скрипта добавить ключ <span class="console"><b>-xr!</b></span>, чтобы понять как он работает, просто изучите примеры.</p>
+  <p><b>Примеры:</b></p>
+  <table>
+    <tbody>
+      <tr>
+        <td width="150"><span class="console">-xr!file.png</span></td>
+        <td>Исключаем файлы с именем и расширением <b>file.png</b></td>
+      </tr>
+      <tr>
+        <td><span class="console">-xr!*.png</span></td>
+        <td>Исключаем файлы с расширением <b>.png</b>, неважно имя файла</td>
+      </tr>
+      <tr>
+        <td><span class="console">-xr!file.*</span></td>
+        <td>Исключаем файлы с именем <b>file</b>, неважно расширение файла</td>
+      </tr>
+      <tr>
+        <td><span class="console">-xr!file</span></td>
+        <td>Исключаем папки с именем <b>file</b></td>
+      </tr>
+      <tr>
+        <td><span class="console">-xr!file*.*</span></td>
+        <td>Исключаем файлы, имя которых начинается на <b>file</b>%, например file01.txt в архив не попадет</td>
+      </tr>
+      <tr>
+        <td><span class="console">-xr!*file*.*</span></td>
+        <td>Исключаем файлы, имя которых содержит %<b>file</b>%, например 01file01.png в архив не попадет</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Теперь на основе полученных данных модернизируйте BAT-файл, если необходимо</p>
+  <p><b>Пример кода:</b></p>
+  <div class="code-block console">7z a -mx9 G:\backup\archive.7z G:\project -xr!thumb.*</div>
+     
+
+  <h3>Добавляем дату и время создания архива в название</h3>
+  <ul>
+    <li>
+      <p>В Window есть две системные переменные, которые будем использовать</p> 
+
+      <table>
+        <tbody>
+          <tr>
+            <td width="100"><span class="console">DATE</span></td>
+            <td>Возвращает текущую системную дату в формате: 01.01.2020</td>
+          </tr>
+          <tr>
+            <td><span class="console">Time</span></td>
+            <td>Возвращает текущее системное время в формате: 15:29:55,03</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Чтобы добавить их в название файла архива, достаточно обозначить эти переменные знаком % с обоих сторон</p>
+      <p>Добавьте эти переменные в название архива, отделите их нижним подчеркиванием, чтобы дата и время не сливались и в конце скрипта с добавьте новую команду <b>pause</b>, чтобы BAT-файл не закрывался сразу, как по примеру ниже</p>
+      <p><b>Пример кода:</b></p>
+      <div class="code-block console">7z a -mx9 C:\backup\archive_%DATE%_%Time%.7z C:\project -xr!thumb.*<br>pause</div>
+      <p>Сохраните и запустите!</p>
+
+    </li>
+    <li>
+      <p>После запуска должна возникнуть оишбка <i>Синтаксическая ошибка в имени файла, имени папки или метке тома.</i> </p>
+      <img src="images/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/error_syntax.png" alt="Окно ошибки синтаксиса в командной строке" title="Окно ошибки синтаксиса в командной строке">
+      <p>Причина проста: формат переменной Time 12<b>:</b>23<b>:</b>38, а в Windows в названии файлов запрещено испольвать двоеточия "<b>:</b>" </p>
+
+      <p>Для решения данной проблемы выведем только часы и минуты в название. </p>
+      <p><b>Пример кода:</b></p>
+      <div class="code-block console">7z a -mx9 C:\backup\archive_%DATE%_%Time:~0,2%_%Time:~3,2%.7z C:\project -xr!thumb.*<br>pause</div><br> 
+      <p><b>Расшифровка кода:</b></p>
+      <table>
+        <tbody>
+          <tr>
+            <td width="100"><span class="console">%</span></td>
+            <td>Начало объединения текста и системной переменной (конкатенация)</td>
+          </tr>
+          <tr>
+            <td><span class="console">Time</span></td>
+            <td>Системная переменная показывающее текущее системное время в формате: 15:29:55,03</td>
+          </tr>
+          <tr>
+            <td><span class="console">:~</span></td>
+            <td>Конструкция, указывающая что вывести нужно элементы времени</td>
+          </tr>
+          <tr>
+            <td><span class="console">0,2</span></td>
+            <td>Выводит часы т.к. часы начинают выводится с самого начала и состоит из двух цифр, указываем 0 - откуда надо начать выводить, 2 - сколько символов выводить</td>
+          </tr>
+          <tr>
+            <td><span class="console">3,2</span></td>
+            <td>Выводит минуты т.к. минуты начинают выводится после часов (3-я позици) и также состоит из двух цифр, указываем 3 - откуда надо начать выводить, 2 - сколько символов выводить</td>
+          </tr>
+          <tr>
+            <td><span class="console">%</span></td>
+            <td>Завершение объединения текста и системной переменной</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <p>Сохрание и запустите! Проблема решена, теперь названия архивных файлов будут выглядеть примерно так: archive_20.05.2020_13_33.7z</p>
+    </li>
+  </ul>
+  <p>Рефакторинг и оптимизация завершены</p>
+  <p><b>Было:</b></p>
+  <div class="code-block console">&quot;C:\Program Files\7-Zip\7z.exe&quot; a -mx9 C:\backup\archive.7z C:\project</div>
+      
+  <p><b>Стало:</b></p>
+  <div class="code-block console">7z a -mx9 C:\backup\archive_%DATE%_%Time:~0,2%_%Time:~3,2%.7z C:\project -xr!thumb.*<br>pause</div>
+    
+  <p>При необходимости можете настроить запуск данного файла по расписанию для этого переходите по <a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html">ссылке</a> </p>
+  <br>
+  <p>Спасибо за внимание!</p>
+
+</div>
+
+
+                        </div>
+                        
+                        <div class="likely-on-page">
+                            <div class="likely" data-url="https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html" data-media="https://best-manual.ru/images/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/1.jpg" data-title="7-zip архивация через BAT-файл, в один клик">
+                                <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                <div class="odnoklassniki" title="Класснуть">Класснуть</div>
+                                <div class="gplus" title="Плюсануть">Плюсануть</div>
+                            </div>
+                        </div>
+
+                        <div class="reclama article-top-reclama">
+
+                        </div>
+
+                        <div class="read-more">
+                            <div class="read-more-header">Читать еще:</div>
+                            <ul>
+                                
+                                
+                                
+                                    
+                                    <li><a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html">Настройка автоматической архивации по расписанию</a></li>
+                                    
+                                
+                                    
+                                
+                                    
+                                    <li><a href="/blog/diy/2020-05-08-perevodim-proekt-na-github.html">Переводим проект на GitHub</a></li>
+                                    
+                                
+                            </ul>
+                        </div>
+
+                        <div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://best-manual.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="col-md-4">
+
+<aside class="main-aside">
+                        
+    <div class="aside-box">
+
+    </div>
+
+
+    <div class="aside-box">
+<div class="latest-box">
+    <div class="lb-header">Последние статьи:</div>
+    <div class="lb-list">
+
+        <div class="lb-item">
+            <a href="blog/database/" class="lb-catname">Базы данных</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html" class="lb-item-header">Oracle SQL Developer Autoreplace - пишем код быстрее</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html#disqus_thread" class="item-comments-count"></a>
+                        <span class="date">29/05/2020</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/diy/" class="lb-catname">DIY</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html" class="lb-item-header">Настройка автоматической архивации по расписанию</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html#disqus_thread" class="item-comments-count"></a>
+                        <span class="date">27/05/2020</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+<!--
+        <div class="lb-item">
+            <a href="blog/theory/" class="lb-catname">Теория</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/news/" class="lb-catname">Новости</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+    -->
+
+    </div>
+</div>
+    </div>
+
+    <div class="aside-box">
+<div id="vk_groups"></div>
+
+    </div>
+
+    <div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://best-manual.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+    </div>
+
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="main-footer">
+    <div class="container">
+
+        <nav class="main-menu footer-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+        </nav>
+
+        <nav class="soc">
+
+            <ul>
+<li><a href="https://vk.com/best_manual_ru"><i class="fa fa-vk"></i></a></li> <li><a href="https://www.instagram.com/taran_as_official"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+</footer>
+
+<div class="footer bottom-footer">
+    <div class="container text-center">
+        <div class="footer-copy">2020-2020 © <span class="logo-footer logo-litera">Best-manual.ru</span></div>
+        <p>Копирование контента и размещение на других сайтах запрещено.</p>
+    </div>
+</div>
+
+<script src="js/scripts.min.js"></script>
+<script id="dsq-count-scr" src="//best-manual.disqus.com/count.js" async></script>
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+<script type="text/javascript">VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto', height: '300', color2: '202222'}, 32591432); </script>
+
+</body>
+</html>

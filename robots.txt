@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /index.html
+Host: best-manual.ru
+Sitemap: https://best-manual.ru/sitemap.xml

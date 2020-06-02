@@ -1,0 +1,32 @@
+<footer class="main-footer">
+    <div class="container">
+
+        <nav class="main-menu footer-menu">
+{% include /main-menu.html %}
+        </nav>
+
+        <nav class="soc">
+
+            <ul>
+{{ site.soc }}
+            </ul>
+        </nav>
+
+    </div>
+</footer>
+
+<div class="footer bottom-footer">
+    <div class="container text-center">
+        <div class="footer-copy">2020-{{ site.time | date: '%Y' }} © <span class="logo-footer logo-litera">Best-manual.ru</span></div>
+        <p>{{ site.copyright }}</p>
+    </div>
+</div>
+
+<script src="js/scripts.min.js"></script>
+<script id="dsq-count-scr" src="//best-manual.disqus.com/count.js" async></script>
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+<script type="text/javascript">VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto', height: '300', color2: '202222'}, 32591432); </script>
+
+</body>
+</html>

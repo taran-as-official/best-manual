@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Best-manual</title>
+		<description>Полезный практический и теоретический материал с кучей примеров, для разработки и не только</description>
+		<link>https://best-manual.ru</link>
+		<atom:link href="https://best-manual.ru/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Oracle SQL Developer Autoreplace - пишем код быстрее</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html"><img width="100%" src="https://best-manual.ruimages/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/1.jpg"></a>
+					В данной статье узнаем о таком встроенном инструменте в SQL Developer как автозамена текста (Autoreplace) , настроим его и больше не придется тратить время на написание шаблонного кода.
+					]]></description>
+				<pubDate>Fri, 29 May 2020 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html</guid>
+			</item>
+		
+			<item>
+				<title>Настройка автоматической архивации по расписанию</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html"><img width="100%" src="https://best-manual.ruimages/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/1.jpg"></a>
+					В данной статье детально разберем как настроить автоматическую архивацию по Windows 10, с помощью bat-файла, который используя 7zip будет архивировать нужные нам файлы
+					]]></description>
+				<pubDate>Wed, 27 May 2020 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html</guid>
+			</item>
+		
+			<item>
+				<title>7-zip архивация через BAT-файл, в один клик</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html"><img width="100%" src="https://best-manual.ruimages/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/1.jpg"></a>
+					В данной статье детально разберем как создать автоматическую архивацию вашего проекта с помощью 7-zip используя Batch в один клик
+					]]></description>
+				<pubDate>Fri, 22 May 2020 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html</guid>
+			</item>
+		
+			<item>
+				<title>Как установить Oracle XE на Windows 10?</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html"><img width="100%" src="https://best-manual.ruimages/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/1.jpg"></a>
+					В данной статье пошагово рассмотрим установку СУБД Oracle XE 18 на windows 10 64-бит
+					]]></description>
+				<pubDate>Wed, 20 May 2020 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html</guid>
+			</item>
+		
+			<item>
+				<title>Переводим проект на GitHub</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/diy/2020-05-08-perevodim-proekt-na-github.html"><img width="100%" src="https://best-manual.ruimages/diy/2020/2020-06-08-perevodim-proekt-na-github/1.jpg"></a>
+					В данной статье детально разберем как перевести свой проект на GitHub с нуля на Windows 10
+					]]></description>
+				<pubDate>Fri, 08 May 2020 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/diy/2020-05-08-perevodim-proekt-na-github.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2020-05-08-perevodim-proekt-na-github.html</guid>
+			</item>
+		
+	</channel>
+</rss>

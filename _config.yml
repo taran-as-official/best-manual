@@ -1,0 +1,35 @@
+title: Сайт полезных статей по разработке и не только
+name: Best-manual
+description: Полезный практический и теоретический материал с кучей примеров, для разработки и не только
+themecolor: '#202225'
+imagehome: img/main-logo.jpg
+#url: 'http://best-manual.ru' # the base hostname & protocol for your site, e.g. http://example.com
+url: 'https://best-manual.ru' # the base hostname & protocol for your site, e.g. http://example.com
+
+
+baseurl: '/' # the subpath of your site, e.g. /blog
+
+plugins: [jekyll-paginate-v2]
+category_dir: blog
+pagination:
+  enabled: true
+  per_page: 9
+  title: ':title - Страница :num'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+  trail:
+    before: 2
+    after: 2
+
+exclude: ['node_modules','gulpfile.js','package.json','package-lock.json','js/common.js','npm-debug.log','**/Thumbs.db','libs','sass','**/*.DS_Store']
+
+soc:
+  <li><a href="https://vk.com/best_manual_ru"><i class="fa fa-vk"></i></a></li>
+  <li><a href="https://www.instagram.com/taran_as_official"><i class="fa fa-instagram"></i></a></li>
+  <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+#  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+#  <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li>
+
+copyright: Копирование контента и размещение на других сайтах запрещено.
+

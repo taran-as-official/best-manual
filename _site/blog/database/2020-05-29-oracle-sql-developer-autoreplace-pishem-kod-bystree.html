@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Oracle SQL Developer Autoreplace - пишем код быстрее | Сайт полезных статей по разработке и не только</title>
+	<meta name="description" content="В данной статье узнаем о таком встроенном инструменте в SQL Developer как автозамена текста (Autoreplace) , настроим его и больше не придется тратить время на написание шаблонного кода.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/1.jpg">
+	<link rel="icon" href="img/favicon/best_manual_icon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple_touch_icon_256.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+	<script data-ad-client="ca-pub-6809977052006948" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+    
+    <a href="/" class="logo logo-litera"><img class="img-logo" src="/img/favicon/best_manual_icon.png" alt="site icon">Best-manual.ru</a>
+
+    <div class="search-wrap">
+        <div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+        <div class="search-field">
+            <form action="/search.html" id="cse-search-box">
+                <input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+                <input type="hidden" name="cof" value="FORID:10" />
+                <input type="hidden" name="ie" value="UTF-8" />
+                <input type="text" name="q" placeholder="Поиск по сайту..." />
+            </form>
+        </div>
+    </div>
+
+    <div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+    <nav class="main-menu top-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+    </nav>	 	
+
+</header>
+    
+    <header class="page-header overlay" style="background-image: url(images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/1.jpg)">
+
+        <div class="page-header-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-7 col-md-8">
+
+                        <div class="page-header-meta">
+
+                            <a href="blog/database" class="page-category-link">Базы данных</a><span class="date">29/05/2020</span>
+                            
+                            <h1>Oracle SQL Developer Autoreplace - пишем код быстрее</h1>
+
+                            <div class="item-social">
+                                <div class="item-comments" title="Количество комментариев">
+                                    <i class="fa fa-comment"></i><a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html#disqus_thread" class="item-comments-count">0</a>
+                                </div>
+                                <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html" data-media="https://best-manual.ru/images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/1.jpg" data-title="Oracle SQL Developer Autoreplace - пишем код быстрее">
+                                    <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                    <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                    <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="article-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <article class="mail-article">
+                        <nav class="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="blog/database">Базы данных</a></li>
+                                <li class="active">Oracle SQL Developer Autoreplace - пишем код быстрее</li>
+                            </ul>
+                        </nav>
+                        
+                        <div class="article-body">
+                            <div class="reclama article-top-reclama">
+
+                            </div>
+
+                            <div class="post-body">
+    
+    <h2>Включение AutoReplace</h2>
+    <p>Запускаем SQL Developer, переходим <b>Tools</b>-><b>Preferences...</b></p>
+    <img src="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/show_preferences.png" alt="Открываем настройки в sqldeveloper" title="Открываем настройки в sqldeveloper">
+
+    <p>В появившемся окне переходим <b>Database</b>-><b>SQL Editor Code Templates</b>, ставим галочку напротив <b>Autoreplace</b> и нажимаем <b>OK</b> </p>
+    <img src="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/enable_autoreplace.png" alt="Включение autoreplace в sqldeveloper" title="Включение autoreplace в sqldeveloper">
+    <p>Проверим работу, откройте окно для ввода кода, напишите <b>cf</b> и нажмите пробел, должен появится шаблон как на картинке ниже</p>
+    <img src="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/example_autoreplace.png" alt="Пример autoreplace в sqldeveloper" title="Пример autoreplace в sqldeveloper">
+
+    <h2>Настройка AutoReplace</h2>
+    <p>Вернитесь обратно в настройки, где включали функцию <b>Autoreplace</b>, чтобы добавить свой шаблон нажмите <b>Add Template</b>, для удаления <b>Remove Template</b>, для изменения текущих шаблонов просто нажимаете на них и меняете</p>
+    <img src="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/change_template.png" alt="Изменение шаблонов autoreplace в sqldeveloper" title="Изменение шаблонов autoreplace в sqldeveloper">
+
+        
+    <p>Далее пойдут ряд шаблонов, которые 100% пригодятся в ходе написания кода</p>    
+    
+    <table>
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Template</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>se</td>
+            <td>select * from</td>
+          </tr>
+          <tr>
+            <td>wh</td>
+            <td>where</td>
+          </tr>
+          <tr>
+            <td>de</td>
+            <td>delete</td>
+          </tr>
+          <tr>
+            <td>hex</td>
+            <td>hextoraw('')</td>
+          </tr>
+          <tr>
+            <td>raw</td>
+            <td>rawtohex('')</td>
+          </tr>
+        </tbody>
+    </table>
+
+    <p>Рекомендую таблицы, которые часто используете, также занести в шаблон</p> 
+    <br>
+    <p>Спасибо за внимание!</p>
+    
+</div>
+
+
+                        </div>
+                        
+                        <div class="likely-on-page">
+                            <div class="likely" data-url="https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html" data-media="https://best-manual.ru/images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/1.jpg" data-title="Oracle SQL Developer Autoreplace - пишем код быстрее">
+                                <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                <div class="odnoklassniki" title="Класснуть">Класснуть</div>
+                                <div class="gplus" title="Плюсануть">Плюсануть</div>
+                            </div>
+                        </div>
+
+                        <div class="reclama article-top-reclama">
+
+                        </div>
+
+                        <div class="read-more">
+                            <div class="read-more-header">Читать еще:</div>
+                            <ul>
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html">Как установить Oracle XE на Windows 10?</a></li>
+                                    
+                                
+                            </ul>
+                        </div>
+
+                        <div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://best-manual.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="col-md-4">
+
+<aside class="main-aside">
+                        
+    <div class="aside-box">
+
+    </div>
+
+
+    <div class="aside-box">
+<div class="latest-box">
+    <div class="lb-header">Последние статьи:</div>
+    <div class="lb-list">
+
+        <div class="lb-item">
+            <a href="blog/database/" class="lb-catname">Базы данных</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html" class="lb-item-header">Oracle SQL Developer Autoreplace - пишем код быстрее</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html#disqus_thread" class="item-comments-count"></a>
+                        <span class="date">29/05/2020</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/diy/" class="lb-catname">DIY</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html" class="lb-item-header">Настройка автоматической архивации по расписанию</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html#disqus_thread" class="item-comments-count"></a>
+                        <span class="date">27/05/2020</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+<!--
+        <div class="lb-item">
+            <a href="blog/theory/" class="lb-catname">Теория</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/news/" class="lb-catname">Новости</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+    -->
+
+    </div>
+</div>
+    </div>
+
+    <div class="aside-box">
+<div id="vk_groups"></div>
+
+    </div>
+
+    <div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://best-manual.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+    </div>
+
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="main-footer">
+    <div class="container">
+
+        <nav class="main-menu footer-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+        </nav>
+
+        <nav class="soc">
+
+            <ul>
+<li><a href="https://vk.com/best_manual_ru"><i class="fa fa-vk"></i></a></li> <li><a href="https://www.instagram.com/taran_as_official"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+</footer>
+
+<div class="footer bottom-footer">
+    <div class="container text-center">
+        <div class="footer-copy">2020-2020 © <span class="logo-footer logo-litera">Best-manual.ru</span></div>
+        <p>Копирование контента и размещение на других сайтах запрещено.</p>
+    </div>
+</div>
+
+<script src="js/scripts.min.js"></script>
+<script id="dsq-count-scr" src="//best-manual.disqus.com/count.js" async></script>
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+<script type="text/javascript">VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto', height: '300', color2: '202222'}, 32591432); </script>
+
+</body>
+</html>

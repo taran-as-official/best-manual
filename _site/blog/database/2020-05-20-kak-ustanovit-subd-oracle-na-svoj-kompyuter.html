@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Как установить Oracle XE на Windows 10? | Сайт полезных статей по разработке и не только</title>
+	<meta name="description" content="В данной статье пошагово рассмотрим установку СУБД Oracle XE 18 на windows 10 64-бит">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/1.jpg">
+	<link rel="icon" href="img/favicon/best_manual_icon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple_touch_icon_256.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+	<script data-ad-client="ca-pub-6809977052006948" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+    
+    <a href="/" class="logo logo-litera"><img class="img-logo" src="/img/favicon/best_manual_icon.png" alt="site icon">Best-manual.ru</a>
+
+    <div class="search-wrap">
+        <div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+        <div class="search-field">
+            <form action="/search.html" id="cse-search-box">
+                <input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+                <input type="hidden" name="cof" value="FORID:10" />
+                <input type="hidden" name="ie" value="UTF-8" />
+                <input type="text" name="q" placeholder="Поиск по сайту..." />
+            </form>
+        </div>
+    </div>
+
+    <div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+    <nav class="main-menu top-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+    </nav>	 	
+
+</header>
+    
+    <header class="page-header overlay" style="background-image: url(images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/1.jpg)">
+
+        <div class="page-header-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-7 col-md-8">
+
+                        <div class="page-header-meta">
+
+                            <a href="blog/database" class="page-category-link">Базы данных</a><span class="date">20/05/2020</span>
+                            
+                            <h1>Как установить Oracle XE на Windows 10?</h1>
+
+                            <div class="item-social">
+                                <div class="item-comments" title="Количество комментариев">
+                                    <i class="fa fa-comment"></i><a href="/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html#disqus_thread" class="item-comments-count">0</a>
+                                </div>
+                                <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html" data-media="https://best-manual.ru/images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/1.jpg" data-title="Как установить Oracle XE на Windows 10?">
+                                    <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                    <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                    <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="article-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <article class="mail-article">
+                        <nav class="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="blog/database">Базы данных</a></li>
+                                <li class="active">Как установить Oracle XE на Windows 10?</li>
+                            </ul>
+                        </nav>
+                        
+                        <div class="article-body">
+                            <div class="reclama article-top-reclama">
+
+                            </div>
+
+                            <div class="post-body">
+    <blockquote>
+        Если в ходе установки будут какие-то трудности, ошибки - пишите об этом в комментариях, будем вместе разбираться!
+    </blockquote>
+    <h3>Шаг 1. Скачиваем Oracle на компьютер</h3>
+    <ul>
+        <li> Переходим на <a rel='nofollow' target='_blank' href='https://www.oracle.com/database/technologies/xe-downloads.html'>официальный сайт Oracle</a> и выбираем <b> Oracle Database 18c Express Edition for Windows x64</b></li>
+        <li> В появившемся окне нажимаем галочку напротив надписи <i>I reviewed and accept the Oracle License Agreement</i>, затем нажимаем Download
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/download_window_xe.png" alt="Окно для скачивания СУБД Oracle" title="Окно для скачивания СУБД Oracle">
+        </li>
+        <li> Вас перекинет на форму авторизации где нужно будет ввести свой логин и пароль.
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/login_window.png" alt="Окно авторизации" title="Окно авторизации">
+             Регистрируемся, подтверждаем email и только после подтверждения, пробуем скачать повторно. <br><span style="font-weight: 600; color: red">ВАЖНО:</span> <b>без регистрации скачать базу не получится!</b><br></li>
+        <li> Если с авторизацией проблем не возникло, то должна начаться скачка архива, размером примено 1,9 ГБ</li>
+    </ul>
+    
+    <h3>Шаг 2. Устанавливаем СУБД Oracle на компьютер</h3> 
+    <ul>
+        <li> Разархивируем в любое удобное для вас место</li>
+        <li> Заходим в папку, нажимаем правой кнопкой мыши на файл <b>setup.exe</b> и выбираем <i>Запустить от имени Администратора</i> 
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/start_setup_with_administrator.png" alt="Запуск setup.exe от имени администратора" title="Запуск setup.exe от имени администратора">
+        </li>
+        <li> Читаем лицензионное соглашение, соглашаемся с его условиями и нажимаем <b>Next</b>  
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/license_agree.png" alt="Лицензионное соглашение oracle xe" title="Лицензионное соглашение oracle xe">
+        </li>
+        <li> Не меняем путь установки, который предлагает установщик<br><br>
+            <span style="font-weight: 600; color: red">ВАЖНО</span>: если имя вашего пользователя в пути установки на русском языке (например: c:\app\<b>Иванов</b>\product...), рекомендую, закрыть установку и изменить имя вашей учетной записи на английское и при следующей установке заменить русское имя на английское вручную.
+        </li>
+        <li> Придумываем пароль и обязательно его куда нибудь записываем, он еще пригодится и нажимаем <b>Next</b>  
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/password_window.png" alt="Лицензионное соглашение oracle xe" title="Лицензионное соглашение oracle xe">
+        </li>
+        <li> Снова не меняем предложенные пути установки для компонентов Oracle и начинаем установку!</li>
+
+    </ul>
+    <!-- <blockquote>
+        В ходе установки могут вознинуть ошибки как на скрине ниже
+        <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_4_error.png" alt="Установка Oracle шаг 4 ошибки" title="Установка Oracle шаг 4 ошибки"><br>
+        
+            <b>[INS-35179] Current availiable is less than the required available memory (2,244MB) for creating the database.</b><br>
+            <span style="color: green;"><b>РЕШЕНИЕ</b></span>: закройте все открытые программы, чтобы освободить оперативную памят до размера указанного в ошибке (2,244MB) <br><br>
+            
+        
+            <b>[INS-32010] Oracle home location contains invalid characters.</b><br>
+            <span style="color: green;"><b>РЕШЕНИЕ</b></span>: ваша папка с установкой располагается по пути где есть русские символы, например: C:\Users\<b>Владимир</b>\Downloads\Oracle. Закройте окно установки и переместите папку с файлами установки в корень диска C или любого другого и запустите <b>setup.exe</b>
+        
+    </blockquote>
+    
+    <p>Скачанный архив разархивируем корень диска C, пока архив извлекается закрываем программы, чтоб было свободно около 3гб оперативной памяти <br></p>
+    <p>Заходим в разархивированную папку и запускаем от имени администратора файл <b>setup.exe</b></p> 
+
+    <ul>
+    
+        <li> <span class="word-decoration-type-one">Configuration Option</span>. Нажимаем <b>Next</b> оставляем выбор по умолчанию, который создаст нам сразу базу
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_1.png" alt="Установка Oracle шаг 1: Configuration Option" title="Установка Oracle шаг 1: Configuration Option">
+        </li>
+        <li> <span class="word-decoration-type-one">System Class</span>. т.к. в реальном мире база будет установлена на сервер, выбираем <b>Server Class</b> и нажимаем <b>Next</b>  
+          <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_server_class_step_2.png" alt="Установка Oracle шаг 2: System Class" title="Установка Oracle шаг 2: System Class">
+        </li>
+        <li> <span class="word-decoration-type-one">Select install Type</span>. Оставляем <b>Advanced install</b> (расширенная установка) и нажимаем <b>Next</b>
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_3_advanced_install.png" alt="Установка Oracle шаг 3: Select install Type" title="Установка Oracle шаг 3: Select install Type">
+        </li>
+        <li> <span class="word-decoration-type-one">Select database Edition</span>. Оставляем <b>Enterprise edition</b> и нажимаем <b>Next</b>
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_4_select_db_edition.png" alt="Установка Oracle шаг 4: Select database Edition" title="Установка Oracle шаг 4: Select database Edition">
+        </li>
+        <li> <span class="word-decoration-type-one">Specify Oracle Home User</span>. Пропишем пользователя Windows, через которого Oracle будет обращаться к компонентам операционной системы в разделе <b>Create New Windows User</b> имя задаем любое на английском, пароль, например: <i>Admin1234</i> и нажимаем <b>Next</b>
+          <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_5_windows_user.png" alt="Установка Oracle шаг 5: Specify Oracle Home User" title="Установка Oracle шаг 5: Specify Oracle Home User">
+        </li>
+        <li> <span class="word-decoration-type-one">Specify Installation Location</span>. Оставляем путь, который предлагаем нам установщик и нажимаем <b>Next</b> </li>
+        <li> <span class="word-decoration-type-one">Select Configuratuion Type</span>. Оставляем как есть <b>General Purpose/Transaction Processing</b> и нажимаем <b>Next</b> 
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_7_conf_type.png" alt="Установка Oracle шаг 7: Select Configuratuion Type" title="Установка Oracle шаг 7: Select Configuratuion Type">
+        </li>
+        <li> <span class="word-decoration-type-one">Specify Database identifiers</span>. Оставляем как есть и нажимаем <b>Next</b>
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_8_db_identifires.png" alt="Установка Oracle шаг 8: Specify Database identifiers" title="Установка Oracle шаг 8: Specify Database identifiers">
+        </li>
+        <li> <span class="word-decoration-type-one">Specify Configuration Options</span>. Если у вас более 4гб оперативной памяти поставьте галочку, иначе уберите галочку и нажмите <b>Next</b>
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_9_memory.png" alt="Установка Oracle шаг 9: Specify Configuration Options" title="Установка Oracle шаг 9: Specify Configuration Options">
+        </li>
+        <li> <span class="word-decoration-type-one">Specify Database Storage Options</span>. Оставляем все как предлагаем установщик и нажимаем <b>Next</b> </li>
+        <li> <span class="word-decoration-type-one">Specify Management Options</span>. Также оставляем все по умолчанию и нажимаем <b>Next</b> </li>
+        <li> <span class="word-decoration-type-one">Specify Recovery Options</span>. Ставим галочку на <b>Enable Recovery</b>, чтобы можно было восстановить базу при необходимости и нажимаем <b>Next</b>  
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_12_recovery.png" alt="Установка Oracle шаг 12: Specify Recovery Options" title="Установка Oracle шаг 12: Specify Recovery Options">
+        </li>
+        <li> <span class="word-decoration-type-one">Specify Schema Passwords</span>. Ставим галочку на <b>Use the same password for all accounts</b>, чтобы установить единый пароль администратора, пароль должен быть не менее 8 символов, должны быть цифры, минимум одна заглавная буква, одна прописная (пример: <i>Admin1234</i>) и нажимаем <b>Next</b>
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_step_13_password_for_db_users.png" alt="Установка Oracle шаг 13: Specify Schema Passwords" title="Установка Oracle шаг 13: Specify Schema Passwords">
+        </li>
+    
+        <li> <span class="word-decoration-type-one">Summary</span>. Финальное окно перед началом установки, рекомендую ничего не менять и нажать <b>Install</b> <br>
+            <blockquote>
+                В ходе установки может возникнуть ошибка <b>Faild to set ACL's for specified User</b>, просто нажмите <b>Continue</b>
+                <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_acl_error.png" alt="Ошибка Faild to set ACL's for specified User" title="Ошибка Faild to set ACL's for specified User">
+            </blockquote>
+            
+        </li>
+    
+        <li> <span class="word-decoration-type-one">Finish</span>. По завершению установки должно появиться окно ниже с надписью что установка прошла успешно (successfull), нажимаем <b>Close</b> 
+            <img src="images/article/2020/2020-02-17-kak-ustanovit-subd-oracle-na-svoj-kompyuter/install_finish.png" alt="Успешное завершение установки" title="Окно успешного завершения установки">
+        </li>
+        
+    </ul>
+-->
+    <h3>Шаг 3. Настраиваем среду разработки </h3>
+    После завершения установки проверим установилась ли корректно база, для этого:
+    <ul>
+        <li> Откроем командную строку. Нажимаем сочетание клавиш Win + R, отроется окно, в котором пишем <b>cmd</b> и нажимаем <b>ОК</b>
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd.png" alt="Открываем командную строку" title="Открываем командную строку">
+        </li>
+        <li> В появившемся окне пишем <b>sqlplus</b> и нажимаем клавишу <b>Enter</b>
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_1.png" alt="Запускаем sqlplus" title="Запускаем sqlplus">
+        </li>
+        <li> Если sqlplus успешно установился, то теперь командная строка попросит вас ввеси имя пользователя для подключения к БД, вводим как на скрине ниже, имя пользователся <b>system</b>, ваш пароль администратора и нажимаем два раза <b>Enter</b>
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_2.png" alt="Подключаемся к базе Oracle через sqlplus" title="Подключаемся к базе Oracle через sqlplus">
+        </li>
+        <li> При успешном подключении появится надпись с версией базы и в строке ввода команд появится слово <b>SQL</b>
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_3.png" alt="Успешное подключение к базе Oracle через sqlplus" title="Успешное подключение к базе Oracle через sqlplus">
+            Напишите теперь в командной строке такую конструкцию (обязательно <b>;</b> в конце ) <b>select 'hello world' from dual;</b> и нажмите <b>Enter</b> должен вернуться результат как на скрине ниже
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_4.png" alt="Успешное подключение к базе Oracle через sqlplus" title="Успешное подключение к базе Oracle через sqlplus">
+
+        </li>
+    </ul>
+
+    <span style="font-weight: 600; color: green">ПОЗДРАВЛЯЮ БАЗА ORACLE УСПЕШНО УСТАНОВЛЕНА!!!</span><br>
+    <br>
+    Но работать в командной строке - это неудобно, поэтому установим беспланую программу <b>Sql developer</b> для подключения и программирования базы. 
+
+    <ul>
+        <li> Переходим на <a rel='nofollow' target='_blank' href='https://www.oracle.com/ru/tools/downloads/sqldev-v192-downloads.html'>официальный сайт Oracle</a> и выбираем в блоке <b>SQL Developer xx.x.x Downloads</b> версию <b>Windows 64-bit with JDK 8 included</b> и нажимаем <b>Download</b>
+        </li>
+        <li> В появившемся окне ставим галочку и нажимаем <b>Download</b><br>
+             После может возникнуть окно авторизации, обязательно авторизируемся, иначе скачать программу не получится.
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/download_sqldeveloper.png" alt="Окно скачивания sqldeveloper" title="Окно скачивания sqldeveloper">
+        </li>
+        <li> Скачанный архив разархивируем в на диск C в папку Program Files</li>
+        <li>Заходим в папку с программой и запускаем файл <b>sqldeveloper.exe</b>
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/start_sqldeveloper.png" alt="Запускаем sqldeveloper" title="Запускаем sqldeveloper">
+        </li>
+        <li> Добавляем новое соединение
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/add_new_connect.png" alt="Добавляем новый connection в sqldeveloper" title="Добавляем новый connection в sqldeveloper">
+        </li>
+        <li>
+            Указываем все как на скриншоте ниже, пароль указываете, тот что указывали при установке Oracle и нажимаем <b>Test</b>, после нажатия в левом нижнем углу должна появиться надпись <b>Success</b><br>
+            Нажимаем <b>Save</b>, затем <b>Connect</b>
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/sqldeveloper_successfull_connect.png" alt="Настройка подключения в sqldeveloper" title="Настройка подключения в sqldeveloper">
+        </li>
+        <li> В появившемся окне введем пример, нашего первого скрипта. Напишите скрипт как на скриншоте ниже и затем нажмите <b>F5</b>, либо зеленый треугольник
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/first_script_in_sqldeveloper.png" alt="Первый селект в sqldeveloper" title="Первый селект в sqldeveloper">
+        </li>
+    </ul>
+    
+    <p>Спасибо за внимание!</p>
+    
+</div>
+
+
+                        </div>
+                        
+                        <div class="likely-on-page">
+                            <div class="likely" data-url="https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html" data-media="https://best-manual.ru/images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/1.jpg" data-title="Как установить Oracle XE на Windows 10?">
+                                <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                <div class="odnoklassniki" title="Класснуть">Класснуть</div>
+                                <div class="gplus" title="Плюсануть">Плюсануть</div>
+                            </div>
+                        </div>
+
+                        <div class="reclama article-top-reclama">
+
+                        </div>
+
+                        <div class="read-more">
+                            <div class="read-more-header">Читать еще:</div>
+                            <ul>
+                                
+                                
+                                
+                                    
+                                    <li><a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html">Oracle SQL Developer Autoreplace - пишем код быстрее</a></li>
+                                    
+                                
+                                    
+                                
+                            </ul>
+                        </div>
+
+                        <div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://best-manual.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="col-md-4">
+
+<aside class="main-aside">
+                        
+    <div class="aside-box">
+
+    </div>
+
+
+    <div class="aside-box">
+<div class="latest-box">
+    <div class="lb-header">Последние статьи:</div>
+    <div class="lb-list">
+
+        <div class="lb-item">
+            <a href="blog/database/" class="lb-catname">Базы данных</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html" class="lb-item-header">Oracle SQL Developer Autoreplace - пишем код быстрее</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html#disqus_thread" class="item-comments-count"></a>
+                        <span class="date">29/05/2020</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/diy/" class="lb-catname">DIY</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html" class="lb-item-header">Настройка автоматической архивации по расписанию</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html#disqus_thread" class="item-comments-count"></a>
+                        <span class="date">27/05/2020</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+<!--
+        <div class="lb-item">
+            <a href="blog/theory/" class="lb-catname">Теория</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/news/" class="lb-catname">Новости</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+    -->
+
+    </div>
+</div>
+    </div>
+
+    <div class="aside-box">
+<div id="vk_groups"></div>
+
+    </div>
+
+    <div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://best-manual.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+    </div>
+
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="main-footer">
+    <div class="container">
+
+        <nav class="main-menu footer-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+        </nav>
+
+        <nav class="soc">
+
+            <ul>
+<li><a href="https://vk.com/best_manual_ru"><i class="fa fa-vk"></i></a></li> <li><a href="https://www.instagram.com/taran_as_official"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+</footer>
+
+<div class="footer bottom-footer">
+    <div class="container text-center">
+        <div class="footer-copy">2020-2020 © <span class="logo-footer logo-litera">Best-manual.ru</span></div>
+        <p>Копирование контента и размещение на других сайтах запрещено.</p>
+    </div>
+</div>
+
+<script src="js/scripts.min.js"></script>
+<script id="dsq-count-scr" src="//best-manual.disqus.com/count.js" async></script>
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+<script type="text/javascript">VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto', height: '300', color2: '202222'}, 32591432); </script>
+
+</body>
+</html>

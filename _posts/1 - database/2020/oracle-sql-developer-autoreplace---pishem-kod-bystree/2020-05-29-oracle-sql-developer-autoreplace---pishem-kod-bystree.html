@@ -1,0 +1,64 @@
+---
+layout: post
+title: Oracle SQL Developer Autoreplace - пишем код быстрее
+description: В данной статье узнаем о таком встроенном инструменте в SQL Developer как автозамена текста (Autoreplace) , настроим его и больше не придется тратить время на написание шаблонного кода.
+categories: database
+catname: Базы данных
+image: "images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/1.jpg"
+thumb: "images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/1t.jpg"
+permalink: "blog/:categories/:year-:month-:day-:slug.html"
+---
+<div class="post-body">
+    
+    <h2>Включение AutoReplace</h2>
+    <p>Запускаем SQL Developer, переходим <b>Tools</b>-><b>Preferences...</b></p>
+    <img src="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/show_preferences.png" alt="Открываем настройки в sqldeveloper" title="Открываем настройки в sqldeveloper">
+
+    <p>В появившемся окне переходим <b>Database</b>-><b>SQL Editor Code Templates</b>, ставим галочку напротив <b>Autoreplace</b> и нажимаем <b>OK</b> </p>
+    <img src="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/enable_autoreplace.png" alt="Включение autoreplace в sqldeveloper" title="Включение autoreplace в sqldeveloper">
+    <p>Проверим работу, откройте окно для ввода кода, напишите <b>cf</b> и нажмите пробел, должен появится шаблон как на картинке ниже</p>
+    <img src="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/example_autoreplace.png" alt="Пример autoreplace в sqldeveloper" title="Пример autoreplace в sqldeveloper">
+
+    <h2>Настройка AutoReplace</h2>
+    <p>Вернитесь обратно в настройки, где включали функцию <b>Autoreplace</b>, чтобы добавить свой шаблон нажмите <b>Add Template</b>, для удаления <b>Remove Template</b>, для изменения текущих шаблонов просто нажимаете на них и меняете</p>
+    <img src="images/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/change_template.png" alt="Изменение шаблонов autoreplace в sqldeveloper" title="Изменение шаблонов autoreplace в sqldeveloper">
+
+        
+    <p>Далее пойдут ряд шаблонов, которые 100% пригодятся в ходе написания кода</p>    
+    
+    <table>
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Template</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>se</td>
+            <td>select * from</td>
+          </tr>
+          <tr>
+            <td>wh</td>
+            <td>where</td>
+          </tr>
+          <tr>
+            <td>de</td>
+            <td>delete</td>
+          </tr>
+          <tr>
+            <td>hex</td>
+            <td>hextoraw('')</td>
+          </tr>
+          <tr>
+            <td>raw</td>
+            <td>rawtohex('')</td>
+          </tr>
+        </tbody>
+    </table>
+
+    <p>Рекомендую таблицы, которые часто используете, также занести в шаблон</p> 
+    <br>
+    <p>Спасибо за внимание!</p>
+    
+</div>

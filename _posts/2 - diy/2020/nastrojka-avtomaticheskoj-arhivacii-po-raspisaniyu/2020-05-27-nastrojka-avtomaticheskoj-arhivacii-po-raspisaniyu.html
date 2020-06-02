@@ -1,0 +1,47 @@
+---
+layout: post
+title: Настройка автоматической архивации по расписанию
+description: В данной статье детально разберем как настроить автоматическую архивацию по Windows 10, с помощью bat-файла, который используя 7zip будет архивировать нужные нам файлы
+categories: diy
+catname: DIY
+image: "images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/1.jpg"
+thumb: "images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/1t.jpg"
+permalink: "blog/:categories/:year-:month-:day-:slug.html"
+---
+<div class="post-body">
+  <h2>Создание BAT-файла для архивации на 7zip</h2>
+  <p> Для начала нужно создать файл, который будет архивировать нужные нам файлы и уже его будем помещать в расписание. Если файла нет, можно создать его используя мануал <a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html">создания BAT-файла для архивации через 7-zip</a> </p>
+  
+  <h2>Создание расписания</h2>
+  <ul>
+    <li>Нажимаем сочетание клавиш <b>Win+R</b>, в появшемся окне вводим <b>taskschd.msc</b> и нажимаем <b>OK</b></li>
+    <li>Открылся <b>Планировщик заданий</b>, создадим простое задание
+      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/add_task.png" alt="Добавление нового задания в планировщике Windows" title="Добавление нового задания в планировщике Windows">
+    </li>
+    <li>Добавляем описание
+      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/description_task.png" alt="Описание задания в планировщике Windows" title="Описание задания в планировщике Windows">
+
+    </li>
+    <li>Выбираем когда запускать задание. В данной статье рассматривается ежедневный запуск
+      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/trigger_task.png" alt="Условия срабатывания задания в планировщике Windows" title="Условия срабатывания в планировщике Windows">
+
+    </li>
+    <li>Указываем время запуска архивации
+      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/choose_time.png" alt="Время срабатывания задания в планировщике Windows" title="Время срабатывания в планировщике Windows">
+
+    </li>
+    <li>Действие оставляем предложенное по умолчанию "Запускать программу"
+      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/choose_action.png" alt="Действие задания в планировщике Windows" title="Действие срабатывания в планировщике Windows">
+
+    </li>
+    <li>Для запуска архиватора нажимаем <b>Обзор</b> и выбираем BAT-файл
+      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/add_bat_in_task.png" alt="Добавление BAT-файла в планировщике Windows" title="Добавление BAT-файла в планировщике Windows">
+
+    </li>
+    <li>Посмотрите еще раз на задание, проверьте все ли корректно указано, если да жмем <b>Готово</b>
+      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/info_task.png" alt="Сводка в планировщике Windows" title="Сводка в планировщике Windows">
+    </li>
+  </ul>
+  <p>Спасибо за внимание!</p>
+
+</div>
