@@ -51,6 +51,21 @@ $(function() {
 			$(this).parent('li').addClass('active');
 		}
 	});
+	//логика кнопки вверх!
+	let btnUp = $('.btn-up');
+	$(window).on('scroll',() => {
+		if ($(this).scrollTop() >= 500) {
+			btnUp.fadeIn();
+		}
+		else {
+			btnUp.fadeOut();
+		}
+	})
+
+	btnUp.on('click', (e) => {
+		e.preventDefault();
+		$('html').animate({scrollTop: 0}, 1000);
+	})
 
 });
 

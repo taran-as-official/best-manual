@@ -9,6 +9,16 @@ thumb: "images/diy/2020/2020-06-08-perevodim-proekt-na-github/1t.jpg"
 permalink: "blog/:categories/:year-:month-:day-:slug.html"
 ---
 <div class="post-body">
+  
+  <nav class="toc">
+    <b>Содержание:</b>
+    <ol>
+      <li><a href="{{page.url}}#registration">Регистрация в GitHub</a>
+      <li><a href="{{page.url}}#create-rep">Создание репозитория</a>
+      <li><a href="{{page.url}}#git-setup">Установка Git</a>
+      <li><a href="{{page.url}}#settings">Настройка репозитория Git</a>
+    </ol>
+  </nav>
 
   <h2 id="registration">Регистрация в GitHub</h2>
 
@@ -89,7 +99,9 @@ permalink: "blog/:categories/:year-:month-:day-:slug.html"
     <li><p>Загрузим изменения на сервер GitHub. Продолжаем вводить по очереди команды ниже</p> 
 
       <span class="code-block console">git add .<br>git commit -m 'my first commit' <br>git push</span>
-      <p>При вводе последней команды нужно будет ввести логин и пароль. <br><b>ВАЖНО: </b> при вводе пароля символы не будут отображаться, но они по факту вводятся</p>
+      <p>При вводе последней команды нужно будет ввести логин и пароль. <br>
+      <b>ВАЖНО: </b> при вводе пароля символы не будут отображаться, но они по факту вводятся</p>
+      <b style="color: green">РЕКОМЕНДАЦИЯ: </b> отклоните авторизацию через логин и пароль, появится окно авторизации через SSH, вот через SSH и авторизуйтесь</p>
 
     </li>
     <li>Зайдите на сервер GitHub, обновите страницу репозитория, добавленный файл должен отобразиться на сервере!</li>

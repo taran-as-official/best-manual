@@ -1416,6 +1416,55 @@ a.cat-list-item
 		padding: 10px
 	table
 		margin-bottom: 20px
+	a
+		font-weight: 600
+
+.btn-up
+	margin-left: -60px
+	margin-top: -100px
+	height: 50px
+	width: 50px
+	border-radius: 50%
+	position: fixed
+	background-color: #f0f0f0
+	transition: background-color .25s ease, border-color .25s ease
+	display: none
+	cursor: pointer
+	&::after
+		content: ''
+		position: absolute
+		top: 56%
+		left: 51%
+		transform: translate(-50%, -50%)
+		width: 15px
+		height: 15px
+		transform: translate(-50%, -50%) rotate(45deg)
+		border-top: 4px solid #888888
+		border-left: 4px solid #888888
+		&:hover
+			border-top: 4px solid #ffffff
+
+	&:hover
+		background-color: $accent
+		&::after
+			border-color: #fff
+		
+
+.toc
+	ol
+		counter-reset: li
+		li
+			counter-increment: li
+		ol
+			counter-reset: lili
+			li
+				position: relative
+				list-style: none
+				counter-increment: -li
+				&::before
+					content: counter(li) "." counter(lili) ". "
+					counter-increment: lili
+					
 
 .word-decoration-type-one
 	color: #403aa0 //#8d61a4

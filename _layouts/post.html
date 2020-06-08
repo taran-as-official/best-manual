@@ -33,9 +33,12 @@
         </div>
     </header>
     
+    
     <div class="article-content">
         <div class="container-fluid">
+            
             <div class="row">
+                <div align="right" class="btn-up" title="Наверх"></div>
                 <div class="col-md-8">
 
                     <article class="mail-article">
@@ -43,7 +46,7 @@
                             <ul>
                                 <li><a href="{{ site.baseurl}}">Главная</a></li>
                                 <li><a href="{{ site.category_dir }}/{{ page.categories }}">{{ page.catname }}</a></li>
-                                <li class="active">{{ page.title }}</li>
+                                <li class="active" id="title">{{ page.title }}</li>
                             </ul>
                         </nav>
                         

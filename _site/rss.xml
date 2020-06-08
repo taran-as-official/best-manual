@@ -7,6 +7,17 @@
 		<atom:link href="https://best-manual.ru/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Переводим проект на GitHub</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/diy/2020-06-08-perevodim-proekt-na-github.html"><img width="100%" src="https://best-manual.ruimages/diy/2020/2020-06-08-perevodim-proekt-na-github/1.jpg"></a>
+					В данной статье детально разберем как перевести свой проект на GitHub с нуля на Windows 10
+					]]></description>
+				<pubDate>Mon, 08 Jun 2020 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/diy/2020-06-08-perevodim-proekt-na-github.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2020-06-08-perevodim-proekt-na-github.html</guid>
+			</item>
+		
+			<item>
 				<title>Oracle SQL Developer Autoreplace - пишем код быстрее</title>
 				<description><![CDATA[
 					<a href="https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html"><img width="100%" src="https://best-manual.ruimages/database/2020/2020-05-29-oracle-sql-developer-autoreplace---pishem-kod-bystree/1.jpg"></a>
@@ -48,17 +59,6 @@
 				<pubDate>Wed, 20 May 2020 00:00:00 +0300</pubDate>
 				<link>https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html</link>
 				<guid isPermaLink="true">https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html</guid>
-			</item>
-		
-			<item>
-				<title>Переводим проект на GitHub</title>
-				<description><![CDATA[
-					<a href="https://best-manual.ru/blog/diy/2020-05-08-perevodim-proekt-na-github.html"><img width="100%" src="https://best-manual.ruimages/diy/2020/2020-06-08-perevodim-proekt-na-github/1.jpg"></a>
-					В данной статье детально разберем как перевести свой проект на GitHub с нуля на Windows 10
-					]]></description>
-				<pubDate>Fri, 08 May 2020 00:00:00 +0300</pubDate>
-				<link>https://best-manual.ru/blog/diy/2020-05-08-perevodim-proekt-na-github.html</link>
-				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2020-05-08-perevodim-proekt-na-github.html</guid>
 			</item>
 		
 	</channel>

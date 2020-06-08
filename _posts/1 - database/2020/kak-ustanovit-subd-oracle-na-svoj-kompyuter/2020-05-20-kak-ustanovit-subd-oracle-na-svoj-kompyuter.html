@@ -9,10 +9,22 @@ thumb: "images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyu
 permalink: "blog/:categories/:year-:month-:day-:slug.html"
 ---
 <div class="post-body">
+
+    <nav class="toc">
+        <b>Содержание:</b>
+        <ol>
+          <li><a href="{{page.url}}#download-oracle">Скачиваем Oracle на компьютер</a>
+          <li><a href="{{page.url}}#setup-oracle">Устанавливаем СУБД Oracle на компьютер</a>
+          <li><a href="{{page.url}}#settings-oracle">Настраиваем среду разработки</a>
+        </ol>
+    </nav>
+
+    
     <blockquote>
         Если в ходе установки будут какие-то трудности, ошибки - пишите об этом в комментариях, будем вместе разбираться!
     </blockquote>
-    <h3>Шаг 1. Скачиваем Oracle на компьютер</h3>
+
+    <h2 id="download-oracle">Шаг 1. Скачиваем Oracle на компьютер</h2>
     <ul>
         <li> Переходим на {% extlink официальный сайт Oracle https://www.oracle.com/database/technologies/xe-downloads.html %} и выбираем <b> Oracle Database 18c Express Edition for Windows x64</b></li>
         <li> В появившемся окне нажимаем галочку напротив надписи <i>I reviewed and accept the Oracle License Agreement</i>, затем нажимаем Download
@@ -24,7 +36,7 @@ permalink: "blog/:categories/:year-:month-:day-:slug.html"
         <li> Если с авторизацией проблем не возникло, то должна начаться скачка архива, размером примено 1,9 ГБ</li>
     </ul>
     
-    <h3>Шаг 2. Устанавливаем СУБД Oracle на компьютер</h3> 
+    <h2 id="setup-oracle">Шаг 2. Устанавливаем СУБД Oracle на компьютер</h2> 
     <ul>
         <li> Разархивируем в любое удобное для вас место</li>
         <li> Заходим в папку, нажимаем правой кнопкой мыши на файл <b>setup.exe</b> и выбираем <i>Запустить от имени Администратора</i> 
@@ -108,7 +120,7 @@ permalink: "blog/:categories/:year-:month-:day-:slug.html"
         
     </ul>
 -->
-    <h3>Шаг 3. Настраиваем среду разработки </h3>
+    <h2 id="settings-oracle">Шаг 3. Настраиваем среду разработки</h2>
     После завершения установки проверим установилась ли корректно база, для этого:
     <ul>
         <li> Откроем командную строку. Нажимаем сочетание клавиш Win + R, отроется окно, в котором пишем <b>cmd</b> и нажимаем <b>ОК</b>

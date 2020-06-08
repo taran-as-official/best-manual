@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://best-manual.ru/blog/diy/2020-06-08-perevodim-proekt-na-github.html</loc>
+    <lastmod>2020-06-08T00:00:00+03:00</lastmod>
+  </url>
+  <url>
     <loc>https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html</loc>
     <lastmod>2020-05-29T00:00:00+03:00</lastmod>
   </url>
@@ -17,42 +21,38 @@
     <loc>https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html</loc>
     <lastmod>2020-05-20T00:00:00+03:00</lastmod>
   </url>
-  <url>
-    <loc>https://best-manual.ru/blog/diy/2020-05-08-perevodim-proekt-na-github.html</loc>
-    <lastmod>2020-05-08T00:00:00+03:00</lastmod>
-  </url>
   
   <url>
     <loc>https://best-manual.ru/about.html</loc>
-    <lastmod>2020-06-02T17:17:49+03:00</lastmod>
+    <lastmod>2020-06-08T14:23:43+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/</loc>
-    <lastmod>2020-06-02T17:17:49+03:00</lastmod>
+    <lastmod>2020-06-08T14:23:43+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/rss.xml</loc>
-    <lastmod>2020-06-02T17:17:49+03:00</lastmod>
+    <lastmod>2020-06-08T14:23:43+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/search.html</loc>
-    <lastmod>2020-06-02T17:17:49+03:00</lastmod>
+    <lastmod>2020-06-08T14:23:43+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/sitemap.xml</loc>
-    <lastmod>2020-06-02T17:17:49+03:00</lastmod>
+    <lastmod>2020-06-08T14:23:43+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/database/</loc>
-    <lastmod>2020-06-02T17:17:49+03:00</lastmod>
+    <lastmod>2020-06-08T14:23:43+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/diy/</loc>
-    <lastmod>2020-06-02T17:17:49+03:00</lastmod>
+    <lastmod>2020-06-08T14:23:43+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/</loc>
-    <lastmod>2020-06-02T17:17:49+03:00</lastmod>
+    <lastmod>2020-06-08T14:23:43+03:00</lastmod>
   </url>
   
 </urlset>

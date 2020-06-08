@@ -88,9 +88,12 @@
         </div>
     </header>
     
+    
     <div class="article-content">
         <div class="container-fluid">
+            
             <div class="row">
+                <div align="right" class="btn-up" title="Наверх"></div>
                 <div class="col-md-8">
 
                     <article class="mail-article">
@@ -98,7 +101,7 @@
                             <ul>
                                 <li><a href="/">Главная</a></li>
                                 <li><a href="blog/diy">DIY</a></li>
-                                <li class="active">7-zip архивация через BAT-файл, в один клик</li>
+                                <li class="active" id="title">7-zip архивация через BAT-файл, в один клик</li>
                             </ul>
                         </nav>
                         
@@ -108,7 +111,22 @@
                             </div>
 
                             <div class="post-body">
-  <h2>Теория по созданию архиватора через BAT-файл</h2>
+  
+  <nav class="toc">
+    <b>Содержание:</b>
+    <ol>
+      <li><a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html#theory">Теория по созданию архиватора через BAT-файл</a>
+      <li><a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html#create-arch">Создание архиватора через BAT-файл</a>
+        <ol>
+          <li><a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html#create-bat">Созданием BAT-файл</a>
+          <li><a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html#ref_path">Привязываем путь к программе 7zip к переменной</a>
+          <li><a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html#exlude-file">Исключаем ненужные файлы из архивации</a>
+          <li><a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html#add-sysdate">Добавляем дату и время создания архива в название</a>
+        </ol>
+    </ol>
+  </nav>
+
+  <h2 id="theory">Теория по созданию архиватора через BAT-файл</h2>
   <p> Код нашего скрипта будет состоять из 4-х частей: </p>
   <ul>
     <li>
@@ -193,10 +211,11 @@
     </li>
   </ul>
 
-  <h2>Создание архиватора через BAT-файл</h2>
+  <h2 id="create-arch">Создание архиватора через BAT-файл</h2>
 
   <p>Задача: создать BAT-файл, который будет сжимать всё содержимое папки <b>project</b> на диске <b>C:/</b> максимальным уровнем сжатия и помещать созданный архив в папку <b>backup</b> на том же диске.</p>
 
+  <h3 id="create-bat">Создаем BAT-файл</h3>
   <ul>
     <li>
       <p>На диске <b>C:/</b>, создаем папку <b>project</b>. В эту папку поместите какие нибуть файлы, например, фото</p>
@@ -249,7 +268,7 @@
   <p>На этом можно было бы остановиться, но обязательно ли постоянно прописывать путь к программе 7zip? Что если не нужно архивировать не все файлы в папке? Как в название архива добавить дату, когда он был сделан?</p>
   <p>Разберем каждый пункт по порядку.</p>
 
-  <h3>Привязываем путь к программе 7zip к переменной</h3>
+  <h3 id="ref_path">Привязываем путь к программе 7zip к переменной</h3>
 
   <ul>
     <li>Нажимаем правой кнопкой мыши на <b>Этот компьютер</b>-><b>Свойства</b> в появившемся окне в списке слева выбираем <b>Дополнительные параметры системы</b>-><b>Переменные среды</b>.</li>
@@ -272,7 +291,7 @@
     </li>
   </ul>
   
-  <h3>Исключаем ненужные файлы из архивации</h3>
+  <h3 id="exlude-file">Исключаем ненужные файлы из архивации</h3>
 
   <p>Для исключения файлов необходимо в <b>конце</b> скрипта добавить ключ <span class="console"><b>-xr!</b></span>, чтобы понять как он работает, просто изучите примеры.</p>
   <p><b>Примеры:</b></p>
@@ -309,7 +328,7 @@
   <div class="code-block console">7z a -mx9 G:\backup\archive.7z G:\project -xr!thumb.*</div>
      
 
-  <h3>Добавляем дату и время создания архива в название</h3>
+  <h3 id="add-sysdate">Добавляем дату и время создания архива в название</h3>
   <ul>
     <li>
       <p>В Window есть две системные переменные, которые будем использовать</p> 
@@ -412,13 +431,13 @@
                                 
                                 
                                     
+                                    <li><a href="/blog/diy/2020-06-08-perevodim-proekt-na-github.html">Переводим проект на GitHub</a></li>
+                                    
+                                
+                                    
                                     <li><a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html">Настройка автоматической архивации по расписанию</a></li>
                                     
                                 
-                                    
-                                
-                                    
-                                    <li><a href="/blog/diy/2020-05-08-perevodim-proekt-na-github.html">Переводим проект на GitHub</a></li>
                                     
                                 
                             </ul>
@@ -475,7 +494,7 @@ s.setAttribute('data-timestamp', +new Date());
                 <a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html" class="lb-item-header">Oracle SQL Developer Autoreplace - пишем код быстрее</a>
                 <div class="lb-footer">
                     <div class="item-comments" title="Количество комментариев">
-                        <i class="fa fa-comment"></i><a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html#disqus_thread" class="item-comments-count"></a>
+                        <i class="fa fa-comment"></i><a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html#disqus_thread" class="item-comments-count">0</a>
                         <span class="date">29/05/2020</span>
                     </div>
                 </div>
@@ -489,11 +508,11 @@ s.setAttribute('data-timestamp', +new Date());
             <div class="lb-body">
 
                 
-                <a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html" class="lb-item-header">Настройка автоматической архивации по расписанию</a>
+                <a href="/blog/diy/2020-06-08-perevodim-proekt-na-github.html" class="lb-item-header">Переводим проект на GitHub</a>
                 <div class="lb-footer">
                     <div class="item-comments" title="Количество комментариев">
-                        <i class="fa fa-comment"></i><a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html#disqus_thread" class="item-comments-count"></a>
-                        <span class="date">27/05/2020</span>
+                        <i class="fa fa-comment"></i><a href="/blog/diy/2020-06-08-perevodim-proekt-na-github.html#disqus_thread" class="item-comments-count">0</a>
+                        <span class="date">08/06/2020</span>
                     </div>
                 </div>
                 
