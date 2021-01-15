@@ -67,5 +67,29 @@ $(function() {
 		$('html').animate({scrollTop: 0}, 1000);
 	})
 
+	//логика форматировщика кода
+	$('.sql-code-formatter').each(function() {
+		var codeText = $(this);
+		var newText;
+		var commentText;
+
+		//commentText = codeText.html().replace(/s/);
+		//добавляем перевод строки после ; 
+		//newText = codeText.html().replace(/;/g, ';<br>') // между / / указываем какой символ искать, g - указывает чтобы нужно менять все найденные символы, не только первый
+		
+		//добавляем цвет комментариев после --
+		newText = codeText.html().replace(/--.*/g, '<span style="color: green">$&</span>') //$& - совпавшая подстрока, --.* - ищем все символы, после -- до конца строки
+
+		//подстветка для служебных слов
+		newText = newText.replace(/select|from|by|group|level|order|on|where|and|alter|drop|set|true|false|update|delete|insert|level|create|grant|sysdba|sys|user|session|tablespace|identified|table/g, '<span style="color: #006395">$&</span>') //$& - совпавшая подстрока
+
+		//#006395 цвет для служебных слов
+		//#006300 цвет для цифр
+		codeText.html(newText); 
+
+
+
+	});
+
 });
 

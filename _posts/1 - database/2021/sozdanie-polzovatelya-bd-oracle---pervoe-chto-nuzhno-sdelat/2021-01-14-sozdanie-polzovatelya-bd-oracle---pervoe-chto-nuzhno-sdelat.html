@@ -1,0 +1,37 @@
+---
+layout: post
+title: Создание пользователя БД Oracle - первое, что нужно сделать
+description: В данной статье детально разберем как создать своего пользователя (схему) в БД Oracle, а именно зададим имя, пароль, выдадим права на коннект к базе и создание таблиц, объектов и т.д..
+categories: database
+catname: Базы данных
+image: "images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg"
+thumb: "images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1t.jpg"
+permalink: "blog/:categories/:year-:month-:day-:slug.html"
+---
+<div class="post-body">
+
+  <p>После установки базы Oracle в вашем распоряжении будет как минимум два пользователя БД <b>sys</b>, <b>system</b> - эти стандартные системные пользователи (схемы) и их структуры должны оставаться неизменными, поэтому для дальнейшей работы создадим своего пользователся с правами администратора:</p>
+  
+  <ul>
+    <li>Для начала убедитесь, что подключение к БД происходит с ролью <b>SYSDBA</b> 
+      <img src="images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/connection_with_sysdba.png" alt="Настройка подключения к БД Oracle с ролью SYSDBA" title="Настройка подключения к БД Oracle с ролью SYSDBA">
+    </li>
+    <li>В новых версиях Oracle имя пользователя должно быть формата "C##КакоеТоИмя", если вы не хотите называть своего пользователя с префиксом "C##", то выполните команду ниже, иначе возникнет ошибка <b>ORA-65096: недопустимое имя общего пользователя или имя роли</b>
+      <div class="sql-code-formatter">alter session set "_ORACLE_SCRIPT"=true; --переход в старый режим</div>
+    </li>
+    <li>Теперь выполняем команды для создания пользователя
+      <div class="sql-code-formatter">create user prod identified by Admin1234; --создаем пользователя prod с паролем Admin1234       
+        grant create session to prod; --права на создание сессии (чтобы могли приконнектиться к БД)
+        grant unlimited tablespace to prod; --права на создание таблиц в любых табличных простанствах
+        grant sysdba to prod; --права администратора новому пользователю
+      </div>
+    </li>
+  </ul>
+
+  <p>Готово, пользователь создан, теперь в настроках SQL Developer укажите вашего нового пользователя и подключайтесь через него</p>
+  <p>Для удаления пользователя, воспользуйтесь простой командой ниже</p>
+  <div class="sql-code-formatter">drop user prod; --удалить пользователя из БД</div>
+  <br>
+  <p>Спасибо за внимание!</p>
+
+</div>
