@@ -1400,6 +1400,7 @@ a.cat-list-item
 			margin: 10px 0 15px 0
 	img
 		padding: 15px 0
+		dispaly: none
 	h2
 		padding-bottom: 25px
 		padding-top: 40px
@@ -1413,11 +1414,17 @@ a.cat-list-item
 		margin: 10px 0
 	table, th, tr, td
 		border: 1px solid gray
-		padding: 10px
+		padding: 9px
 	table
 		margin-bottom: 20px
+		margin-top: 10px
 	a
 		font-weight: 600
+
+.article-body
+	.post-body
+		img
+			display: inline
 
 .btn-up
 	margin-left: -60px
@@ -1486,10 +1493,10 @@ a.cat-list-item
 
 .sql-code-formatter
 	font-family: Courier New, Courier, monospace
-	white-space: pre-line
+	white-space: pre
 	color: #000
 	font-size: 12px
-	font-weight: 600
+	font-weight: bold
 	width: 696px
 	background: url(../img/code-background.png) no-repeat
 	padding-top: 30px
@@ -1497,7 +1504,8 @@ a.cat-list-item
 	padding-bottom: 10px
 	border: 1px solid #888888
 	border-radius: 2px
-	margin-top: 5px
+	margin-top: 10px
+	margin-bottom: 25px
 	
 
 @import "media" // Always at the end

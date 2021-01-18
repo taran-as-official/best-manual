@@ -2,8 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://best-manual.ru/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html</loc>
-    <lastmod>2021-01-14T00:00:00+03:00</lastmod>
+    <loc>https://best-manual.ru/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html</loc>
+    <lastmod>2021-01-18T00:00:00+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://best-manual.ru/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html</loc>
+    <lastmod>2021-01-15T00:00:00+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/diy/2020-06-08-perevodim-proekt-na-github.html</loc>
@@ -28,35 +32,35 @@
   
   <url>
     <loc>https://best-manual.ru/about.html</loc>
-    <lastmod>2021-01-14T18:53:32+03:00</lastmod>
+    <lastmod>2021-01-18T18:32:53+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/</loc>
-    <lastmod>2021-01-14T18:53:32+03:00</lastmod>
+    <lastmod>2021-01-18T18:32:53+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/rss.xml</loc>
-    <lastmod>2021-01-14T18:53:32+03:00</lastmod>
+    <lastmod>2021-01-18T18:32:53+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/search.html</loc>
-    <lastmod>2021-01-14T18:53:32+03:00</lastmod>
+    <lastmod>2021-01-18T18:32:53+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/sitemap.xml</loc>
-    <lastmod>2021-01-14T18:53:32+03:00</lastmod>
+    <lastmod>2021-01-18T18:32:53+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/database/</loc>
-    <lastmod>2021-01-14T18:53:32+03:00</lastmod>
+    <lastmod>2021-01-18T18:32:53+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/diy/</loc>
-    <lastmod>2021-01-14T18:53:32+03:00</lastmod>
+    <lastmod>2021-01-18T18:32:53+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/</loc>
-    <lastmod>2021-01-14T18:53:32+03:00</lastmod>
+    <lastmod>2021-01-18T18:32:53+03:00</lastmod>
   </url>
   
 </urlset>

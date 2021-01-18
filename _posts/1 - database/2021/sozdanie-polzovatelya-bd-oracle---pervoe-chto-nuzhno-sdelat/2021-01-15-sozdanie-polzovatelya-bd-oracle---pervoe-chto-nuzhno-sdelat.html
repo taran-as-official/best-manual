@@ -19,12 +19,19 @@ permalink: "blog/:categories/:year-:month-:day-:slug.html"
     <li>В новых версиях Oracle имя пользователя должно быть формата "C##КакоеТоИмя", если вы не хотите называть своего пользователя с префиксом "C##", то выполните команду ниже, иначе возникнет ошибка <b>ORA-65096: недопустимое имя общего пользователя или имя роли</b>
       <div class="sql-code-formatter">alter session set "_ORACLE_SCRIPT"=true; --переход в старый режим</div>
     </li>
-    <li>Теперь выполняем команды для создания пользователя
-      <div class="sql-code-formatter">create user prod identified by Admin1234; --создаем пользователя prod с паролем Admin1234       
-        grant create session to prod; --права на создание сессии (чтобы могли приконнектиться к БД)
-        grant unlimited tablespace to prod; --права на создание таблиц в любых табличных простанствах
-        grant sysdba to prod; --права администратора новому пользователю
-      </div>
+    <li>Теперь выполняем команды для создания нового пользователя, почти администратора.
+      <div class="sql-code-formatter">create user prod identified by Admin1234; --создаем пользователя prod с паролем Admin1234
+--далее выдаем права       
+grant create session to prod; --создание сессии (чтобы могли приконнектиться к БД)
+grant unlimited tablespace to prod; --создание таблиц с безлимитным табличных простанствах
+grant create table to prod; --создание таблиц
+grant create any index to prod; --создание индексов
+grant create tablespace to prod; --создание табличных пространств
+grant create user to prod; --создание новых пользователей
+grant drop user to prod; --удаление существующих пользователей
+grant insert any table to prod; --добавление данных в таблицы
+grant update any table to prod; --изменения данных в таблицах
+grant delete any table to prod; --удаление данных в таблицах</div>
     </li>
   </ul>
 

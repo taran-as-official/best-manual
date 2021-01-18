@@ -6,14 +6,14 @@
 	<meta charset="utf-8">
 	<base href="/">
 
-	<title>Создание пользователя БД Oracle - первое, что нужно сделать | Сайт полезных статей по разработке и не только</title>
-	<meta name="description" content="В данной статье детально разберем как создать своего пользователя (схему) в БД Oracle, а именно зададим имя, пароль, выдадим права на коннект к базе и создание таблиц, объектов и т.д..">
+	<title>Pl/SQL - генерация строк, чисел в Oracle | Сайт полезных статей по разработке и не только</title>
+	<meta name="description" content="В данной статье детально разберем как генерировать строки, числа в Oracle, а также как регулировать количество строк и генерируемые данные. А также будет приведен пример генерации данных для тестовой таблицы.">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
 	<!-- Template Basic Images Start -->
-	<meta property="og:image" content="images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg">
+	<meta property="og:image" content="images/database/2021/2021-01-18-plsql---generaciya-strok-chisel-v-oracle/1.jpg">
 	<link rel="icon" href="img/favicon/best_manual_icon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple_touch_icon_256.png">
 	<!-- Template Basic Images End -->
@@ -57,7 +57,7 @@
 
 </header>
     
-    <header class="page-header overlay" style="background-image: url(images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg)">
+    <header class="page-header overlay" style="background-image: url(images/database/2021/2021-01-18-plsql---generaciya-strok-chisel-v-oracle/1.jpg)">
 
         <div class="page-header-content">
             <div class="container-fluid">
@@ -66,16 +66,16 @@
 
                         <div class="page-header-meta">
 
-                            <a href="blog/database" class="page-category-link">Базы данных</a><span class="date">14/01/2021</span>
+                            <a href="blog/database" class="page-category-link">Базы данных</a><span class="date">18/01/2021</span>
                             
-                            <h1>Создание пользователя БД Oracle - первое, что нужно сделать</h1>
+                            <h1>Pl/SQL - генерация строк, чисел в Oracle</h1>
 
                             <div class="item-social">
                                 <div class="item-comments" title="Количество комментариев">
-                                    <i class="fa fa-comment"></i><a href="/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html#disqus_thread" class="item-comments-count">0</a>
+                                    <i class="fa fa-comment"></i><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html#disqus_thread" class="item-comments-count">0</a>
                                 </div>
                                 <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
-                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html" data-media="https://best-manual.ru/images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg" data-title="Создание пользователя БД Oracle - первое, что нужно сделать">
+                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html" data-media="https://best-manual.ru/images/database/2021/2021-01-18-plsql---generaciya-strok-chisel-v-oracle/1.jpg" data-title="Pl/SQL - генерация строк, чисел в Oracle">
                                     <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
                                     <div class="facebook" title="Поделиться в Facebook">Facebook</div>
                                     <div class="twitter" title="Поделиться в Twitter">Twitter</div>
@@ -101,7 +101,7 @@
                             <ul>
                                 <li><a href="/">Главная</a></li>
                                 <li><a href="blog/database">Базы данных</a></li>
-                                <li class="active" id="title">Создание пользователя БД Oracle - первое, что нужно сделать</li>
+                                <li class="active" id="title">Pl/SQL - генерация строк, чисел в Oracle</li>
                             </ul>
                         </nav>
                         
@@ -112,27 +112,109 @@
 
                             <div class="post-body">
 
-  <p>После установки базы Oracle в вашем распоряжении будет как минимум два пользователя БД <b>sys</b>, <b>system</b> - эти стандартные системные пользователи (схемы) и их структуры должны оставаться неизменными, поэтому для дальнейшей работы создадим своего пользователся с правами администратора:</p>
-  
-  <ul>
-    <li>Для начала убедитесь, что подключение к БД происходит с ролью <b>SYSDBA</b> 
-      <img src="images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/connection_with_sysdba.png" alt="Настройка подключения к БД Oracle с ролью SYSDBA" title="Настройка подключения к БД Oracle с ролью SYSDBA">
-    </li>
-    <li>В новых версиях Oracle имя пользователя должно быть формата "C##КакоеТоИмя", если вы не хотите называть своего пользователя с префиксом "C##", то выполните команду ниже, иначе возникнет ошибка <b>ORA-65096: недопустимое имя общего пользователя или имя роли</b>
-      <div class="sql-code-formatter">alter session set "_ORACLE_SCRIPT"=true; --переход в старый режим</div>
-    </li>
-    <li>Теперь выполняем команды для создания пользователя
-      <div class="sql-code-formatter">create user prod identified by Admin1234; --создаем пользователя prod с паролем Admin1234       
-        grant create session to prod; --права на создание сессии (чтобы могли приконнектиться к БД)
-        grant unlimited tablespace to prod; --права на создание таблиц в любых табличных простанствах
-        grant sysdba to prod; --права администратора новому пользователю
-      </div>
-    </li>
-  </ul>
+  <nav class="toc">
+    <b>Содержание:</b>
+    <ol>
+      <li><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html#generate-string">Генерация строк</a>
+      <li><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html#generate-number">Генерация чисел</a>
+      <li><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html#generate-count-rows">Генерация количества строк и их первичного ключа</a>
+      <li><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html#generate-table-data">Генерация данных для таблицы</a>
+    </ol>
+  </nav>
 
-  <p>Готово, пользователь создан, теперь в настроках SQL Developer укажите вашего нового пользователя и подключайтесь через него</p>
-  <p>Для удаления пользователя, воспользуйтесь простой командой ниже</p>
-  <div class="sql-code-formatter">drop user prod; --удалить пользователя из БД</div>
+  <h2 id="generate-string">Генерация строк</h2>
+  <p>Используется функция <b>dbms_random.string</b>, которые принимает в себя два параметра:</p>
+  <ul>
+    <li><span class="console"><b>opt</b></span> - указывает какого типа строку возвращать<br>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Значение</th>
+            <th scope="col">Что вернет функция?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>'u','U'</td>
+            <td>только буквы верхнего регистра</td>
+          </tr>
+          <tr>
+            <td>'l','L'</td>
+            <td>только буквы нижнего регистра</td>
+          </tr>
+          <tr>
+            <td>'a','A'</td>
+            <td>только буквы нижнего и верхнего регистра</td>
+          </tr>
+          <tr>
+            <td>'x','X'</td>
+            <td>цифры и буквы верхнего регистра</td>
+          </tr>
+          <tr>
+            <td>'p','P'</td>
+            <td>цифры, буквы нижнего и верхнего регистра, спецсимволы</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li><span class="console"><b>len</b></span> - количество возвращаемых символов</li>
+  </ul>
+  <p><b>Примеры:</b></p>
+  <div class="sql-code-formatter">select dbms_random.string('u',7) from dual; 
+--результат: OKSFUIE
+    
+select dbms_random.string('L',10) from dual; 
+--результат: qbyoameqyj
+    
+select dbms_random.string('a',5) from dual; 
+--результат: fITsc
+    
+select dbms_random.string('x',8) from dual; 
+--результат: P6MYK0ZK
+    
+select dbms_random.string('P',10) from dual; 
+--результат: {X6YIP_h*.</div>
+
+  <h2 id="generate-number">Генерация чисел</h2>
+  <p>Используется функция <b>dbms_random.string</b>, которые принимает в себя два параметра (диапозон):</p>
+  <ul>
+    <li><span class="console"><b>low</b></span> - нижнее значение генерируемого числа</li>
+    <li><span class="console"><b>high</b></span> - верхнее значение генерируемого числа</li>
+  </ul>
+  <p>По умолчанию генерируется число длиной 40 символов, параметры определяют диапозон целого числа, все остальное уходит в десятичную часть, обычно чтобы это избежать используют функцию <b>round</b>.</p>
+  <p><b>Примеры:</b></p>
+  <div class="sql-code-formatter">select dbms_random.value(1,100) from dual;
+--результат: 69,11410087309802826397156663971321784909
+    
+select round(dbms_random.value(1,100)) from dual;
+--результат: 75</div>
+
+  <h2 id="generate-count-rows">Генерация количества строк и их первичного ключа</h2>
+  <p>Здесь нам помогут конструкция <b>connect by level</b>. Генерировать значение первичного ключа будем с помощью служебного слова <b>level</b>.</p>
+  <div class="sql-code-formatter"> select level as id_row
+       ,round(dbms_random.value(1,100)) as gen_num
+   from dual
+connect by level <= 5;</div>
+  <p>Результат:<br>
+    <img src="images/database/2021/2021-01-18-plsql---generaciya-strok-chisel-v-oracle/result-connect-by.png" alt="генерация строк через connect by level" title="генерация строк через connect by level">
+  </p>
+
+  <h2 id="generate-table-data">Генерация данных для таблицы</h2>
+  <p>На основании вышеизложенного материала, ниже приведен пример скрипта, который будет генерировать первичный ключ, номер, дату и сумму заказа.</p>
+  <div class="sql-code-formatter"> select level as id_row
+       ,dbms_random.string('u',7)||to_char(round(dbms_random.value(1,1000000))) as order_num
+       ,to_date(to_char(round(dbms_random.value(1,28)))
+                ||'.'
+                ||to_char(round(dbms_random.value(1,12)))
+                ||'.'
+                ||'2021') as order_date
+       ,round(dbms_random.value(100,500000),2) as order_sum
+   from dual
+connect by level <= 5;</div>
+  <p>Результат:<br>
+    <img src="images/database/2021/2021-01-18-plsql---generaciya-strok-chisel-v-oracle/result-generate-data.png" alt="генерация данных для таблиц oracle" title="генерация данных для таблиц oracle">
+  </p>
+
   <br>
   <p>Спасибо за внимание!</p>
 
@@ -142,7 +224,7 @@
                         </div>
                         
                         <div class="likely-on-page">
-                            <div class="likely" data-url="https://best-manual.ru/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html" data-media="https://best-manual.ru/images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg" data-title="Создание пользователя БД Oracle - первое, что нужно сделать">
+                            <div class="likely" data-url="https://best-manual.ru/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html" data-media="https://best-manual.ru/images/database/2021/2021-01-18-plsql---generaciya-strok-chisel-v-oracle/1.jpg" data-title="Pl/SQL - генерация строк, чисел в Oracle">
                                 <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
                                 <div class="facebook" title="Поделиться в Facebook">Facebook</div>
                                 <div class="twitter" title="Поделиться в Twitter">Twitter</div>
@@ -161,6 +243,10 @@
                                 
                                 
                                 
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html">Создание пользователя БД Oracle - первое, что нужно сделать</a></li>
                                     
                                 
                                     
@@ -222,11 +308,11 @@ s.setAttribute('data-timestamp', +new Date());
             <div class="lb-body">
 
                 
-                <a href="/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html" class="lb-item-header">Создание пользователя БД Oracle - первое, что нужно сделать</a>
+                <a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html" class="lb-item-header">Pl/SQL - генерация строк, чисел в Oracle</a>
                 <div class="lb-footer">
                     <div class="item-comments" title="Количество комментариев">
-                        <i class="fa fa-comment"></i><a href="/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html#disqus_thread" class="item-comments-count">0</a>
-                        <span class="date">14/01/2021</span>
+                        <i class="fa fa-comment"></i><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html#disqus_thread" class="item-comments-count">0</a>
+                        <span class="date">18/01/2021</span>
                     </div>
                 </div>
                 

@@ -133,7 +133,7 @@
             <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/download_window_xe.png" alt="Окно для скачивания СУБД Oracle" title="Окно для скачивания СУБД Oracle">
         </li>
         <li> Вас перекинет на форму авторизации где нужно будет ввести свой логин и пароль.
-            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/login_window.png" alt="Окно авторизации" title="Окно авторизации">
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/login_window.png" alt="Окно авторизации" title="Окно авторизации"><br>
              Регистрируемся, подтверждаем email и только после подтверждения, пробуем скачать повторно. <br><span style="font-weight: 600; color: red">ВАЖНО:</span> <b>без регистрации скачать базу не получится!</b><br></li>
         <li> Если с авторизацией проблем не возникло, то должна начаться скачка архива, размером примено 1,9 ГБ</li>
     </ul>
@@ -225,17 +225,17 @@
     <h2 id="settings-oracle">Шаг 3. Настраиваем среду разработки</h2>
     После завершения установки проверим установилась ли корректно база, для этого:
     <ul>
-        <li> Откроем командную строку. Нажимаем сочетание клавиш Win + R, отроется окно, в котором пишем <b>cmd</b> и нажимаем <b>ОК</b>
+        <li>Откроем командную строку. Нажимаем сочетание клавиш Win + R, отроется окно, в котором пишем <b>cmd</b> и нажимаем <b>ОК</b><br>
             <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd.png" alt="Открываем командную строку" title="Открываем командную строку">
         </li>
-        <li> В появившемся окне пишем <b>sqlplus</b> и нажимаем клавишу <b>Enter</b>
+        <li>В появившемся окне пишем <b>sqlplus</b> и нажимаем клавишу <b>Enter</b>
             <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_1.png" alt="Запускаем sqlplus" title="Запускаем sqlplus">
         </li>
         <li> Если sqlplus успешно установился, то теперь командная строка попросит вас ввеси имя пользователя для подключения к БД, вводим как на скрине ниже, имя пользователся <b>system</b>, ваш пароль администратора и нажимаем два раза <b>Enter</b>
             <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_2.png" alt="Подключаемся к базе Oracle через sqlplus" title="Подключаемся к базе Oracle через sqlplus">
         </li>
-        <li> При успешном подключении появится надпись с версией базы и в строке ввода команд появится слово <b>SQL</b>
-            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_3.png" alt="Успешное подключение к базе Oracle через sqlplus" title="Успешное подключение к базе Oracle через sqlplus">
+        <li>При успешном подключении появится надпись с версией базы и в строке ввода команд появится слово <b>SQL</b><br>
+            <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_3.png" alt="Успешное подключение к базе Oracle через sqlplus" title="Успешное подключение к базе Oracle через sqlplus"><br>
             Напишите теперь в командной строке такую конструкцию (обязательно <b>;</b> в конце ) <b>select 'hello world' from dual;</b> и нажмите <b>Enter</b> должен вернуться результат как на скрине ниже
             <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/check_sqlplus_cmd_step_4.png" alt="Успешное подключение к базе Oracle через sqlplus" title="Успешное подключение к базе Oracle через sqlplus">
 
@@ -250,14 +250,14 @@
         <li> Переходим на <a rel='nofollow' target='_blank' href='https://www.oracle.com/ru/tools/downloads/sqldev-v192-downloads.html'>официальный сайт Oracle</a> и выбираем в блоке <b>SQL Developer xx.x.x Downloads</b> версию <b>Windows 64-bit with JDK 8 included</b> и нажимаем <b>Download</b>
         </li>
         <li> В появившемся окне ставим галочку и нажимаем <b>Download</b><br>
-             После может возникнуть окно авторизации, обязательно авторизируемся, иначе скачать программу не получится.
+             После может возникнуть окно авторизации, обязательно авторизируемся, иначе скачать программу не получится. <br>
             <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/download_sqldeveloper.png" alt="Окно скачивания sqldeveloper" title="Окно скачивания sqldeveloper">
         </li>
         <li> Скачанный архив разархивируем в на диск C в папку Program Files</li>
         <li>Заходим в папку с программой и запускаем файл <b>sqldeveloper.exe</b>
             <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/start_sqldeveloper.png" alt="Запускаем sqldeveloper" title="Запускаем sqldeveloper">
         </li>
-        <li> Добавляем новое соединение
+        <li> Добавляем новое соединение <br>
             <img src="images/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/add_new_connect.png" alt="Добавляем новый connection в sqldeveloper" title="Добавляем новый connection в sqldeveloper">
         </li>
         <li>
@@ -298,7 +298,11 @@
                                 
                                 
                                     
-                                    <li><a href="/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html">Создание пользователя БД Oracle - первое, что нужно сделать</a></li>
+                                    <li><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html">Pl/SQL - генерация строк, чисел в Oracle</a></li>
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html">Создание пользователя БД Oracle - первое, что нужно сделать</a></li>
                                     
                                 
                                     
@@ -358,11 +362,11 @@ s.setAttribute('data-timestamp', +new Date());
             <div class="lb-body">
 
                 
-                <a href="/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html" class="lb-item-header">Создание пользователя БД Oracle - первое, что нужно сделать</a>
+                <a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html" class="lb-item-header">Pl/SQL - генерация строк, чисел в Oracle</a>
                 <div class="lb-footer">
                     <div class="item-comments" title="Количество комментариев">
-                        <i class="fa fa-comment"></i><a href="/blog/database/2021-01-14-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html#disqus_thread" class="item-comments-count">0</a>
-                        <span class="date">14/01/2021</span>
+                        <i class="fa fa-comment"></i><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html#disqus_thread" class="item-comments-count">0</a>
+                        <span class="date">18/01/2021</span>
                     </div>
                 </div>
                 
