@@ -78,14 +78,21 @@ $(function() {
 
 
 		//подсветку цифр
-		newText = codeText.html().replace(/([ \(,])([0-9]+)/g, '$1<span style="color: #006300">$2</span>') //$1 - первый символ не меняем это будет скобка, запятая или пробел, гланое чтобы не ' т.к. это начало строки, а у нее цвет другой, $2 - само число, его уже меняем
+		newText = codeText.html().replace(/([^\d'])([0-9]+)/g, '$1<span style="color: #006300">$2</span>') //$1 - первый символ не меняем это будет скобка, запятая или пробел, гланое чтобы не ' т.к. это начало строки, а у нее цвет другой, $2 - само число, его уже меняем
 
 		
 		//подстветка для служебных слов
-		newText = newText.replace(/'.*'|select|from| by |group|level| order | on |where| and |alter| as | any | to |index |drop|set|true|false|update|delete|insert|level|create|grant|connect|sysdba| sys |user|session|value|tablespace|identified|table/g, '<span style="color: #006395">$&</span>') //$& - совпавшая подстрока
+		newText = newText.replace(/'.*'|select|from| by |group|level| order | on |where| and |alter| as | any | to |index |drop|set|true|false|update|delete|insert|level|create |grant|connect|sysdba| sys | user|session|default|varchar2| char|foreign key| timestamp| into |string| add |constraint|union all|sysdate|primary key|declare|begin|loop| for | in | if|end | then| else |commit| exit| when|number| date|value|tablespace|references|identity|generated|identified|table/g, '<span style="color: #006395">$&</span>') //$& - совпавшая подстрока
 		
+		
+		//VIP replace для end в самом конце
+		newText = newText.replace(/(end)(;)/g, '<span style="color: #006395">$1</span>$2') //$& - совпавшая подстрока
+
 		//добавляем цвет комментариев после --
-		newText = newText.replace(/--.*/g, '<span style="color: green">$&</span>') //$& - совпавшая подстрока, --.* - ищем все символы, после -- до конца строки
+		newText = newText.replace(/--.*|\/\*.*\*\//g, '<span style="color: red">$&</span>') //$& - совпавшая подстрока, --.* - ищем все символы, после -- до конца строки
+
+		//костыль для удаления лишних тегов спан где комментарии 
+		newText = newText.replace(/(^ *-+.+)( <.+>)(.+)(<.+>)/g, '$1 $3') //$2 и $4 - это лишние теги их удаляем
 
 		
 		//#006395 цвет для служебных слов

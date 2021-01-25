@@ -6,14 +6,14 @@
 	<meta charset="utf-8">
 	<base href="/">
 
-	<title>Создание пользователя БД Oracle - первое, что нужно сделать | Сайт полезных статей по разработке и не только</title>
-	<meta name="description" content="В данной статье детально разберем как создать своего пользователя (схему) в БД Oracle, а именно зададим имя, пароль, выдадим права на коннект к базе и создание таблиц, объектов и т.д..">
+	<title>Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными | Сайт полезных статей по разработке и не только</title>
+	<meta name="description" content="В данной статье детально разберем как создавать простые связанные между собой таблицы через внешний ключ, как сгенерировать 10 млн. строк без проблем с PGA памятью, как сразу наполнять таблицы данными еще при их создании.">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
 	<!-- Template Basic Images Start -->
-	<meta property="og:image" content="images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg">
+	<meta property="og:image" content="images/database/2021/2021-01-21-oracle-plsql.-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi/1.jpg">
 	<link rel="icon" href="img/favicon/best_manual_icon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple_touch_icon_256.png">
 	<!-- Template Basic Images End -->
@@ -57,7 +57,7 @@
 
 </header>
     
-    <header class="page-header overlay" style="background-image: url(images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg)">
+    <header class="page-header overlay" style="background-image: url(images/database/2021/2021-01-21-oracle-plsql.-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi/1.jpg)">
 
         <div class="page-header-content">
             <div class="container-fluid">
@@ -66,16 +66,16 @@
 
                         <div class="page-header-meta">
 
-                            <a href="blog/database" class="page-category-link">Базы данных</a><span class="date">15/01/2021</span>
+                            <a href="blog/database" class="page-category-link">Базы данных</a><span class="date">21/01/2021</span>
                             
-                            <h1>Создание пользователя БД Oracle - первое, что нужно сделать</h1>
+                            <h1>Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными</h1>
 
                             <div class="item-social">
                                 <div class="item-comments" title="Количество комментариев">
-                                    <i class="fa fa-comment"></i><a href="/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html#disqus_thread" class="item-comments-count">0</a>
+                                    <i class="fa fa-comment"></i><a href="/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html#disqus_thread" class="item-comments-count">0</a>
                                 </div>
                                 <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
-                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html" data-media="https://best-manual.ru/images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg" data-title="Создание пользователя БД Oracle - первое, что нужно сделать">
+                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html" data-media="https://best-manual.ru/images/database/2021/2021-01-21-oracle-plsql.-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi/1.jpg" data-title="Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными">
                                     <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
                                     <div class="facebook" title="Поделиться в Facebook">Facebook</div>
                                     <div class="twitter" title="Поделиться в Twitter">Twitter</div>
@@ -101,7 +101,7 @@
                             <ul>
                                 <li><a href="/">Главная</a></li>
                                 <li><a href="blog/database">Базы данных</a></li>
-                                <li class="active" id="title">Создание пользователя БД Oracle - первое, что нужно сделать</li>
+                                <li class="active" id="title">Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными</li>
                             </ul>
                         </nav>
                         
@@ -112,35 +112,126 @@
 
                             <div class="post-body">
 
-  <p>После установки базы Oracle в вашем распоряжении будет как минимум два пользователя БД <b>sys</b>, <b>system</b> - эти стандартные системные пользователи (схемы) и их структуры должны оставаться неизменными, поэтому для дальнейшей работы создадим своего пользователся с правами администратора:</p>
-  
+  <p>В этой статье будет создана простая архитектура из трех связанных между собой таблиц внешними ключами. 
+    <table>
+      <tbody>
+        <tr>
+          <td><b>optype</b></td>
+          <td>Таблица-справочник типов операций, в ней будут храниться тип "Заказ" и "Возврат"</td>
+        </tr>
+        <tr>
+          <td><b>contractor</b></td>
+          <td>Таблица-справочник контрагентов, в ней будут храниться поставщики.</td>
+        </tr>
+        <tr>
+          <td><b>operation</b></td>
+          <td>Таблица операций, в ней будут отражаться заказы, возвраты и их детали.</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </p>
+  <br>
+   
+  <p>Создаем таблицы:</p>
   <ul>
-    <li>Для начала убедитесь, что подключение к БД происходит с ролью <b>SYSDBA</b> 
-      <img src="images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/connection_with_sysdba.png" alt="Настройка подключения к БД Oracle с ролью SYSDBA" title="Настройка подключения к БД Oracle с ролью SYSDBA">
+    <li>Таблица-справочник типов операций, заполняем сразу двумя типами:
+      <div class="sql-code-formatter">create table optype as 
+select 1       as id_optype
+      ,'Заказ' as optype_name
+      ,sysdate as create_date
+      ,user    as create_user
+  from dual
+  union all
+select 2         
+      ,'Возврат' 
+      ,sysdate   
+      ,user      
+  from dual;</div>  
     </li>
-    <li>В новых версиях Oracle имя пользователя должно быть формата "C##КакоеТоИмя", если вы не хотите называть своего пользователя с префиксом "C##", то выполните команду ниже, иначе возникнет ошибка <b>ORA-65096: недопустимое имя общего пользователя или имя роли</b>
-      <div class="sql-code-formatter">alter session set "_ORACLE_SCRIPT"=true; --переход в старый режим</div>
+
+    <li>Таблица-справочник контрагентов, сразу генерируем 10 рандомных поставщиков:
+      <div class="sql-code-formatter"> create table contractor as 
+ select level as id_contr
+       ,'ООО '||dbms_random.string('u',1)||dbms_random.string('l',7) as contr_name
+       ,sysdate create_date
+       ,user    create_user
+   from dual
+connect by level <= 10;</div>
     </li>
-    <li>Теперь выполняем команды для создания нового пользователя, почти администратора.
-      <div class="sql-code-formatter">create user prod identified by Admin1234; --создаем пользователя prod с паролем Admin1234
---далее выдаем права       
-grant create session to prod; --создание сессии (чтобы могли приконнектиться к БД)
-grant unlimited tablespace to prod; --создание таблиц с безлимитным табличных простанствах
-grant create table to prod; --создание таблиц
-grant create any index to prod; --создание индексов
-grant create tablespace to prod; --создание табличных пространств
-grant create any sequence to prod; --создание последовательностей
-grant create user to prod; --создание новых пользователей
-grant drop user to prod; --удаление существующих пользователей
-grant insert any table to prod; --добавление данных в таблицы
-grant update any table to prod; --изменения данных в таблицах
-grant delete any table to prod; --удаление данных в таблицах</div>
+    <li>Чтобы исключить ошибку <b>ORA-02270: для этого списка-столбца нет подходящего уникального или первичного ключа</b> при создании внешних ключей, 
+        создадим для наших таблиц-справочников (optype и contractor) первичные ключи, что будет гарантировать уникальные значения внешнего ключа.
+        <div class="sql-code-formatter">alter table optype add constraint pk_id_optype primary key(id_optype);
+alter table contractor add constraint pk_id_contr primary key(id_contr);</div>
+    </li>
+    <li>Таблица операций с внешними ключами:
+      <div class="sql-code-formatter">create table operation 
+  (id_oper number generated by default as identity --автоматич. генерация первичного ключа
+  ,op_num varchar2(50 char) --номер операции
+  ,op_sum number -- сумма операции
+  ,op_date date -- дата операции
+  ,id_optype number -- ссылка на optype
+  ,id_contr number --ссылка на contractor
+  ,create_date timestamp default systimestamp --дата создания строки
+  ,create_user varchar2(20 char) default user --пользователь создавший строку
+  ,constraint fk_id_optype foreign key (id_optype) 
+        references optype(id_optype) --создаем связь с таблицей "Тип операции"
+  ,constraint fk_id_contr foreign key (id_contr) 
+        references contractor(id_contr)); --создаем связь с таблицей "Контрагенты"</div>
     </li>
   </ul>
 
-  <p>Готово, пользователь создан, теперь в настроках SQL Developer укажите вашего нового пользователя и подключайтесь через него</p>
-  <p>Для удаления пользователя, воспользуйтесь простой командой ниже</p>
-  <div class="sql-code-formatter">drop user prod; --удалить пользователя из БД</div>
+  <p>Структура создана, теперь необходимо наполнить таблицу <b>operation</b> данными, для этого нужно просто выполнить скрипт ниже: <br>
+    <span style="color: red; font-weight: bold;">Примечание</span>: чтобы исключить ошибку <b>ORA-30009: Недостаточно памяти для операции CONNECT BY</b> добавление будет осуществляться пачками не более 500 000 строк, чтобы избежать переполнения памяти PGA.  
+  </p>
+  <div class="sql-code-formatter">declare
+  v_row_count    number := 10000000; --кол-во строк
+  v_batch        number := 500000; --максимальный размер пачки 
+begin
+      
+  --начало цикла   
+  loop
+
+    --если кол-во строк меньше пачки,
+    --то размер пачки = кол-во строк
+    --иначе размер пачки не более максимального.
+    if v_row_count < v_batch
+      then
+        v_batch := v_row_count;
+    end if;
+    
+    insert /*+ no_append*/ 
+      into operation
+        (op_num 
+        ,op_sum 
+        ,op_date
+        ,id_optype 
+        ,id_contr)
+     select dbms_random.string('u',7)||to_char(round(dbms_random.value(1,1000000))) as op_num
+           ,round(dbms_random.value(100,500000),2) as order_sum
+           ,to_date(to_char(round(dbms_random.value(1,28)))
+                    ||'.'
+                    ||to_char(round(dbms_random.value(1,12)))
+                    ||'.'
+                    ||'2020') as order_date
+           ,round(dbms_random.value(1,2)) as id_optype
+           ,round(dbms_random.value(1,10)) as id_contr
+       from dual
+    connect by level <= v_batch; --размер пачки
+    
+    --уменьшаем кол-во строк на размер пачки
+    --чтобы знать сколько еще нужно сгенерировать
+    v_row_count := v_row_count - v_batch;
+    
+    --выходим из цикла, кол-во строк = 0
+    exit when v_row_count <= 0;
+  end loop;
+    
+  --фиксируем изменения
+  commit;
+
+end;</div>
+<p>Готово, создание тестовой среды завершено. Теперь можно писать программы и тестировать их.</p>
   <br>
   <p>Спасибо за внимание!</p>
 
@@ -150,7 +241,7 @@ grant delete any table to prod; --удаление данных в таблиц�
                         </div>
                         
                         <div class="likely-on-page">
-                            <div class="likely" data-url="https://best-manual.ru/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html" data-media="https://best-manual.ru/images/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg" data-title="Создание пользователя БД Oracle - первое, что нужно сделать">
+                            <div class="likely" data-url="https://best-manual.ru/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html" data-media="https://best-manual.ru/images/database/2021/2021-01-21-oracle-plsql.-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi/1.jpg" data-title="Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными">
                                 <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
                                 <div class="facebook" title="Поделиться в Facebook">Facebook</div>
                                 <div class="twitter" title="Поделиться в Twitter">Twitter</div>
@@ -170,13 +261,13 @@ grant delete any table to prod; --удаление данных в таблиц�
                                 
                                 
                                     
-                                    <li><a href="/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html">Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными</a></li>
-                                    
                                 
                                     
                                     <li><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html">Pl/SQL - генерация строк, чисел в Oracle</a></li>
                                     
                                 
+                                    
+                                    <li><a href="/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html">Создание пользователя БД Oracle - первое, что нужно сделать</a></li>
                                     
                                 
                                     
