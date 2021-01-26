@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html</loc>
+    <lastmod>2021-01-26T00:00:00+03:00</lastmod>
+  </url>
+  <url>
     <loc>https://best-manual.ru/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html</loc>
     <lastmod>2021-01-21T00:00:00+03:00</lastmod>
   </url>
@@ -36,35 +40,35 @@
   
   <url>
     <loc>https://best-manual.ru/about.html</loc>
-    <lastmod>2021-01-21T16:36:00+03:00</lastmod>
+    <lastmod>2021-01-26T22:22:45+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/</loc>
-    <lastmod>2021-01-21T16:36:00+03:00</lastmod>
+    <lastmod>2021-01-26T22:22:45+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/rss.xml</loc>
-    <lastmod>2021-01-21T16:36:00+03:00</lastmod>
+    <lastmod>2021-01-26T22:22:45+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/search.html</loc>
-    <lastmod>2021-01-21T16:36:00+03:00</lastmod>
+    <lastmod>2021-01-26T22:22:45+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/sitemap.xml</loc>
-    <lastmod>2021-01-21T16:36:00+03:00</lastmod>
+    <lastmod>2021-01-26T22:22:45+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/database/</loc>
-    <lastmod>2021-01-21T16:36:00+03:00</lastmod>
+    <lastmod>2021-01-26T22:22:45+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/diy/</loc>
-    <lastmod>2021-01-21T16:36:00+03:00</lastmod>
+    <lastmod>2021-01-26T22:22:45+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/</loc>
-    <lastmod>2021-01-21T16:36:00+03:00</lastmod>
+    <lastmod>2021-01-26T22:22:45+03:00</lastmod>
   </url>
   
 </urlset>

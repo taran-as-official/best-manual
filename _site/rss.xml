@@ -7,6 +7,17 @@
 		<atom:link href="https://best-manual.ru/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Oracle PL/SQL. Обычный (стандартный) индекс - применение на практике</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-01-26-oracle-plsql.-obychnyj-(standartnyj)-indeks---primenenie-na-praktike/1.jpg"></a>
+					В данной статье разберем когда нужно создать обычный индекс, когда его следует применять, увидим на примере как увеличивается скорость выполнения запроса.
+					]]></description>
+				<pubDate>Tue, 26 Jan 2021 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html</guid>
+			</item>
+		
+			<item>
 				<title>Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными</title>
 				<description><![CDATA[
 					<a href="https://best-manual.ru/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-01-21-oracle-plsql.-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi/1.jpg"></a>

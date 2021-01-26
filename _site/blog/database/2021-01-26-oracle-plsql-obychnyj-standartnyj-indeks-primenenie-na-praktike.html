@@ -6,14 +6,14 @@
 	<meta charset="utf-8">
 	<base href="/">
 
-	<title>Настройка автоматической архивации по расписанию | Сайт полезных статей по разработке и не только</title>
-	<meta name="description" content="В данной статье детально разберем как настроить автоматическую архивацию по Windows 10, с помощью bat-файла, который используя 7zip будет архивировать нужные нам файлы">
+	<title>Oracle PL/SQL. Обычный (стандартный) индекс - применение на практике | Сайт полезных статей по разработке и не только</title>
+	<meta name="description" content="В данной статье разберем когда нужно создать обычный индекс, когда его следует применять, увидим на примере как увеличивается скорость выполнения запроса.">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
 	<!-- Template Basic Images Start -->
-	<meta property="og:image" content="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/1.jpg">
+	<meta property="og:image" content="images/database/2021/2021-01-26-oracle-plsql.-obychnyj-(standartnyj)-indeks---primenenie-na-praktike/1.jpg">
 	<link rel="icon" href="img/favicon/best_manual_icon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple_touch_icon_256.png">
 	<!-- Template Basic Images End -->
@@ -57,7 +57,7 @@
 
 </header>
     
-    <header class="page-header overlay" style="background-image: url(images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/1.jpg)">
+    <header class="page-header overlay" style="background-image: url(images/database/2021/2021-01-26-oracle-plsql.-obychnyj-(standartnyj)-indeks---primenenie-na-praktike/1.jpg)">
 
         <div class="page-header-content">
             <div class="container-fluid">
@@ -66,16 +66,16 @@
 
                         <div class="page-header-meta">
 
-                            <a href="blog/diy" class="page-category-link">DIY</a><span class="date">27/05/2020</span>
+                            <a href="blog/database" class="page-category-link">Базы данных</a><span class="date">26/01/2021</span>
                             
-                            <h1>Настройка автоматической архивации по расписанию</h1>
+                            <h1>Oracle PL/SQL. Обычный (стандартный) индекс - применение на практике</h1>
 
                             <div class="item-social">
                                 <div class="item-comments" title="Количество комментариев">
-                                    <i class="fa fa-comment"></i><a href="/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html#disqus_thread" class="item-comments-count">0</a>
+                                    <i class="fa fa-comment"></i><a href="/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html#disqus_thread" class="item-comments-count">0</a>
                                 </div>
                                 <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
-                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html" data-media="https://best-manual.ru/images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/1.jpg" data-title="Настройка автоматической архивации по расписанию">
+                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html" data-media="https://best-manual.ru/images/database/2021/2021-01-26-oracle-plsql.-obychnyj-(standartnyj)-indeks---primenenie-na-praktike/1.jpg" data-title="Oracle PL/SQL. Обычный (стандартный) индекс - применение на практике">
                                     <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
                                     <div class="facebook" title="Поделиться в Facebook">Facebook</div>
                                     <div class="twitter" title="Поделиться в Twitter">Twitter</div>
@@ -100,8 +100,8 @@
                         <nav class="breadcrumbs">
                             <ul>
                                 <li><a href="/">Главная</a></li>
-                                <li><a href="blog/diy">DIY</a></li>
-                                <li class="active" id="title">Настройка автоматической архивации по расписанию</li>
+                                <li><a href="blog/database">Базы данных</a></li>
+                                <li class="active" id="title">Oracle PL/SQL. Обычный (стандартный) индекс - применение на практике</li>
                             </ul>
                         </nav>
                         
@@ -111,39 +111,56 @@
                             </div>
 
                             <div class="post-body">
-  <h2>Создание BAT-файла для архивации на 7zip</h2>
-  <p> Для начала нужно создать файл, который будет архивировать нужные нам файлы и уже его будем помещать в расписание. Если файла нет, можно создать его используя мануал <a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html">создания BAT-файла для архивации через 7-zip</a> </p>
-  
-  <h2>Создание расписания</h2>
+
+  <h2>Описание индекса</h2>
+  <p>Относится к типу индексной структуры <b>B(balanced)-tree</b> (сбалансированное дерево). Используются в 99% случаев, при создании первичного ключа автоматически создается именно такой обычный индекс. Для более подробной информации рекомендую поискать в интернете, т.к. информации очень много, поэтому не буду дублировать.</p>
+  <h2>Когда применять</h2>
+  <p>Когда процент выводимых строк таблицы очень мал, в идеале для уникальных значений.</p>
+  <h2>Подготовка тестовых данных</h2>
+  <p>Чтобы воспроизвести данные для теста, достаточно создать таблицу с 10 000 000 строк без первичного ключа. Как это сделать описано в предыдущей <a href="/blog/database/2021/2021-01-21-oracle-plsql.-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html">статье</a>.</p>
+  <h2>Применение индекса</h2>
   <ul>
-    <li>Нажимаем сочетание клавиш <b>Win+R</b>, в появшемся окне вводим <b>taskschd.msc</b> и нажимаем <b>OK</b></li>
-    <li>Открылся <b>Планировщик заданий</b>, создадим простое задание
-      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/add_task.png" alt="Добавление нового задания в планировщике Windows" title="Добавление нового задания в планировщике Windows">
-    </li>
-    <li>Добавляем описание
-      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/description_task.png" alt="Описание задания в планировщике Windows" title="Описание задания в планировщике Windows">
+    <li>Замерим скорость до создания индекса, на примере вывода любого <span class="sql-table">id_oper</span>:
+      <div class="sql-code-formatter">--включаем вывод данных для процедуры dbms_output.put_line
+set serveroutput on;
 
-    </li>
-    <li>Выбираем когда запускать задание. В данной статье рассматривается ежедневный запуск
-      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/trigger_task.png" alt="Условия срабатывания задания в планировщике Windows" title="Условия срабатывания в планировщике Windows">
+--замеряем скорость
+declare
+  v_id_oper   number;
+  v_start     timestamp;
+  v_end       timestamp;
+  v_exec_time interval day to second;
+begin
+  
+  --фиксируем время начала выполнения
+  v_start := systimestamp;
+  
+  --ищем любой id_op в таблице operation
+  select id_oper
+    into v_id_oper
+    from operation 
+    where id_oper = (select id_oper 
+                      from operation
+                      where rownum = 1); --первый попавшийся id_oper
 
+  --фиксируем время завершения выполнения
+  v_end := systimestamp;
+  
+  v_exec_time := v_end - v_start;
+  
+  dbms_output.put_line(v_exec_time);
+end;</div>
+Результат: +00 00:00:09.431000 <b>(9 секунд)</b> (у вас конечно же будет другое время)
     </li>
-    <li>Указываем время запуска архивации
-      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/choose_time.png" alt="Время срабатывания задания в планировщике Windows" title="Время срабатывания в планировщике Windows">
-
+    <li>Создадим обычный индекс для поля <span class="sql-table">id_oper</span> таблицы <span class="sql-table">operation</span> (выполняться будет пару минут):
+      <div class="sql-code-formatter">create index id_oper_idx on operation(id_oper);</div>
     </li>
-    <li>Действие оставляем предложенное по умолчанию "Запускать программу"
-      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/choose_action.png" alt="Действие задания в планировщике Windows" title="Действие срабатывания в планировщике Windows">
-
-    </li>
-    <li>Для запуска архиватора нажимаем <b>Обзор</b> и выбираем BAT-файл
-      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/add_bat_in_task.png" alt="Добавление BAT-файла в планировщике Windows" title="Добавление BAT-файла в планировщике Windows">
-
-    </li>
-    <li>Посмотрите еще раз на задание, проверьте все ли корректно указано, если да жмем <b>Готово</b>
-      <img src="images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/info_task.png" alt="Сводка в планировщике Windows" title="Сводка в планировщике Windows">
+    <li>Теперь снова замерим скорость скриптом из пункта 1. <br><br>
+      Результат: +00 00:00:00.095000 <b>(9 сотых секунды)</b> 
     </li>
   </ul>
+  <p><b>Итог</b>: было 9 секунд, стало 0.09 секунд, производительность увеличилась в ~100 раз!</p>
+  <br>
   <p>Спасибо за внимание!</p>
 
 </div>
@@ -152,7 +169,7 @@
                         </div>
                         
                         <div class="likely-on-page">
-                            <div class="likely" data-url="https://best-manual.ru/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html" data-media="https://best-manual.ru/images/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/1.jpg" data-title="Настройка автоматической архивации по расписанию">
+                            <div class="likely" data-url="https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html" data-media="https://best-manual.ru/images/database/2021/2021-01-26-oracle-plsql.-obychnyj-(standartnyj)-indeks---primenenie-na-praktike/1.jpg" data-title="Oracle PL/SQL. Обычный (стандартный) индекс - применение на практике">
                                 <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
                                 <div class="facebook" title="Поделиться в Facebook">Facebook</div>
                                 <div class="twitter" title="Поделиться в Twitter">Twitter</div>
@@ -172,13 +189,25 @@
                                 
                                 
                                     
-                                    <li><a href="/blog/diy/2020-06-08-perevodim-proekt-na-github.html">Переводим проект на GitHub</a></li>
+                                
+                                    
+                                    <li><a href="/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html">Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными</a></li>
                                     
                                 
                                     
+                                    <li><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html">Pl/SQL - генерация строк, чисел в Oracle</a></li>
+                                    
                                 
                                     
-                                    <li><a href="/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html">7-zip архивация через BAT-файл, в один клик</a></li>
+                                    <li><a href="/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html">Создание пользователя БД Oracle - первое, что нужно сделать</a></li>
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html">Oracle SQL Developer Autoreplace - пишем код быстрее</a></li>
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html">Как установить Oracle XE на Windows 10?</a></li>
                                     
                                 
                             </ul>
