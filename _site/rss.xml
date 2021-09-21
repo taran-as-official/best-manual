@@ -7,21 +7,43 @@
 		<atom:link href="https://best-manual.ru/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>Oracle PL/SQL. Обычный (стандартный) индекс - применение на практике</title>
+				<title>Oracle latches. Как узнать количество защелок в запросах?</title>
 				<description><![CDATA[
-					<a href="https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-01-26-oracle-plsql.-obychnyj-(standartnyj)-indeks---primenenie-na-praktike/1.jpg"></a>
-					В данной статье разберем когда нужно создать обычный индекс, когда его следует применять, увидим на примере как увеличивается скорость выполнения запроса.
+					<a href="https://best-manual.ru/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-03-02-oracle-latches.-kak-uznat-kolichestvo-zashhelok-v-zaprosah/1.jpg"></a>
+					В данной статье на примере детально разберем как узнать количество защелок в разных запросах и сравнить результаты.
 					]]></description>
-				<pubDate>Tue, 26 Jan 2021 00:00:00 +0300</pubDate>
-				<link>https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html</link>
-				<guid isPermaLink="true">https://best-manual.ru/blog/database/2021-01-26-oracle-plsql-obychnyj-standartnyj-indeks-primenenie-na-praktike.html</guid>
+				<pubDate>Fri, 26 Feb 2021 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html</guid>
 			</item>
 		
 			<item>
-				<title>Oracle Pl/SQL. Создание связанных таблиц и заполнение их тестовыми данными</title>
+				<title>Oracle statistics. Как узнать статистику и время выполнения запроса?</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/1.jpg"></a>
+					В данной статье на примере разберем  как получать статистику выполнения запросов в рамках текущей сессии с помощью системных представлений v$mystat, v$statname, вычислять общее время выполнения запроса с помощью v$timer, вычислять время на выполнения запроса процессором (CPU) с помощью dbms_utility.get_cpu_time. Напишем свою программу для вывода статистики по нескольким запросам и её сравнению.
+					]]></description>
+				<pubDate>Fri, 19 Feb 2021 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html</guid>
+			</item>
+		
+			<item>
+				<title>Oracle index. Обычный индекс - применение на практике</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/database/2021-01-26-oracle-index-obychnyj-indeks-primenenie-na-praktike.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-01-26-oracle-index.-obychnyj-indeks---primenenie-na-praktike/1.jpg"></a>
+					В данной статье на примере разберем когда нужно создать обычный индекс, когда его следует применять, увидим на примере как увеличивается скорость выполнения запроса.
+					]]></description>
+				<pubDate>Tue, 26 Jan 2021 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/database/2021-01-26-oracle-index-obychnyj-indeks-primenenie-na-praktike.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/database/2021-01-26-oracle-index-obychnyj-indeks-primenenie-na-praktike.html</guid>
+			</item>
+		
+			<item>
+				<title>Oracle PL/SQL. Создание связанных таблиц и заполнение их тестовыми данными</title>
 				<description><![CDATA[
 					<a href="https://best-manual.ru/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-01-21-oracle-plsql.-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi/1.jpg"></a>
-					В данной статье детально разберем как создавать простые связанные между собой таблицы через внешний ключ, как сгенерировать 10 млн. строк без проблем с PGA памятью, как сразу наполнять таблицы данными еще при их создании.
+					В данной статье на примере детально разберем как создавать простые связанные между собой таблицы через внешний ключ, как сгенерировать 10 млн. строк без проблем с PGA памятью, как сразу наполнять таблицы данными еще при их создании.
 					]]></description>
 				<pubDate>Thu, 21 Jan 2021 00:00:00 +0300</pubDate>
 				<link>https://best-manual.ru/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html</link>
@@ -29,10 +51,10 @@
 			</item>
 		
 			<item>
-				<title>Pl/SQL - генерация строк, чисел в Oracle</title>
+				<title>PL/SQL - генерация строк, чисел в Oracle</title>
 				<description><![CDATA[
 					<a href="https://best-manual.ru/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-01-18-plsql---generaciya-strok-chisel-v-oracle/1.jpg"></a>
-					В данной статье детально разберем как генерировать строки, числа в Oracle, а также как регулировать количество строк и генерируемые данные. А также будет приведен пример генерации данных для тестовой таблицы.
+					В данной статье на примере детально разберем как генерировать строки, числа в Oracle, а также как регулировать количество строк и генерируемые данные. А также будет приведен пример генерации данных для тестовой таблицы.
 					]]></description>
 				<pubDate>Mon, 18 Jan 2021 00:00:00 +0300</pubDate>
 				<link>https://best-manual.ru/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html</link>
@@ -43,7 +65,7 @@
 				<title>Создание пользователя БД Oracle - первое, что нужно сделать</title>
 				<description><![CDATA[
 					<a href="https://best-manual.ru/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-01-15-sozdanie-polzovatelya-bd-oracle---pervoe-chto-nuzhno-sdelat/1.jpg"></a>
-					В данной статье детально разберем как создать своего пользователя (схему) в БД Oracle, а именно зададим имя, пароль, выдадим права на коннект к базе и создание таблиц, объектов и т.д..
+					В данной статье на примере детально разберем как создать своего пользователя (схему) в БД Oracle, а именно зададим имя, пароль, выдадим права на коннект к базе и создание таблиц, объектов и т.д..
 					]]></description>
 				<pubDate>Fri, 15 Jan 2021 00:00:00 +0300</pubDate>
 				<link>https://best-manual.ru/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html</link>
@@ -92,17 +114,6 @@
 				<pubDate>Fri, 22 May 2020 00:00:00 +0300</pubDate>
 				<link>https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html</link>
 				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html</guid>
-			</item>
-		
-			<item>
-				<title>Как установить Oracle XE на Windows 10?</title>
-				<description><![CDATA[
-					<a href="https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html"><img width="100%" src="https://best-manual.ruimages/database/2020/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter/1.jpg"></a>
-					В данной статье пошагово рассмотрим установку СУБД Oracle XE 18 на windows 10 64-бит
-					]]></description>
-				<pubDate>Wed, 20 May 2020 00:00:00 +0300</pubDate>
-				<link>https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html</link>
-				<guid isPermaLink="true">https://best-manual.ru/blog/database/2020-05-20-kak-ustanovit-subd-oracle-na-svoj-kompyuter.html</guid>
 			</item>
 		
 	</channel>

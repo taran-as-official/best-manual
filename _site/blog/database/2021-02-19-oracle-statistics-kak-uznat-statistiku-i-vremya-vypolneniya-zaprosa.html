@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Oracle statistics. Как узнать статистику и время выполнения запроса? | Сайт полезных статей по разработке и не только</title>
+	<meta name="description" content="В данной статье на примере разберем  как получать статистику выполнения запросов в рамках текущей сессии с помощью системных представлений v$mystat, v$statname, вычислять общее время выполнения запроса с помощью v$timer, вычислять время на выполнения запроса процессором (CPU) с помощью dbms_utility.get_cpu_time. Напишем свою программу для вывода статистики по нескольким запросам и её сравнению.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/1.jpg">
+	<link rel="icon" href="img/favicon/best_manual_icon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple_touch_icon_256.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+	<script data-ad-client="ca-pub-6809977052006948" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+    
+    <a href="/" class="logo logo-litera"><img class="img-logo" src="/img/favicon/best_manual_icon.png" alt="site icon">Best-manual.ru</a>
+
+    <div class="search-wrap">
+        <div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+        <div class="search-field">
+            <form action="/search.html" id="cse-search-box">
+                <input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+                <input type="hidden" name="cof" value="FORID:10" />
+                <input type="hidden" name="ie" value="UTF-8" />
+                <input type="text" name="q" placeholder="Поиск по сайту..." />
+            </form>
+        </div>
+    </div>
+
+    <div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+    <nav class="main-menu top-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+    </nav>	 	
+
+</header>
+    
+    <header class="page-header overlay" style="background-image: url(images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/1.jpg)">
+
+        <div class="page-header-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-7 col-md-8">
+
+                        <div class="page-header-meta">
+
+                            <a href="blog/database" class="page-category-link">Базы данных</a><span class="date">19/02/2021</span>
+                            
+                            <h1>Oracle statistics. Как узнать статистику и время выполнения запроса?</h1>
+
+                            <div class="item-social">
+                                <div class="item-comments" title="Количество комментариев">
+                                    <i class="fa fa-comment"></i><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#disqus_thread" class="item-comments-count">0</a>
+                                </div>
+                                <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html" data-media="https://best-manual.ru/images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/1.jpg" data-title="Oracle statistics. Как узнать статистику и время выполнения запроса?">
+                                    <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                    <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                    <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    
+    <div class="article-content">
+        <div class="container-fluid">
+            
+            <div class="row">
+                <div align="right" class="btn-up" title="Наверх"></div>
+                <div class="col-md-8">
+
+                    <article class="mail-article">
+                        <nav class="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="blog/database">Базы данных</a></li>
+                                <li class="active" id="title">Oracle statistics. Как узнать статистику и время выполнения запроса?</li>
+                            </ul>
+                        </nav>
+                        
+                        <div class="article-body">
+                            <div class="reclama article-top-reclama">
+
+                            </div>
+
+                            <div class="post-body">
+   
+  <nav class="toc">
+    <b>Содержание:</b>
+    <ol>
+      <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#target">Цель</a></li>
+      <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#discript-components">Описание компонентов</a>
+        <ol>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#mystat">v$mystat</a></li>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#statname">v$statname</a></li>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#timer">v$timer</a></li>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#get-cpu-time">dbms_utility.get_cpu_time</a></li>
+        </ol>
+      </li>
+      <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#privs">Права</a></li>
+      <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#measure-time">Измерение общего и CPU времени на запрос</a></li>
+      <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#stat">Статистика</a>
+        <ol>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#stat-one-query">Получение статистики по одному запросу</a></li>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#stat-two-query">Получение статистики по нескольким запросам и ее сравнение</a></li>
+        </ol>
+      </li>
+      <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#program-stat">Программа по сбору статистики</a>
+        <ol>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#create-structure">Создание структуры хранения</a></li>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#create-view">Создание представления для быстрого доступа к данным</a></li>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#create-procedure">Создание процедуры фиксации статистики</a></li>
+          <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#show-result">Вывод результатов</a>
+            <ol>
+              <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#show-result-script">Вывод статистики скриптом</a></li>
+              <li><a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html#show-result-output">Вывод статистики dbms_output</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </nav>
+
+  <h2 id="target">Цель</h2>
+  <p>Зачем вообще нужна эта статистика или любые другие показатели? В ходе разработки часто возникает вопрос, а что же быстрее работает? Эффективно ли расходуются ресурсы базы? Если написать код по другому станет ли лучше?</p>
+  <p>Для ответов на эти вопросы нужно как-то понимать какие ресурсы тратят программы, а самое главное нужна возможность сравнивать разные решения между собой, чтобы отдать предпочтение самому оптимальному способу.</p>
+  <p>В данной статье не будет рассказано как анализировать показатели, а будет рассказано как их получить.</p>
+  
+  <h2 id="discript-components">Описание компонентов</h2>
+  <h3 id="mystat">v$mystat</h3>
+  <p>Представление выводит статистику по последней выполненной транзакции в рамках текущей сессии. Состоит из следующих полей:</p>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Поле</th>
+        <th scope="col">Тип</th>
+        <th scope="col">Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>sid</td>
+        <td>number</td>
+        <td>идентификатор текущей сессии, полную информацию можно увидеть в <span class="sql-table">v$session</span></td>
+      </tr>
+      <tr>
+        <td>statistic#</td>
+        <td>number</td>
+        <td>идентификатор значения статистики, ссылается на преставление <span class="sql-table">v$statname</span></td>
+      </tr>
+      <tr>
+        <td>value</td>
+        <td>number</td>
+        <td>значение статистики</td>
+      </tr>
+      <tr>
+        <td>con_id</td>
+        <td>number</td>
+        <td>идентификатор контейнера (для мультиарендной контейнерной базы данных CDB)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="statname">v$statname</h3>
+  <p>Справочник с описанием значений статистики, нужен для связи с предыдущим представлением. Состоит из следующих полей:</p>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Поле</th>
+        <th scope="col">Тип</th>
+        <th scope="col">Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>statistic#</td>
+        <td>number</td>
+        <td>идентификатор значения статистики, ссылается на преставление <span class="sql-table">v$statname</span></td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>varchar2(64)</td>
+        <td>расшифровка значения статистики (постоянное значение)</td>
+      </tr>
+      <tr>
+        <td>class</td>
+        <td>number</td>
+        <td>показывает к какому классу данных относится статистика, ниже описаны возможные значения: <br>
+          1 - Пользователь<br>
+          2 - Redo<br>
+          4 - Постановка в очередь<br>
+          8 - Кэш<br>
+          16 - ОС<br>
+          32 - Реальные Кластеры приложений<br>
+          64 - SQL<br>
+          128 - Отладка</td>
+      </tr>
+      <tr>
+        <td>stat_id</td>
+        <td>number</td>
+        <td>идентификатор статистики (в этой статье не понадобится)</td>
+      </tr>
+      <tr>
+        <td>display_name</td>
+        <td>varchar2(64)</td>
+        <td>детальная расшифровка значения статистики (можем меняться с новыми релизами)</td>
+      </tr>
+      <tr>
+        <td>con_id</td>
+        <td>number</td>
+        <td>идентификатор контейнера (для мультиарендной контейнерной базы данных CDB)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="timer">v$timer</h3>
+  <p>Это простое представление, которое возвращает время в сотых долях секунды, мы будет фиксировать время до и после теста, и затем отнимать одно значение от другого. Состоит из двух полей:</p>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Поле</th>
+        <th scope="col">Тип</th>
+        <th scope="col">Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>hsecs</td>
+        <td>number</td>
+        <td>количество времени в сотых долях секунды</td>
+      </tr>
+      <tr>
+        <td>con_id</td>
+        <td>number</td>
+        <td>идентификатор контейнера (для мультиарендной контейнерной базы данных CDB)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="get-cpu-time">dbms_utility.get_cpu_time</h3>
+  <p>Функция, которая возвращает время работы процессора (CPU) в сотых долях секунды.  </p>
+  <p>Пример вызова:</p>
+    <div class="sql-code-formatter">select dbms_utility.get_cpu_time from dual;
+
+--результат 815</div>
+
+  
+  <h2 id="privs">Права</h2>
+  <p>Для выполнения представления у пользователя (в моем случае <a href="/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html">PROD</a>) должен быть доступ на все таблицы, подключаемся к БД с помощью пользователя SYS с ролью SYSDBA и выполняем скрипты ниже:</p>
+  <div class="sql-code-formatter">grant select on v_$statname to prod;
+grant select on v_$mystat to prod;
+grant select on v_$timer to prod;
+grant execute on dbms_utility to prod;</div>
+
+  <h2 id="measure-time">Измерение общего и CPU времени на запрос</h2>
+  <p>Логика простая - мы будем записывать значения времени в переменные до выполнения запроса и после, затем вычитать время завершения от времени начала и получать итоговый результат. Вывод результата будет осуществляться с помощью <span class="sql-table">dbms_output.put_line</span>, чтобы данные выводилилсь в SQL Developer перед выполнением скриптов выполним команду включающую вывод, а затем будет логика.</p>
+  <div class="sql-code-formatter">--включаем вывод данных в output
+set serveroutput on;
+
+declare
+  v_t1 number; --время начала
+  v_t2 number; --время завершения
+  v_cpu1 number; --время ЦПУ до 
+  v_cpu2 number; --время ЦПУ после 
+  v_t_res number; --общее время выполнения
+  v_cpu_res number; --общее время выполнения CPU
+
+begin
+  
+  --фиксируем начало
+  --помещаяем общее время и время ЦПУ в переменные
+  select t.hsecs
+        ,dbms_utility.get_cpu_time
+    into v_t1 
+        ,v_cpu1
+    from v$timer t;
+    
+  --запустим 1000 раз цикл, который обновит дату у первых попавшихся строк
+  for rec in 1..1000
+  loop
+    update prod.operation 
+        set op_date = trunc(sysdate) 
+      where rownum = 1 
+        and op_date != trunc(sysdate);
+  end loop;
+  
+  --фиксируем завершение
+  --снова помещаяем общее время и время ЦПУ в переменные
+  select t.hsecs
+        ,dbms_utility.get_cpu_time
+    into v_t2 
+        ,v_cpu2
+    from v$timer t;
+    
+  --считаем общее время выполнения в сотых долях секунды
+  v_t_res := v_t2 - v_t1;
+  
+  --считаем общее время ЦПУ в сотых долях секунды
+  v_cpu_res := v_cpu2 - v_cpu1;
+  
+  
+  --выводим результат на экран
+  dbms_output.put_line('Общее время выполнения в секундах: '||to_char(v_t_res/100,'0.00'));
+  dbms_output.put_line('Общее время ЦПУ в секундах: '||to_char(v_cpu_res/100,'0.00'));
+
+  --откатим изменения
+  rollback;
+end;</div>
+<p>Результат: <br>
+  <img src="images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/result_time_one_query.png" alt="Вывод времени выполнения запроса SQL Developer" title="Вывод времени выполнения запроса SQL Developer">
+</p>
+  
+
+  
+  <h2 id="stat">Статистика</h2>
+  <h3 id="stat-one-query">Получение статистики по одному запросу</h3>
+  <p>Алгоритм для одного запроса будет довольно простой:
+    <ul>
+      <li>Запускаем нужный скрипт, например, изменим ранее <a href="/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html">сгенерированные данные</a>:
+        <div class="sql-code-formatter">--обновим пять первых попавшихся строк
+update prod.operation set op_date = trunc(sysdate) 
+ where rownum <=5 
+   and op_date != trunc(sysdate);</div>
+      </li>
+      <li>Сразу после выполняем селект статистики:
+        <div class="sql-code-formatter">select s.name, b.value
+  from v$statname s
+  join v$mystat b on s.statistic# = b.statistic#;</div>
+      </li>
+    </ul>
+  </p>
+  <p> Результат:<br>
+    <img src="images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/result_stat_one_query.png" alt="Вывод статистики по одному запросу" title="Вывод статистики по одному запросу">
+  </p>
+
+
+
+  <h3 id="stat-two-query">Получение статистики по нескольким запросам и ее сравнение</h3>
+  <p>Есть два способа:
+    <ul>
+      <li>Выполнять алгоритм по замеру статистики для одного запроса (описано выше), результат сохранить, затем выполнить второй запрос, результат также сохранить и потом их сравнить.</li>
+      <li>Написать небольшую программу для сбора статистики, которая будет автоматически собирать и сравнивать статистику двух запросов.</li>
+    </ul>
+    Для второго варианта переходите к главе ниже.
+  </p>
+  
+  
+  <h2 id="program-stat">Программа по сбору статистики</h2>
+  <h3 id="create-structure">Создание структуры хранения</h3>
+  <p>Чтобы сравнивать данные по статистике разных запросов, эти данные нужно куда-то сохранять. Для этого создадим обычную таблицу:
+    <div class="sql-code-formatter">create global temporary table stats_tbl
+      (run_type varchar2(15 char), 
+       inf_type varchar2(15 char),
+       name varchar2(80 char), 
+       value integer,
+       create_time timestamp default systimestamp) 
+       on commit preserve rows;</div>
+
+    Пояснение построчно, что и для чего создано: 
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Строка</th>
+          <th scope="col">Описание</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>create global temporary table stats_tbl</td>
+          <td>создаем временную таблицу с именем <span class="sql-table">stats_tbl</span></td>
+        </tr>
+        <tr>
+          <td>run_type varchar2(15 char),</td>
+          <td>для фиксации стадии сбора информации "до" запуска скрипта, "после", "итог" (сюда писать уже высчитанные значения)</td>
+        </tr>
+        <tr>
+          <td>inf_type varchar2(15 char),</td>
+          <td>для указания типа информации т.е. мы умеем собирать статистику, измерять время ЦПУ и общее время, т.е. 3 разных типа информации, в будущем типы будут добавляться</td>
+        </tr>
+        <tr>
+          <td>name varchar2(80 char),</td>
+          <td>название показателя</td>
+        </tr>
+        <tr>
+          <td>value integer</td>
+          <td>значение показателя</td>
+        </tr>
+        <tr>
+          <td>create_time timestamp default systimestamp</td>
+          <td>дата создания строки, со значением по умолчанию</td>
+        </tr>
+        <tr>
+          <td>on commit preserve rows;</td>
+          <td>Временные таблицы хранят данные в течение транзакции или в течение сессии, тут указывается, что хранить нужно в течение сессии</td>
+        </tr>
+      </tbody>
+    </table>
+  </p>
+
+
+  <h3 id="create-view">Создание представления для быстрого доступа к данным</h3>
+  <p>Для быстрого доступа к данным, соединим все ранее представленные скрипты по выводу данных по статистки, времени ЦПУ, общему времени и "упакуем" полученный запрос в представление. Вот как это будет выглядеть:
+    <div class="sql-code-formatter">create or replace view prod.stats_vw as
+
+  --первый скрипт по выводу статистики
+  select 'STAT' as inf_type, -- для inf_type в stats_tbl
+          a.name as name, -- для name в stats_tbl
+          b.value as value -- для value в stats_tbl
+    from v$statname a
+    join v$mystat b on a.statistic# = b.statistic#
+  
+  --команда объединения
+  union all
+  
+  --второй скрипт по фиксации общего времени
+  select 'ETIME', -- сокращенно от Elapsed time (общее время)
+          'Elapsed Time', 
+          hsecs 
+    from v$timer
+
+  --команда объединения
+  union all
+
+  --третий скрипт по фиксации времени CPU
+  select 'CTIME', --сокращенно от CPU time (время ЦПУ)
+          'CPU Time',
+          dbms_utility.get_cpu_time
+    from dual;</div>
+  </p>
+  <p>После создания VIEW, чтобы получить информацию достаточно выполнить простой запрос:
+    <div class="sql-code-formatter">select * from stats_vw;</div>
+    Результат: <br>
+    <img src="images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/result_stat_view.png" alt="Вывод статистики через представление" title="Вывод статистики через представление">
+  </p>
+
+  <h3 id="create-procedure">Создание процедуры фиксации статистики</h3>
+  <p>До и после выполнения наших скриптов, нам нужно записывать данные "до" запуска и "после", будем записать результаты с помощью процедуры ниже:</p>
+  <div class="sql-code-formatter">create or replace procedure fix_inf_prc(p_script_num in char,
+                                        p_run_type   in stats_tbl.run_type%type)
+as
+  --должно получиться например: before1, after2
+  v_run_type stats_tbl.run_type%type := lower(p_run_type) || p_script_num;
+  
+  --автономная транзакция, чтобы не закоммитить данные запроса
+  pragma autonomous_transaction;
+begin
+  
+  if p_run_type not in ('before', 'after')
+  then
+    raise_application_error(-20001
+                           ,'Тип запуска может принимать значения before или after.'
+                           ||p_run_type);
+  end if;
+
+  --фиксируем информацию добавляя результат выполнения VIEW
+  insert into stats_tbl
+          (run_type,
+           inf_type,
+           name, 
+           value)
+    select v_run_type, 
+           s.* 
+      from stats_vw s;
+      
+      
+  --удаляем старые данные если есть
+  delete from stats_tbl 
+   where id in (
+              select id 
+                from (
+                  select row_number() over(partition by name, run_type order by s.id desc) rn
+                        ,s.*
+                    from stats_tbl s) 
+               where rn = 2 --удаляем только старые данные
+                  or run_type = 'final'||p_script_num); 
+                 
+
+  --если это замер статистики после, то посчитаем итоговые данные
+  if lower(p_run_type) = 'after'
+  then
+    insert into stats_tbl 
+          (run_type,
+           inf_type,
+           name, 
+           value)
+    select 'final'||p_script_num
+          , b.inf_type
+          , b.name
+          , a.value-b.value --вычитаем "до" из значения "после"
+      from stats_tbl b
+      join stats_tbl a on a.name = b.name
+                      and a.run_type = 'after'||p_script_num 
+     where b.run_type = 'before'||p_script_num;
+  end if;
+  
+  --фиксируем    
+  commit;
+end;</div>
+
+  <p>Пояснение отдельных частей кода: 
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Строка</th>
+          <th scope="col">Описание</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>p_script_num in char</td>
+          <td>первый входной параметр, предназначен для определения номера тестируемого скрипта</span></td>
+        </tr>
+        <tr>
+          <td>p_run_type in stats_tbl.run_type%type</td>
+          <td>второй входной параметр, принимает на вход два значения "before" или "after", тут если мы фиксируем статистику до перед выполнением скрипта указываем "before", если после то соответственно "after"</td>
+        </tr>
+        <tr>
+          <td>inf_type varchar2(15 char),</td>
+          <td>для указания типа информации т.е. мы умеем собирать статистику, измерять время ЦПУ и общее время, т.е. 3 разных типа информации, в будущем типы будут добавляться</td>
+        </tr>
+        <tr>
+          <td>pragma autonomous_transaction;</td>
+          <td>процедура будет транзакцией, внутри основной транзакции, например, в рамках теста мы сделали update строк и в конце нужно будет отменить изменения, но данные по статистике должны сохраниться</td>
+        </tr>
+        <tr>
+          <td>select row_number() over(partition by name, run_type order by s.id desc) rn</td>
+          <td>это для удаления дублей от запусков, например запустим два раза процедуру с параметром "after", будут дублироваться данные, эта функция группирует такие строки и проставляет номера, 1-самая актуальная, 2 - старее.</td>
+        </tr>
+        <tr>
+          <td>or run_type = 'final'||p_script_num</td>
+          <td>это условие, чтобы не дублировались финальные данные</td>
+        </tr>
+        <tr>
+          <td>on commit preserve rows;</td>
+          <td>Временные таблицы хранят данные в течение транзакции или в течение сессии, тут указывается, что хранить нужно в течение сессии</td>
+        </tr>
+      </tbody>
+    </table>
+  </p>
+
+  <p>Запустим программу (если будут ошибки, пишите в комментариях), пока результат мы не увидим, но статистику уже запишем:</p>
+  <div class="sql-code-formatter">--тест скрипта №1
+begin
+  
+  --фиксируем начало работы
+  fix_inf_prc(1,'before');
+  
+  --скрипт №1
+  for rec in 1..100
+  loop
+    update operation set op_date = trunc(sysdate) 
+      where rownum = 1 
+        and op_date != trunc(sysdate);
+  end loop;
+  
+  --фиксируем завершение работы 
+  fix_inf_prc(1,'after');
+  
+  rollback;
+end;
+
+--тест скрипта №2
+begin
+  
+  --фиксируем начало работы
+  fix_inf_prc(2,'before');
+  
+  --скрипт №2
+  for rec in 1..1000 --увеличим количесто циклов
+  loop
+    update operation set op_date = trunc(sysdate) 
+      where rownum = 1 
+        and op_date != trunc(sysdate);
+  end loop;
+  
+  --фиксируем завершение работы 
+  fix_inf_prc(2,'after');
+  
+  rollback;
+end;</div>
+
+  <h3 id="show-result">Вывод результатов</h3>
+  
+  <h4 id="show-result-script">Вывод статистики скриптом</h4>
+  <p>Сразу обернем такой селект в VIEW для дальнейшего использования и расширения, также для лучшей читаемости, добавим форматирование для числа, чтобы тысячные доли разделялись запятыми:</p>
+  <div class="sql-code-formatter">create or replace view stats_report_vw as
+with 
+  all_stats as 
+    (select f1.inf_type||'...'||f1.name name
+           ,f1.value script1
+           ,f2.value script2
+           ,(f2.value - f1.value) diff
+       from stats_tbl f1
+       join stats_tbl f2 on f2.name = f1.name
+                        and f2.run_type = 'final2'
+      where f1.run_type = 'final1')
+select * 
+  from all_stats;</div>
+
+  <p>Запускаем созданный VIEW, по желанию добавляем фильтры и сортируем:</p>
+  <div class="sql-code-formatter">select * 
+  from stats_report_vw
+ where abs(diff) > 1 --фильтр по полю diff 
+   and name like '%ime%' --фильтр по полю name
+ order by abs(diff);</div>
+  <p>Результат: <br>
+    <img src="images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/result_diff_script.png" alt="Вывод различий в статистике скриптом" title="Вывод различий в статистике скриптом">
+  </p>
+
+  <h4 id="show-result-output">Вывод статистики через dbms_output</h4>
+  <p>Создадим процедуру stats_report_prc и на вход будем подавать два фильтра, плюс я выведу отдельно от таблицы со статисткой показатели времени и буду выводить их в секундах:</p>
+  <div class="sql-code-formatter">create or replace procedure stats_report_prc (p_diff_count     in number default 0,
+                                              p_like_name      in varchar2 default null,
+                                              p_sort_field_num in number default 4)
+is
+ 
+begin
+  
+  --выводим статистику
+  dbms_output.put_line(rpad('Name', 30) || 
+                       lpad('Run1', 16) || 
+                       lpad('Run2', 16) || 
+                       lpad('Diff', 16));
+
+  for rec in (select s.name,
+                     to_char(s.script1, '999G999G999G999') script1,
+                     to_char(s.script2, '999G999G999G999') script2,
+                     to_char(s.diff, '999G999G999G999') diff 
+                from stats_report_vw s
+               where s.name not like '%TIME...%' --исключаем ETIME, CTIME
+                 and abs(s.diff) > p_diff_count --фильтр по величине отличий
+                 and (p_like_name is null
+                      or lower(s.name) like lower('%'|| p_like_name ||'%')) --фильтр по имени
+               order by p_sort_field_num)
+  loop
+     dbms_output.put_line(rpad(rec.name, 30) || 
+                          lpad(rec.script1, 16) || 
+                          lpad(rec.script2, 16) || 
+                          lpad(rec.diff, 16));
+
+  end loop;
+   
+  --добавим отступ
+  dbms_output.put_line(chr(9));
+  
+  --выводим данные о времени
+  dbms_output.put_line(rpad('Name', 30) || 
+                       lpad('Run1 (sec)', 16) || 
+                       lpad('Run2 (sec)', 16) || 
+                       lpad('Diff (sec)', 16));
+
+  for rec in (select s.name,
+                     rtrim(to_char(s.script1/100, 'FM999999999999990.99999'), '.') script1,
+                     rtrim(to_char(s.script2/100, 'FM999999999999990.99999'), '.') script2,
+                     rtrim(to_char(s.diff/100, 'FM999999999999990.99999'), '.') diff 
+                from stats_report_vw s
+               where s.name like '%TIME...%') --выводим только ETIME, CTIME
+  loop
+    dbms_output.put_line(rpad(rec.name, 30) || 
+                         lpad(rec.script1, 16) || 
+                         lpad(rec.script2, 16) || 
+                         lpad(rec.diff, 16));
+  end loop;
+  
+end;</div>
+  <p>Запустим отчет и посмотрим что получилось: </p>
+  <div class="sql-code-formatter">set serveroutput on;
+begin
+  stats_report_prc(1); -- выдодить где разница больше 1
+end;</div>
+  <p>Результат: <br>
+    <img src="images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/result_diff_output.png" alt="Вывод различий в статистике dbms_output" title="Вывод различий в статистике скриптом dbms_output">
+  </p>
+  <br><br>
+  <p>Спасибо за внимание!</p>
+
+</div>
+
+
+                        </div>
+                        
+                        <div class="likely-on-page">
+                            <div class="likely" data-url="https://best-manual.ru/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html" data-media="https://best-manual.ru/images/database/2021/2021-02-19-oracle-statistics.-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa/1.jpg" data-title="Oracle statistics. Как узнать статистику и время выполнения запроса?">
+                                <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                <div class="odnoklassniki" title="Класснуть">Класснуть</div>
+                                <div class="gplus" title="Плюсануть">Плюсануть</div>
+                            </div>
+                        </div>
+
+                        <div class="reclama article-top-reclama">
+
+                        </div>
+
+                        <div class="read-more">
+                            <div class="read-more-header">Читать еще:</div>
+                            <ul>
+                                
+                                
+                                
+                                    
+                                    <li><a href="/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html">Oracle latches. Как узнать количество защелок в запросах?</a></li>
+                                    
+                                
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2021-01-26-oracle-index-obychnyj-indeks-primenenie-na-praktike.html">Oracle index. Обычный индекс - применение на практике</a></li>
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html">Oracle PL/SQL. Создание связанных таблиц и заполнение их тестовыми данными</a></li>
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2021-01-18-plsql-generaciya-strok-chisel-v-oracle.html">PL/SQL - генерация строк, чисел в Oracle</a></li>
+                                    
+                                
+                                    
+                                    <li><a href="/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html">Создание пользователя БД Oracle - первое, что нужно сделать</a></li>
+                                    
+                                
+                            </ul>
+                        </div>
+
+                        <div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://best-manual.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="col-md-4">
+
+<aside class="main-aside">
+                        
+    <div class="aside-box">
+
+    </div>
+
+
+    <div class="aside-box">
+<div class="latest-box">
+    <div class="lb-header">Последние статьи:</div>
+    <div class="lb-list">
+
+        <div class="lb-item">
+            <a href="blog/database/" class="lb-catname">Базы данных</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html" class="lb-item-header">Oracle latches. Как узнать количество защелок в запросах?</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html#disqus_thread" class="item-comments-count">0</a>
+                        <span class="date">26/02/2021</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/diy/" class="lb-catname">DIY</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/diy/2020-06-08-perevodim-proekt-na-github.html" class="lb-item-header">Переводим проект на GitHub</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/diy/2020-06-08-perevodim-proekt-na-github.html#disqus_thread" class="item-comments-count">0</a>
+                        <span class="date">08/06/2020</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+<!--
+        <div class="lb-item">
+            <a href="blog/theory/" class="lb-catname">Теория</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/news/" class="lb-catname">Новости</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+    -->
+
+    </div>
+</div>
+    </div>
+
+    <div class="aside-box">
+<div id="vk_groups"></div>
+
+    </div>
+
+    <div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://best-manual.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+    </div>
+
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="main-footer">
+    <div class="container">
+
+        <nav class="main-menu footer-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+        </nav>
+
+        <nav class="soc">
+
+            <ul>
+<li><a href="https://vk.com/best_manual_ru"><i class="fa fa-vk"></i></a></li> <li><a href="https://www.instagram.com/taran_as_official"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+</footer>
+
+<div class="footer bottom-footer">
+    <div class="container text-center">
+        <div class="footer-copy">2020-2021 © <span class="logo-footer logo-litera">Best-manual.ru</span></div>
+        <p>Копирование контента и размещение на других сайтах запрещено.</p>
+    </div>
+</div>
+
+<script src="js/scripts.min.js"></script>
+<script id="dsq-count-scr" src="//best-manual.disqus.com/count.js" async></script>
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+<script type="text/javascript">VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto', height: '300', color2: '202222'}, 32591432); </script>
+
+</body>
+</html>

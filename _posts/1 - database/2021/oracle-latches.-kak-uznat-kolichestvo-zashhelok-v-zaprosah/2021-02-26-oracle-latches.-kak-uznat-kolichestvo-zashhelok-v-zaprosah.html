@@ -1,0 +1,310 @@
+---
+layout: post
+title: Oracle latches. Как узнать количество защелок в запросах?
+description: В данной статье на примере детально разберем как узнать количество защелок в разных запросах и сравнить результаты. 
+categories: database
+catname: Базы данных
+image: "images/database/2021/2021-03-02-oracle-latches.-kak-uznat-kolichestvo-zashhelok-v-zaprosah/1.jpg"
+thumb: "images/database/2021/2021-03-02-oracle-latches.-kak-uznat-kolichestvo-zashhelok-v-zaprosah/1t.jpg"
+permalink: "blog/:categories/:year-:month-:day-:slug.html"
+---
+<div class="post-body">
+
+  <nav class="toc">
+    <b>Содержание:</b>
+    <ol>
+      <li><a href="{{page.url}}#target">Цель</a>
+      <li><a href="{{page.url}}#discript-components">Описание компонентов</a>
+        <ol>
+          <li><a href="{{page.url}}#latch">v$latch</a></li>
+        </ol>
+      </li>
+      <li><a href="{{page.url}}#privs">Права</a></li>
+      <li><a href="{{page.url}}#latch-example">Пример измерения количества защелок</a>
+        <ol>
+          <li><a href="{{page.url}}#latch-example-one">Получение количества одной защелки</a></li>
+          <li><a href="{{page.url}}#latch-example-all">Получение количества всех защелок</a></li>
+        </ol>
+      </li>
+    </ol>
+  </nav>
+
+  <h2 id="target">Цель</h2>
+  <p>Защелки - это блокировка словарей данных. И также как и обычная блокировка строки влияет на время выполнения запроса. Чем больше защелок - тем дольше выполняется запрос.</p>
+  <p>Далее мы разберем как узнать их количество - эта информация поможет в анализе производительности запросов, поможет выявить слабые места.</p>
+  
+  <h2 id="discript-components">Описание компонентов</h2>
+  <h3 id="latch">v$latch</h3>
+  <p>Представление выводит информацию о защелках по последней выполненной транзакции. Группируя информацию о родительской и дочерней защелке. Состоит из следующих полей:</p>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Поле</th>
+        <th scope="col">Тип</th>
+        <th scope="col">Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>addr</td>
+        <td>raw(4|8)</td>
+        <td>адрес защелки</td>
+      </tr>
+      <tr>
+        <td>latch#</td>
+        <td>number</td>
+        <td>идентификатор защелки</td>
+      </tr>
+      <tr>
+        <td>level#</td>
+        <td>number</td>
+        <td>уровент защелки</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>varchar2(64)</td>
+        <td>имя защелки</td>
+      </tr>
+      <tr>
+        <td>hash</td>
+        <td>number</td>
+        <td>хэш защелки</td>
+      </tr>
+      <tr>
+        <td>gets</td>
+        <td>number</td>
+        <td>количество запросов на защелку в режиме ожидания</td>
+      </tr>
+      <tr>
+        <td>misses</td>
+        <td>number</td>
+        <td>cколько раз была запрошена защелка в режиме ожидания, и запрашивающая сторона должна была ждать</td>
+      </tr>
+      <tr>
+        <td>sleeps</td>
+        <td>number</td>
+        <td>количество раз, когда запрос защелки с ожиданием приводил к спящему сеансу в ожидании защелки</td>
+      </tr>
+      <tr>
+        <td>immediate_gets</td>
+        <td>number</td>
+        <td>количество запросов на защелку в режиме без ожидания</td>
+      </tr>
+      <tr>
+        <td>immediate_misses</td>
+        <td>number</td>
+        <td>количество раз, когда запрос блокировки без ожидания не удался (то есть был пропущен)</td>
+      </tr>
+      <tr>
+        <td>waiters_woken</td>
+        <td>number</td>
+        <td>неподдерживаемый Oracle столбец, всегда будет равен 0</td>
+      </tr>
+      <tr>
+        <td>waits_holding_latch</td>
+        <td>number</td>
+        <td>неподдерживаемый Oracle столбец, всегда будет равен 0</td>
+      </tr>
+      <tr>
+        <td>spin_gets</td>
+        <td>number</td>
+        <td>запросы с готовностью подождать защелки, которые пропустили первую попытку, но были успешными во время вращения</td>
+      </tr>
+      <tr>
+        <td>sleep1-11</td>
+        <td>number</td>
+        <td>неподдерживаемые Oracle столбцы, всегда будут равны 0</td>
+      </tr>
+      <tr>
+        <td>wait_time</td>
+        <td>number</td>
+        <td>время ожидания защелки (в микросекундах)</td>
+      </tr>
+      <tr>
+        <td>con_id</td>
+        <td>number</td>
+        <td>идентификатор контейнера (для мультиарендной контейнерной базы данных CDB)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="privs">Права</h2>
+  <p>Для выполнения представления у пользователя (в моем случае <a href="/blog/database/2021-01-15-sozdanie-polzovatelya-bd-oracle-pervoe-chto-nuzhno-sdelat.html">PROD</a>) должен быть доступ на все таблицы, подключаемся к БД с помощью пользователя SYS с ролью SYSDBA и выполняем скрипты ниже:</p>
+  <div class="sql-code-formatter">grant select on v_$latch to prod;</div>
+
+  <h2 id="latch-example">Пример измерения количества защелок</h2>
+  <h3 id="latch-example-one">Получение количества одной защелки</h3>
+  <p>Рассмотрим как узнать конкретную защелку <span class="sql-table">DML lock allocation </span>(Распределение блокировки DML). В примере показанном ниже, будут меняться ранее <a href="/blog/database/2021-01-21-oracle-plsql-sozdanie-svyazannyh-tablic-i-zapolnenie-ih-testovymi-dannymi.html">сгенерированные данные</a>, умышленно будет добавлен rollback в цикл, чтобы увидеть защелки.</p>
+  <div class="sql-code-formatter">--включаем вывод данных в output
+set serveroutput on;
+
+declare
+  v_get_before number; --количество защелок ДО
+  v_get_after  number; --количество защелок ПОСЛЕ
+
+  v_get_result number; --разница защелок ДО и ПОСЛЕ, итог
+  
+  v_latch_name varchar2(255 char) := 'DML lock allocation'; --имя защелки
+
+begin
+
+  --фиксируем количество защелок ДО
+  select l.gets
+    into v_get_before 
+    from v$latch l
+    where l.name = v_latch_name;
+    
+  --запустим 1000 раз цикл, который обновит дату у первых попавшихся строк
+  for rec in 1..1000
+  loop
+    update prod.operation 
+        set op_date = trunc(sysdate) 
+      where rownum = 1 
+        and op_date != trunc(sysdate);
+        
+    --сразу откатываем изменения
+    rollback;
+    
+  end loop;
+
+  --фиксируем количество защелок ДО
+  select l.gets
+    into v_get_after
+    from v$latch l
+    where l.name = v_latch_name;
+    
+  --считаем общее время выполнения в сотых долях секунды
+  v_get_result := v_get_after - v_get_before;
+  
+  --выводим результат на экран
+  dbms_output.put_line('Зарос 1.' || v_latch_name || ': ' || to_char(v_get_result));
+
+  
+  --ДАЛЕЕ ВСЕ ТОЖЕ САМОЕ ТОЛЬКО УБИРАЕМ ROLLBACK ИЗ ЦИКЛА
+
+
+  select l.gets
+    into v_get_before 
+    from v$latch l
+    where l.name = v_latch_name;
+    
+  for rec in 1..1000
+  loop
+    update prod.operation 
+        set op_date = trunc(sysdate) 
+      where rownum = 1 
+        and op_date != trunc(sysdate);
+  end loop;
+  
+  rollback;
+
+  select l.gets
+    into v_get_after
+    from v$latch l
+    where l.name = v_latch_name;
+    
+  v_get_result := v_get_after - v_get_before;
+  
+  dbms_output.put_line('Зарос 2.' || v_latch_name || ': ' || to_char(v_get_result));
+
+end;</div>
+   <p>Результат: <br>
+    <img src="images/database/2021/2021-03-02-oracle-latches.-kak-uznat-kolichestvo-zashhelok-v-zaprosah/latch_one_name_result.png" alt="Вывод количества зашелки" title="Вывод количества защелки">
+   </p>
+
+   <h3 id="latch-example-all">Получение количества всех защелок</h3>
+   <p>Усложним задачу, чтобы видеть все защелки по двум запросам и сразу выводить по ним разницу для этого:</p>
+   <ul>
+      <li>Необходимо добавить себе программу по <a href="/blog/database/2021-02-19-oracle-statistics-kak-uznat-statistiku-i-vremya-vypolneniya-zaprosa.html">сбору и сравнению статистики</a>, если уже есть, идем далее.</li>
+      <li>Расширим наше представление <span class="sql-table">prod.stats_vw</span>, добавив в конце 4-й скрипт вывода информации о защелках:
+        <div class="sql-code-formatter">create or replace view prod.stats_vw as
+
+  --первый скрипт по выводу статистики
+  select 'STAT' as inf_type, -- для inf_type в stats_tbl
+          a.name as name, -- для name в stats_tbl
+          b.value as value -- для value в stats_tbl
+    from v$statname a
+    join v$mystat b on a.statistic# = b.statistic#
+  
+  --команда объединения
+  union all
+  
+  --второй скрипт по фиксации общего времени
+  select 'ETIME', -- сокращенно от Elapsed time (общее время)
+          'Elapsed Time', 
+          hsecs 
+    from v$timer
+
+  --команда объединения
+  union all
+
+  --третий скрипт по фиксации времени CPU
+  select 'CTIME', --сокращенно от CPU time (время ЦПУ)
+          'CPU Time',
+          dbms_utility.get_cpu_time
+    from dual
+    
+  --команда объединения
+  union all
+  
+  --четвертый скрипт по фиксации защелок
+  select 'LATCH', --сокращенно от CPU time (время ЦПУ)
+          l.name,
+          l.gets
+    from v$latch l;</div>
+    </li>
+    <li>Преобразуем пример, показанный ранее, в новый, с применением программы:
+      <div class="sql-code-formatter">begin
+  
+  --фиксируем начало работы
+  fix_inf_prc(1,'before');
+  
+
+  --ROLLBACK в конце
+  for rec in 1..1000
+  loop
+    update prod.operation 
+        set op_date = trunc(sysdate) 
+      where rownum = 1 
+        and op_date != trunc(sysdate);
+  end loop;
+  
+  rollback;
+  
+  --фиксируем завершение работы 
+  fix_inf_prc(1,'after');
+  
+  
+  --фиксируем начало работы
+  fix_inf_prc(2,'before');
+  
+  --ROLLBACK в цикле
+  for rec in 1..1000
+  loop
+    update prod.operation 
+        set op_date = trunc(sysdate) 
+      where rownum = 1 
+        and op_date != trunc(sysdate);
+    rollback;
+  end loop;
+  
+  rollback;
+  
+  --фиксируем завершение работы 
+  fix_inf_prc(2,'after');
+  
+  --вывести отчет
+  stats_report_prc(1000); --показывать значение, отличающиеся на 1000
+  
+end;</div>
+     <p>Результат: <br>
+      <img src="images/database/2021/2021-03-02-oracle-latches.-kak-uznat-kolichestvo-zashhelok-v-zaprosah/latch_all_name_result.png" alt="Вывод всех зашелок" title="Вывод всех защелок">
+     </p>
+     </li>
+   </ul>
+
+
+  <br>
+  <p>Спасибо за внимание!</p>
+
+</div>
