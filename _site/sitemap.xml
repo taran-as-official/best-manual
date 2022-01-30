@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://best-manual.ru/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html</loc>
+    <lastmod>2022-01-15T00:00:00+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://best-manual.ru/blog/diy/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows.html</loc>
+    <lastmod>2021-12-15T00:00:00+03:00</lastmod>
+  </url>
+  <url>
     <loc>https://best-manual.ru/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html</loc>
     <lastmod>2021-02-26T00:00:00+03:00</lastmod>
   </url>
@@ -48,39 +56,43 @@
   
   <url>
     <loc>https://best-manual.ru/about.html</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/rss.xml</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/search.html</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/sitemap.xml</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/database/</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/diy/</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://best-manual.ru/blog/python/</loc>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/page2/</loc>
-    <lastmod>2021-03-02T23:31:16+03:00</lastmod>
+    <lastmod>2022-01-30T22:37:18+03:00</lastmod>
   </url>
   
 </urlset>

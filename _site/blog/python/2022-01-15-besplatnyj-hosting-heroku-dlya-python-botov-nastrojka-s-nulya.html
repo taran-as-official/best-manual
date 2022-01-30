@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Бесплатный хостинг Heroku для Python ботов - настройка с нуля | Сайт полезных статей по разработке и не только</title>
+	<meta name="description" content="В данной статье детально разберем как разместить своего бота или навык для Алисы, например, написанных на Python с использованием Flask, на бесплатном хостинге Heroku с нуля.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/1.jpg">
+	<link rel="icon" href="img/favicon/best_manual_icon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple_touch_icon_256.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+	<script data-ad-client="ca-pub-6809977052006948" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+    
+    <a href="/" class="logo logo-litera"><img class="img-logo" src="/img/favicon/best_manual_icon.png" alt="site icon">Best-manual.ru</a>
+
+    <div class="search-wrap">
+        <div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+        <div class="search-field">
+            <form action="/search.html" id="cse-search-box">
+                <input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+                <input type="hidden" name="cof" value="FORID:10" />
+                <input type="hidden" name="ie" value="UTF-8" />
+                <input type="text" name="q" placeholder="Поиск по сайту..." />
+            </form>
+        </div>
+    </div>
+
+    <div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+    <nav class="main-menu top-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <li><a href="blog/python/">Python</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+    </nav>	 	
+
+</header>
+    
+    <header class="page-header overlay" style="background-image: url(images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/1.jpg)">
+
+        <div class="page-header-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-7 col-md-8">
+
+                        <div class="page-header-meta">
+
+                            <a href="blog/python" class="page-category-link">Python</a><span class="date">15/01/2022</span>
+                            
+                            <h1>Бесплатный хостинг Heroku для Python ботов - настройка с нуля</h1>
+
+                            <div class="item-social">
+                                <div class="item-comments" title="Количество комментариев">
+                                    <i class="fa fa-comment"></i><a href="/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html#disqus_thread" class="item-comments-count">0</a>
+                                </div>
+                                <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+                                <div class="likely likely-custom" data-url="https://best-manual.ru/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html" data-media="https://best-manual.ru/images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/1.jpg" data-title="Бесплатный хостинг Heroku для Python ботов - настройка с нуля">
+                                    <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                    <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                    <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    
+    <div class="article-content">
+        <div class="container-fluid">
+            
+            <div class="row">
+                <div align="right" class="btn-up" title="Наверх"></div>
+                <div class="col-md-8">
+
+                    <article class="mail-article">
+                        <nav class="breadcrumbs">
+                            <ul>
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="blog/python">Python</a></li>
+                                <li class="active" id="title">Бесплатный хостинг Heroku для Python ботов - настройка с нуля</li>
+                            </ul>
+                        </nav>
+                        
+                        <div class="article-body">
+                            <div class="reclama article-top-reclama">
+
+                            </div>
+
+                            <div class="post-body">
+  
+  <nav class="toc">
+    <b>Содержание:</b>
+    <ol>
+      <li><a href="/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html#registrationHeroku">Регистрация в Heroku.com</a>
+      <li><a href="/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html#registrationGithub">Регистрация в Github.com</a>
+      <li><a href="/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html#gitSetup">Установка Git</a>
+      <li><a href="/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html#pythonSetup">Установка Python</a>
+      <li><a href="/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html#pythonCodeWrite">Написание кода на Python</a>
+      <li><a href="/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html#pythonCodePush">Перенос проекта с ПК в Github</a>
+      <li><a href="/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html#herokuCreateApp">Настройка проекта в Heroku</a>
+    </ol>
+  </nav>
+
+
+
+  <h2 id="registrationHeroku">ШАГ 1. Регистрация в Heroku.com</h2>
+
+  <ul>
+    <li>Переходим на официальный сайт Heroku, сразу в раздел <a rel='nofollow' target='_blank' href='https://signup.heroku.com'>регистрации</a> </li>
+    <li>Заполняем поля в форме, проходим верификацию и нажимаем <b>CREATE FREE ACCOUNT</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-registration-window.png" alt="Регистрация аккаунта в Heroku" title="Регистрация аккаунта в Heroku">
+    </li>
+    <li>Появится окно ниже, нужно подтвердить аккаунт. Для этого идём на почту, которую указывали при регистрации, находим письмо от Heroku нажимаем на ссылку в письме.
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-registration-confirm-email.png" alt="Подтверждение аккаунта heroku" title="Подтверждение аккаунта heroku">
+    </li>
+    <li>После нажатия ссылки из письма откроется форма для создания пароля - укажите его и нажмите <b>SET PASSWORD AND LOG IN</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-registration-create-password.png" alt="Создание пароля heroku" title="Создание пароля heroku">
+    </li>
+    <li>После создания пароля, автоматически должна пройти авторизация и открыться окно ниже, если открылась страница с надписью <b>Page Not Found</b> то просто снова перейдите по  <a rel='nofollow' target='_blank' href='https://heroku.com'>heroku.com</a> и должно появится окно ниже<br><br>
+      Переходим в самый низ и нажимаем <b>Accept</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-registration-term-of-service.png" alt="Подтверждение терминов сервиса heroku" title="Подтверждение терминов сервиса heroku">
+    </li>
+  </ul>
+  <p>Регистрация завершена. Перед вами стартовое окно для создания приложения
+    <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-start-window.png" alt="Стартовое окно после регистрации heroku" title="Стартовое окно после регистрации heroku">
+  </p>
+
+
+  <h2 id="registrationGithub">ШАГ 2. Регистрация в Github.com</h2>
+  <p>Регистрируемся на официальном сайте <a rel='nofollow' target='_blank' href='https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home'>Github</a>, там все интуитивно понятно. Но если возникнут какие-то трудности, можно воспользоваться <a href="/blog/diy/2020-06-08-perevodim-proekt-na-github.html#registration">инструкцией регистрации в Github.com</a></p>
+
+
+  <h2 id="gitSetup">ШАГ 3. Установка Git</h2>
+  <ul>
+    <li>Переходим на официальный сайт и скачиваем  <a rel='nofollow' target='_blank' href='https://git-scm.com/download/win'>Git для Windows </a> </li>
+    <li>Запускаем скачанный файл, жмем ВЕЗДЕ <b>Next</b>, обязательно убедитесь, что стоит галочка напротив <b>Windows Explorer integration</b><br>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/git-setup.png" alt="Окно установки Git" title="Окно установки Git">
+    </li>
+  </ul>
+
+
+
+  <h2 id="pythonSetup">ШАГ 4. Установка Python</h2>
+  <p>Если вдруг по каким то причинам у вас еще не установлен Python, то установите согласно инструкции ниже, иначе переходите сразу к ШАГУ 5.</p>
+  <ul>
+    <li>Переходим на официальный сайт и скачиваем  <a rel='nofollow' target='_blank' href='https://www.python.org/downloads/'>Python последней версии </a> 
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-download.png" alt="Страница скачивания Python" title="Страница скачивания Python">
+
+    </li>
+    <li>Запускаем скачанный файл, обязательно убедитесь, что стоит галочка напротив <b>Add Python 3.10 to PATH</b>! <br>И жмем <b>Install now</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-setup.png" alt="Окно установки Python" title="Окно установки Python">
+    </li>
+  </ul>
+  <p>Готово, далее пойдет установка и считаем что этот шаг завершен, Python установлен идем далее</p>
+
+
+  <h2 id="pythonCodeWrire">ШАГ 5. Написание Python кода</h2>
+  <p>Теперь напишем небольшой код Python программы, которая будет обрабатывать наши запросы на сервер, чтобы проверить корректно ли мы настроили наш бесплатный вебсервер</p>
+  <ul>
+    <li>Создайте папку, в которой будет храниться проект</li>
+    <li>Зайдите в созданную папку зажмите клавишу <b>Shift</b> + нажмите правой кнопкой мыши по пустой папке и нажмите на <b>Open PowerShell window here</b> 
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-start-console.png" alt="Открытие консоли Windows" title="Открытие консоли Windows">
+    </li>
+    <li>Чтобы не засорять свой python установленный на ПК разными ненужными пакетам, принято создавать виртуальную машину и далее всю работу и запуск кода осуществлять в ней. Создадим виртуальную машину, написав команду ниже:
+      <code class="PowerShell">
+        <div class="PowerShell-row">python -m venv myvenv</div>
+      </code>
+      Не должно быть никаких ошибок, по итогу в папке проекта должна появиться папка <b>myvenv</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-create-venv.png" alt="Создание venv" title="Создание venv">
+    </li>
+    <li>Запустим виртуальную машину, введя команду ниже:
+      <code class="PowerShell">
+        <div class="PowerShell-row">myvenv/Scripts/activate</div>
+      </code>
+      <p><b>ВАЖНО!</b> Может возникнуть ошибка: 
+        <p>cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.</p>
+        <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/pyrhon-venv-error-scripts-is-disabled-on-this-system.png" alt="Ошибка запуска venv cannot be loaded because running scripts is disabled on this system" title="Ошибка запуска venv cannot be loaded because running scripts is disabled on this system">
+        для её устанения введите команду ниже, нажмите Enter и после введите "Y" и нажмите Enter, затем снова попробуйте запустить виртуальную машину снова:
+        <code class="PowerShell">
+          <div class="PowerShell-row">Set-ExecutionPolicy Unrestricted -Scope Process</div>
+        </code>
+     </p>
+     <p>Если в консоли появилась надпись (myvenv) в начале строки, то значит машина запустилась<br>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-venv-activated.png" alt="Активированный venv python" title="Активированный venv python">
+     </p>
+    </li>
+    <li>Теперь установим Flask для приема запросов и обработки их на Python и установим Gunicorn для работы веб сервера на Heroku на нашу машину, введя команды ниже:
+      <code class="PowerShell">
+        <div class="PowerShell-row">pip install flask</div>
+        <div class="PowerShell-row">pip install gunicorn</div>
+      </code>
+    </li>
+    <li>Все готово для написания кода, создадим python файл с названием <b>app.py</b>, в котором будет наша программа
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-create-app-py.png" alt="Создан файл app.py" title="Создан файл app.py">
+
+    </li>
+    <li>Открываем файл любым текстовым редактором, например в блокноте, и вставьте код ниже, сохраните изменения: <br>
+      <span class="code-block console">from flask import Flask, json, request <br>
+        import logging <br> <br>
+        
+        logging.basicConfig(level=logging.DEBUG) <br> <br>
+        
+        app = Flask(__name__) <br><br>
+        
+        @app.route('/') <br>
+        def index(): <br> <br>
+        
+            return "&lt;p&gt;Hello, World!&lt;/p&gt;"</span>
+    </li>
+    <li>Теперь необходимо прописать список необходимых пакетов (например Flask, Gunicorn), которые Heroku нужно будет установить, чтобы наш проект работал. Для этого создадим файл <b>requirements.txt</b>, введя в консоли команду ниже:
+      <code class="PowerShell">
+        <div class="PowerShell-row">pip freeze > requirements.txt</div>
+      </code>
+      Результат: <br>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-create-requirements-txt.png" alt="Файл requirements txt" title="Файл requirements txt">
+
+    </li>
+    <li>Создайте файл <u>без расширения</u> с названием <b>Procfile</b> и пропишите в нем код ниже (он нужен для внутренней работы Heroku): <br>
+      <span class="code-block console">web: gunicorn app:app</span><br>
+      Результат: <br>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-create-procfile.png" alt="Создание procfile" title="Создание procfile">
+
+    </li>
+    <li>Создайте файл <u>без названия</u>, но с раширением <b>.gitignore</b> и пропишите в нем название папки с виртуальной машиной, чтобы она не ушла в Git (ненужный хлам) <br>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-create-gitignore.png" alt="Создание gitignore" title="Создание gitignore">
+    </li>
+    <li>И на последок, по желанию, создайте файл Readme.md , в нем можете написать о себе или о своем проекте и другие люди, перейдя на вашу станицу в Github, смогут больше о вас узнать<br>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-create-readme-md.png" alt="Создание readme md" title="Создание readme md">
+    </li>
+  </ul>
+  <p>Самое сложное позади, в результате должна получиться структура проекта как на скриншоте ниже: <br>
+    <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/python-create-structure-finish.png" alt="Шаблон программы python для heroku" title="Шаблон программы python для heroku">
+  </p>
+
+
+  <h2 id="pythonCodePush">ШАГ 6. Перенос проекта с ПК в Github</h2>
+  <ul>
+    <li>Авторизовываемся в GitHub и в верху слева нажимаем <b>Create repository</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/git-create-repository.png" alt="Создание репозитория в GitHub" title="Создание репозитория в GitHub">
+    </li>
+    <li>Заполняем <b>Repository name</b>, по желанию <b>Description</b> (описание) и нажимаем <b>Create repository</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/git-create-repository-finish.png" alt="Заполнение формы создания репозитория в GitHub" title="Заполнение формы создания репозитория в GitHub">
+    </li>
+    <li>После создания откроется страница с командами для загрузки проекта в Github ниже - <b>не закрывайте её! Она еще пригодится!</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/git-commands-for-start.png" alt="Команды для загрузки файлов в GitHub" title="Команды для загрузки файлов в GitHub">
+    </li>
+    <li>Настройте доступ в Github через SSH по этой <a href="/blog/diy/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows.html">инструкции</a>. Если не хотите, то в предыдущем пункте выберите не SSH, а <b>HTTPS</b>!
+    </li>
+    <li>Возвращаемся в папку с проектом и запускаем Git bash
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/git-git-bash-here.png" alt="Запуск Git в проекте" title="Запуск Git в проекте">
+    </li>
+    <li>Прописываем команды ниже:
+      <code class="gitbash">
+        <div class="gitbash-row">git init</div>
+        <div class="gitbash-row">git add .</div>
+        <div class="gitbash-row">git commit -m "first commit"</div>
+      </code>
+      Теперь вернитесь на страницу Github, скопируйте выделенную строку и вставьте её в Git bash
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/git-commands-for-start-remote.png" alt="Строка подключения удаленного репозитория в git" title="Строка подключения удаленного репозитория в git">
+
+      Последняя команда:
+      <code class="gitbash">
+        <div class="gitbash-row">git push -u origin master</div>
+      </code>
+      Пример ввода всех команд: <br>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/git-example-commands.png" alt="Иницииация проекта в git" title="Иницииация проекта в git">
+    </li>
+  </ul>
+  <p>Если вы все сделали правильно, то обновив страницу в Github, на ней должны отобразиться файлы проекта
+    <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/git-github-upload-files.png" alt="Демонстрация файлов в Github" title="Демонстрация файлов в Github">
+
+  </p>
+
+    
+  <h2 id="herokuCreateApp">ШАГ 7. Настройка проекта в Heroku</h2>
+  <ul>
+    <li>Авторизуемся на сайте <a rel='nofollow' target='_blank' href='https://id.heroku.com/login'>heroku</a>, на главной странице нажимаем конпку <b>Create new app</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-create-new-app.png" alt="Создание нового приложения heroku" title="Создание нового приложения heroku">
+    </li>
+
+    <li>Введите название вашего приложения и выберите регион (для России выбираем europe)
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-create-new-app-set-name.png" alt="Создание нового приложения heroku ввод названия" title="Создание нового приложения heroku ввод названия">
+    </li>
+    <li>Переходим в раздел <b>Deploy</b>, нажимаем <b>Connect to GitHub</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-connect-to-github.png" alt="Выбор синхронизации через Github" title="Выбор синхронизации через Github">
+    </li>
+    <li>Откроется дополнительная секция, снова нажимаем кнопку <b>Connect to GitHub</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-connect-to-github-add.png" alt="Выбор синхронизации через Github нажатие кнопки" title="Выбор синхронизации через Github нажатие кнопки">
+      <br> В полявившемя окне нажимаем <b>Authorize heroku</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-connect-to-github-authorize.png" alt="Heroku авторизация в Github" title="Heroku авторизация в Github">
+      <br> Вводим пароль от Github
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-connect-to-github-enter-password-from-github.png" alt="Heroku авторизация в Github ввод пароля" title="Heroku авторизация в Github ввод пароля">
+
+    </li>
+    <li>Далее должен появится ваш репозиторий, чтобы найти наш проект нажимаем <b>Search</b>, после того как проект будет найдем нажимаем <b>Connect</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-connect-to-github-search-project.png" alt="Синхронизации проекта GitHub с Heroku" title="Синхронизации проекта GitHub с Heroku"><br>
+      <b>Пример успешного подключения:</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-connect-to-github-success.png" alt="Синхронизации проекта GitHub с Heroku пример успешного подключения" title="Синхронизации проекта GitHub с Heroku пример успешного подключения"><br>
+
+    </li>
+    <li>Теперь активируем автоматическую загрузку в heroku любых изменений, которые отправляются в Github, для этого опускаемся ниже и нажимаем <b>Enable Automatic Deploys</b>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-connect-to-github-auto-deploy.png" alt="Heroku включение автоматического deploy" title="Heroku включение автоматического deploy">
+    </li>
+    <li>Загрузим проект из Github на heroku, нажав <b>Deploy Branch</b> (делается единожды, дальше загрузка будет автоматическая)
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-deploy-branch.png" alt="Загрузка проекта из GitHub в heroku" title="Загрузка проекта из GitHub в heroku">
+    </li>
+    <li>Ждем пару минут, пока проект загрузится в Heroku, проверить что проект загружен можно, посмотрев логи, перейдя в <b>More</b>-><b>View logs</b> - там должна появится строчка <b>Build successful</b>. <br>
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-open-logs.png" alt="Heroku открытие логов" title="Heroku открытие логов"> <br>
+      p.s. в любых ситуациях когда ваше приложение не работает открывайте логи и ищите в них ошибки.
+    </li>
+    <li>Как только проект загружен, переходим в раздел <b>Resources</b>, заходим в изменение Free Dynos, чтобы включить его (по умолчанию выключено всегда)
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-set-dyno.png" alt="Heroku изменение настроек dyno" title="Heroku изменение настроек dyno"><br>
+      Включаем и нажимаем <b>Confirm</b>  
+      <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-activate-dyno.png" alt="Heroku включение dyno" title="Heroku включение dyno">
+
+    </li>
+  </ul>
+  <br>
+
+  <p>Поздравляю! Настройка завершена, чтобы проверить что все работает нажмите <b>Open app</b>
+    <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-check-app.png" alt="Heroku нажатие кнопки для открытия сайта" title="Heroku нажатие кнопки для открытия сайта">
+  </p>
+  <p>Должен открыться ваш новый сайт, с тектом <b>Hellow World</b>
+    <img src="images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/heroku-check-app-finish.png" alt="Heroku открытие сайта" title="Heroku открытие сайта">
+  </p>
+
+  <h3>Домашнее задание:</h3>
+  <p>Поменяйте у себя на ПК в файле app.py текст c <b>Hellow World</b> на любой другой и через Git загрузите изменения на Github. В результате надпись на вашем сайте должна измениться!</p>
+
+  <br>
+
+
+  <p>Спасибо за внимание!</p>
+
+</div>
+
+
+                        </div>
+                        
+                        <div class="likely-on-page">
+                            <div class="likely" data-url="https://best-manual.ru/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html" data-media="https://best-manual.ru/images/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/1.jpg" data-title="Бесплатный хостинг Heroku для Python ботов - настройка с нуля">
+                                <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                                <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+                                <div class="odnoklassniki" title="Класснуть">Класснуть</div>
+                                <div class="gplus" title="Плюсануть">Плюсануть</div>
+                            </div>
+                        </div>
+
+                        <div class="reclama article-top-reclama">
+
+                        </div>
+
+                        <div class="read-more">
+                            <div class="read-more-header">Читать еще:</div>
+                            <ul>
+                                
+                                
+                                
+                                    
+                                
+                            </ul>
+                        </div>
+
+                        <div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://best-manual.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="col-md-4">
+
+<aside class="main-aside">
+                        
+    <div class="aside-box">
+
+    </div>
+
+
+    <div class="aside-box">
+<div class="latest-box">
+    <div class="lb-header">Последние статьи:</div>
+    <div class="lb-list">
+
+        <div class="lb-item">
+            <a href="blog/database/" class="lb-catname">Базы данных</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html" class="lb-item-header">Oracle latches. Как узнать количество защелок в запросах?</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html#disqus_thread" class="item-comments-count">0</a>
+                        <span class="date">26/02/2021</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/diy/" class="lb-catname">DIY</a>
+            <div class="lb-body">
+
+                
+                <a href="/blog/diy/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows.html" class="lb-item-header">Настройка доступа по SSH ключу в GitHub в Windows</a>
+                <div class="lb-footer">
+                    <div class="item-comments" title="Количество комментариев">
+                        <i class="fa fa-comment"></i><a href="/blog/diy/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows.html#disqus_thread" class="item-comments-count">0</a>
+                        <span class="date">15/12/2021</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+<!--
+        <div class="lb-item">
+            <a href="blog/theory/" class="lb-catname">Теория</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+
+        <div class="lb-item">
+            <a href="blog/news/" class="lb-catname">Новости</a>
+            <div class="lb-body">
+
+                
+
+            </div>
+        </div>
+    -->
+
+    </div>
+</div>
+    </div>
+
+    <div class="aside-box">
+<div id="vk_groups"></div>
+
+    </div>
+
+    <div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://best-manual.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+    </div>
+
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="main-footer">
+    <div class="container">
+
+        <nav class="main-menu footer-menu">
+<ul>
+    <li><a href="blog/database/">Базы данных</a></li>
+    <li><a href="blog/diy/">DIY</a></li>
+    <li><a href="blog/python/">Python</a></li>
+    <!--<li><a href="blog/theory/">Теория</a></li>-->
+    <li><a href="about.html">О сайте</a></li>
+</ul>
+        </nav>
+
+        <nav class="soc">
+
+            <ul>
+<li><a href="https://vk.com/best_manual_ru"><i class="fa fa-vk"></i></a></li> <li><a href="https://www.instagram.com/taran_as_official"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+</footer>
+
+<div class="footer bottom-footer">
+    <div class="container text-center">
+        <div class="footer-copy">2020-2022 © <span class="logo-footer logo-litera">Best-manual.ru</span></div>
+        <p>Копирование контента и размещение на других сайтах запрещено.</p>
+    </div>
+</div>
+
+<script src="js/scripts.min.js"></script>
+<script id="dsq-count-scr" src="//best-manual.disqus.com/count.js" async></script>
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+<script type="text/javascript">VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto', height: '300', color2: '202222'}, 32591432); </script>
+
+</body>
+</html>

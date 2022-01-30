@@ -1,8 +1,9 @@
 var syntax        = 'sass'; // Syntax: sass or scss;
 
+//const sass        = require('gulp-sass')(require('sass'));
 var gulp          = require('gulp'),
 		gutil         = require('gulp-util' ),
-		sass          = require('gulp-sass'),
+		sass          = require('gulp-sass')(require('sass')),
 		browsersync   = require('browser-sync'),
 		concat        = require('gulp-concat'),
 		uglify        = require('gulp-uglify'),
@@ -26,7 +27,8 @@ gulp.task('browser-sync', function() {
 
 gulp.task('styles', function() {
 	return gulp.src(syntax+'/**/*.'+syntax+'')
-	.pipe(sass({ outputStyle: 'expand' }).on("error", notify.onError()))
+	//.pipe(sass({ outputStyle: 'expand' }).on("error", notify.onError()))
+	.pipe(sass({ outputStyle: 'expanded' }).on("error", notify.onError()))
 	.pipe(rename({ suffix: '.min', prefix : '' }))
 	.pipe(autoprefixer(['last 15 versions']))
 	.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging

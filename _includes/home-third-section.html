@@ -1,9 +1,9 @@
 <section class="third-section dark-section">
     <div class="container-fluid">
-        <h2><a href="blog/course/">Курсы</a></h2>
+        <h2><a href="blog/python/">Python</a></h2>
         <div class="row">
 
-{% for post in site.categories.course limit: 4 offset: 0 %}
+{% for post in site.categories.python limit: 4 offset: 0 %}
 {% include /home-third-section-item.html %}
 {% endfor %}
             

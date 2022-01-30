@@ -67,6 +67,71 @@ $(function() {
 		$('html').animate({scrollTop: 0}, 1000);
 	})
 
+
+	
+	$('img').hover(function() {
+		if(this.width*100/this.naturalWidth<80){
+			// навели мышь на элемент
+			$('img').css('cursor', 'pointer');
+
+		}
+
+	})
+	//если картинку можно увеличить, сменим курсор на указатель
+	$('img').hover(function() {
+		// //если картинка меньше более чем на 80% от оригинала, то тогда откроем ее при клике
+		if(this.width*100/this.naturalWidth<80 ) {
+			//alert(this.naturalHeight*100/window.innerHeight)
+			$('img').css('cursor', 'pointer');
+		}
+		else {
+			$('img').css('cursor', '');
+		}
+	 
+	});
+
+	//логика кнопки увеличения картинки
+
+	$('img').click(function(event) {
+		var i_path = $(this).attr('src');
+		//alert(this.naturalWidth + 'x' + this.naturalHeight); // здесь работает
+		//alert( window.innerWidth )
+		var sizeWidthDiff = this.width*100/this.naturalWidth //процент отличия ширины сжатой картинки от оригинала
+		
+		
+		//если картинка меньше более чем на 80% от оригинала И высота оригинала меньше текущего окна, то тогда откроем ее при клике
+		if (sizeWidthDiff<80 ) {
+
+			var openWidth //ширина картинки после нажатия
+
+			//если после клика ширина картинки будет занимать не более 95% ширины экрана, то ок
+			if (this.naturalWidth*100/window.innerWidth<95 ) {
+				openWidth = this.naturalWidth
+			}
+			//иначе ширина будет 80% от ширины окна
+			else {
+
+				openWidth = window.innerWidth*90/100
+			}
+
+
+			$('body').append('<div id="overlay"></div><div id="full-img"><img width="'+openWidth+'" src="'+i_path+'">');
+			$('#full-img').css({
+			 left: ($(document).width() - $('#full-img').outerWidth())/2,
+			 // top: ($(document).height() - $('#full-img').outerHeight())/2 upd: 24.10.2016
+					top: ($(window).height() - $('#full-img').outerHeight())/2
+		   	});
+			$('#overlay, #full-img').fadeIn('fast');
+		} 
+
+	  });
+	  
+	  $('body').on('click', '#close-popup, #overlay,#full-img', function(event) {
+		event.preventDefault();
+		$('#overlay, #full-img').fadeOut('fast', function() {
+		  $('#close-popup, #full-img, #overlay').remove();
+		});
+	  });
 	//логика форматировщика кода
 	$('.sql-code-formatter').each(function() {
 		var codeText = $(this);

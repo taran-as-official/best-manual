@@ -1,0 +1,49 @@
+---
+layout: post
+title: Настройка доступа по SSH ключу в GitHub в Windows
+description: В данной статье детально разберем как забыть о постоянном вводе логина и пароля при каждой загрузке изменений в GitHub т.е. для доступа в Github вместо логина и пароля мы будем использовать SSH ключ. 
+categories: diy
+catname: DIY
+image: "images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/1.jpg"
+thumb: "images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/1t.jpg"
+permalink: "blog/:categories/:year-:month-:day-:slug.html"
+---
+<div class="post-body">
+
+  <p>Сейчас вы узнаете как быстро настроить доступ в Github по SSH ключу. Больше не придется вводить логин и пароль при работе с Git.</p>
+
+  <ul>
+    <li>В папке с проектом нажимаем правой кнопкой мыши по пустому месту и нажмаем <b>Git GUI Here</b> 
+      <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/git-ssh-open-gui.png" alt="Открытие Git GUI" title="Открытие Git GUI">
+
+    </li>
+    <li>Далее <b>Help</b>-><b>Show SSH Key</b> 
+      <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/git-ssh-gui-show-ssh.png" alt="Окно установки Python" title="Окно установки Python">
+    </li>
+    <li>После нажатия <b>Generate key</b> вам будет предложено ввести контрольную фразу - оставьте значение <b>пустым</b>, иначе придется каждый час вводить эту фразу  
+      <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/git-ssh-gui-generate-ssh.png" alt="Генерация SSH в Windows" title="Генерация SSH в Windows">
+    </li>
+    <li>Сгенерированный ключ показан ниже, теперь копируем его, нажав <b>Copy To Clipboard</b> 
+      <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/git-ssh-gui-copy-ssh.png" alt="Сгенерированный SSH ключ копирование" title="Сгенерированный SSH ключ копирование">
+    </li>
+    <li>Логинимся на сайте {% extlink Github https://github.com/ %} и открываем раздел <b>Settings</b>-><b>SSH and GPG keys</b>
+      <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/github-open-settings.png" alt="Github переход в раздел Settings" title="Github переход в раздел Settings"> <br>
+      <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/github-open-settings-ssh.png" alt="Github переход в раздел SSH" title="Github переход в раздел SSH">
+    </li>
+    <li>Жмем <b>New SSH key</b>  
+      <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/github-new-ssh.png" alt="Github новый SSH" title="Github новый SSH">
+    </li>
+    <li>В поле "Title" вводим название ключа (для каждого ПК и ОС свой SSH), в поле "Key" вставляем скопированный ранее SSH ключ. В конце нажимаем <b>Add SSH key</b>
+      <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/github-add-ssh.png" alt="Github добавление SSH" title="Github добавление SSH">
+    </li>
+  </ul>
+
+  <p>Готово!</p>
+
+  <p>Теперь можете перейти в Git, ввести команду <b>git push</b>, будет задан вопрос уверены ли мы в этом подключении напишите "yes" и нажмите <b>Enter</b> 
+    <img src="images/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/git-push-success.png" alt="Git push ssh" title="git push ssh">
+  </p>
+  
+  <p>Спасибо за внимание!</p>
+
+</div>

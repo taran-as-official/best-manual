@@ -7,6 +7,28 @@
 		<atom:link href="https://best-manual.ru/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Бесплатный хостинг Heroku для Python ботов - настройка с нуля</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html"><img width="100%" src="https://best-manual.ruimages/python/2021/2021-11-30-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya/1.jpg"></a>
+					В данной статье детально разберем как разместить своего бота или навык для Алисы, например, написанных на Python с использованием Flask, на бесплатном хостинге Heroku с нуля.
+					]]></description>
+				<pubDate>Sat, 15 Jan 2022 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/python/2022-01-15-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html</guid>
+			</item>
+		
+			<item>
+				<title>Настройка доступа по SSH ключу в GitHub в Windows</title>
+				<description><![CDATA[
+					<a href="https://best-manual.ru/blog/diy/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows.html"><img width="100%" src="https://best-manual.ruimages/diy/2021/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows/1.jpg"></a>
+					В данной статье детально разберем как забыть о постоянном вводе логина и пароля при каждой загрузке изменений в GitHub т.е. для доступа в Github вместо логина и пароля мы будем использовать SSH ключ.
+					]]></description>
+				<pubDate>Wed, 15 Dec 2021 00:00:00 +0300</pubDate>
+				<link>https://best-manual.ru/blog/diy/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows.html</link>
+				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows.html</guid>
+			</item>
+		
+			<item>
 				<title>Oracle latches. Как узнать количество защелок в запросах?</title>
 				<description><![CDATA[
 					<a href="https://best-manual.ru/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html"><img width="100%" src="https://best-manual.ruimages/database/2021/2021-03-02-oracle-latches.-kak-uznat-kolichestvo-zashhelok-v-zaprosah/1.jpg"></a>
@@ -92,28 +114,6 @@
 				<pubDate>Fri, 29 May 2020 00:00:00 +0300</pubDate>
 				<link>https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html</link>
 				<guid isPermaLink="true">https://best-manual.ru/blog/database/2020-05-29-oracle-sql-developer-autoreplace-pishem-kod-bystree.html</guid>
-			</item>
-		
-			<item>
-				<title>Настройка автоматической архивации по расписанию</title>
-				<description><![CDATA[
-					<a href="https://best-manual.ru/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html"><img width="100%" src="https://best-manual.ruimages/diy/2020/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu/1.jpg"></a>
-					В данной статье детально разберем как настроить автоматическую архивацию по Windows 10, с помощью bat-файла, который используя 7zip будет архивировать нужные нам файлы
-					]]></description>
-				<pubDate>Wed, 27 May 2020 00:00:00 +0300</pubDate>
-				<link>https://best-manual.ru/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html</link>
-				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2020-05-27-nastrojka-avtomaticheskoj-arhivacii-po-raspisaniyu.html</guid>
-			</item>
-		
-			<item>
-				<title>7-zip архивация через BAT-файл, в один клик</title>
-				<description><![CDATA[
-					<a href="https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html"><img width="100%" src="https://best-manual.ruimages/diy/2020/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik/1.jpg"></a>
-					В данной статье детально разберем как создать автоматическую архивацию вашего проекта с помощью 7-zip используя Batch в один клик
-					]]></description>
-				<pubDate>Fri, 22 May 2020 00:00:00 +0300</pubDate>
-				<link>https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html</link>
-				<guid isPermaLink="true">https://best-manual.ru/blog/diy/2020-05-22-7-zip-arhivaciya-cherez-bat-fajl-v-odin-klik.html</guid>
 			</item>
 		
 	</channel>

@@ -83,7 +83,7 @@ a
 	text-align: center
 	ul,li
 		list-style-type: none
- 		padding: 0
+		padding: 0
 		margin: 0
 	li
 		display: inline-block
@@ -221,9 +221,9 @@ section
 	
 	margin: $gutter/2
 	transition: box-shadow .25s ease
-	box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.15) !important;
+	box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.15) !important
 	&:hover
-		box-shadow: 0 1rem 3rem rgba(0,0,0,0.175) !important;
+		box-shadow: 0 1rem 3rem rgba(0,0,0,0.175) !important
 
 .article-content
 	.container-fluid
@@ -1395,15 +1395,21 @@ a.cat-list-item
 		list-style-type: decimal
 		li
 			
-			margin: 20px 0 35px 0
+			margin-top: 20px
 	ul.no-mark
 		list-style-type: none
 		li
 			
 			margin: 10px 0 15px 0
 	img
-		padding: 15px 0
-		dispaly: none
+		margin-top: 15px
+		margin-bottom: 25px
+		display: inline
+		max-width: 100%
+		box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.5)
+		height: auto
+		&.img-width
+			width: 100%
 	h2
 		margin-bottom: 40px
 		margin-top: 80px
@@ -1427,10 +1433,32 @@ a.cat-list-item
 	a
 		font-weight: 500
 
-.article-body
-	.post-body
-		img
-			display: inline
+
+#full-img
+	display: absolute
+	/* position: absolute; upd: 24.10.2016 */
+	position: fixed
+	z-index: 9999
+
+
+
+@keyframes rota
+	25%
+		transform: rotate(360deg)
+
+
+#overlay
+	display: none
+	background: #000
+	position: fixed
+	top: 0
+	left: 0
+	height: 100%
+	width: 100%
+	opacity: 0.5
+	z-index: 9990	
+
+
 
 .btn-up
 	margin-left: -60px
@@ -1499,7 +1527,7 @@ a.cat-list-item
 
 	
 .console 
-    font-family: monospace
+	font-family: monospace
 
 .sql-table
 	font-family: consolas, Courier New, Courier, monospace
@@ -1535,6 +1563,40 @@ a.cat-list-item
 
 .sql-code-formatter-comments
 	color: red
-    //font-style: italic
+	//font-style: italic
+
+.gitbash
+	background-color: #000
+	background-color: lighten(#000, 10)
+	font-family: Lucida Console
+	color: #bfbfbf
+	color: lighten(#bfbfbf, 5)
+	font-size: 9pt
+	display: block
+	padding: 15px
+	margin-top: 15px 
+	margin-bottom: 30px
+	border-radius: 5px
+	.gitbash-row
+		&:before
+			content: "$"
+			padding-right: 7px
+
+
+.PowerShell
+	padding: 15px
+	margin-top: 15px 
+	margin-bottom: 30px 
+	border-radius: 5px
+	background-color: #001f55
+	background-color: lighten(#001f55, 5)
+	display: block
+	color: #fff
+	font-family: Lucida Console
+	.PowerShell-row
+		transform: scale(1.0,1.1)
+		&:before
+			content: "PS C:>"
+			padding-right: 10px
 
 @import "media" // Always at the end
