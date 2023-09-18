@@ -2,12 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://best-manual.ru/blog/python/2022-02-03-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html</loc>
-    <lastmod>2022-02-03T00:00:00+03:00</lastmod>
+    <loc>https://best-manual.ru/blog/python/besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git-nastrojka-s-nulya.html</loc>
+    <lastmod>2023-09-18T00:00:00+03:00</lastmod>
   </url>
   <url>
-    <loc>https://best-manual.ru/blog/diy/2021-12-15-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows.html</loc>
-    <lastmod>2021-12-15T00:00:00+03:00</lastmod>
+    <loc>https://best-manual.ru/blog/diy/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos.html</loc>
+    <lastmod>2022-11-21T00:00:00+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://best-manual.ru/blog/python/2022-02-03-besplatnyj-hosting-heroku-dlya-python-botov-nastrojka-s-nulya.html</loc>
+    <lastmod>2022-02-03T00:00:00+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/database/2021-02-26-oracle-latches-kak-uznat-kolichestvo-zashhelok-v-zaprosah.html</loc>
@@ -56,43 +60,43 @@
   
   <url>
     <loc>https://best-manual.ru/about.html</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/rss.xml</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/search.html</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/sitemap.xml</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
-  </url>
-  <url>
-    <loc>https://best-manual.ru/blog/database/</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/diy/</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/python/</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   <url>
     <loc>https://best-manual.ru/blog/page2/</loc>
-    <lastmod>2022-02-03T15:52:14+03:00</lastmod>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://best-manual.ru/blog/database/</loc>
+    <lastmod>2023-09-18T21:18:04+03:00</lastmod>
   </url>
   
 </urlset>

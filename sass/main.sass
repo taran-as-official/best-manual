@@ -1,3 +1,5 @@
+@use "sass:math"
+
 @import "vars"
 @import "fonts"
 @import "libs"
@@ -56,11 +58,12 @@ a
 	color: #ffffff
 	font-size: 16px
 	position: absolute
+	margin-top: 5px
 	display: inline-block
 	text-decoration: none
 	padding: 0 60px
 	left: 0
-	line-height: 40px
+	line-height: 45px
 	&:hover, &:focus
 		text-decoration: none
 		color: #ffffff
@@ -68,11 +71,12 @@ a
 		color: $accent
 		font-size: 26px
 
+
 .img-logo
 	position: absolute
 	display: inline-block
 	text-decoration: none
-	margin: 2px 0 10px 25px
+	margin: 0px 5px 0px 25px
 	left: 0
 	height: 35px
 	width: 35px
@@ -219,16 +223,12 @@ section
 
 .pattern-test
 	
-	margin: $gutter/2
+	margin: $gutter*0.5
 	transition: box-shadow .25s ease
 	box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.15) !important
 	&:hover
 		box-shadow: 0 1rem 3rem rgba(0,0,0,0.175) !important
 
-.article-content
-	.container-fluid
-		.row
-			.col-md-8
 
 .pattern
 	background-color: $dark
@@ -331,10 +331,10 @@ section
 		display: inline-block
 
 .second-section
-	padding: $gutter/2 0
+	padding: $gutter*0.5 0
 
 .news-wrap
-	padding-bottom: $gutter/2
+	padding-bottom: $gutter*0.5
 	.pattern
 		&::before
 			display: none
@@ -344,7 +344,7 @@ section
 
 .item-news
 	min-height: 280px
-	margin: $gutter/2 0
+	margin: $gutter*0.5 0
 	color: $text-color
 	&-content
 		border: 
@@ -449,7 +449,7 @@ section
 
 .type-one
 	&-header
-		margin-bottom: $gutter/2
+		margin-bottom: $gutter*0.5
 	&-first
 		> div
 			> a
@@ -657,8 +657,8 @@ a.cat-list-item
 	display: block
 	text-decoration: none
 	margin: 
-		bottom: $gutter/1.5
-		top: $gutter/1.5
+		bottom: math.div($gutter, 1.5)
+		top: math.div($gutter, 1.5)
 	padding-bottom: 4px
 	border-bottom: 1px solid #dfdfdf
 	h2, h3
@@ -1317,7 +1317,7 @@ a.cat-list-item
 	&-header
 		font-size: 21px
 		font-weight: 800
-		margin: $gutter*1.5 0 $gutter/2 0
+		margin: $gutter*1.5 0 $gutter*0.5 0
 	ul, li
 		margin: 0
 		padding: 0
@@ -1355,12 +1355,12 @@ a.cat-list-item
 	line-height: 1.45
 
 .dsq-widget-list
-	margin: $gutter/2 0
+	margin: $gutter*0.5 0
 	padding: 0
 
 .dsq-widget-item
-	margin: $gutter/2 0
-	padding: $gutter/2 0
+	margin: $gutter*0.5 0
+	padding: $gutter*0.5 0
 	border-bottom: 1px solid #eeeeee
 	position: relative
 	padding-left: 40px
@@ -1427,6 +1427,9 @@ a.cat-list-item
 		li
 			
 			margin: 10px 0 15px 0
+	ul.circle
+		li
+			list-style-type: circle
 	img
 		margin-top: 15px
 		margin-bottom: 25px
@@ -1525,7 +1528,8 @@ a.cat-list-item
 	font-weight: 600
 
 .code-block
-	margin-bottom: 15px
+	margin-bottom: 20px
+	margin-top: 10px
 	background-color: darken(#fff, 5%)
 	padding: 15px
 	border-radius: 0.2em
@@ -1578,7 +1582,7 @@ a.cat-list-item
 	font-family: Lucida Console
 	color: #bfbfbf
 	color: lighten(#bfbfbf, 5)
-	font-size: 9pt
+	font-size: 12pt
 	display: block
 	padding: 15px
 	margin-top: 15px 

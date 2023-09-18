@@ -1,0 +1,122 @@
+---
+layout: post
+title: Бесплатный хостинг PythonAnywhere для Python приложений с автоматическим деплоем из Git - настройка с нуля
+description: Эта статья рассказывает о том, как настроить бесплатный хостинг PythonAnywhere для хранения и автоматического деплоя Python-приложений из Git. В ней подробно описываются все необходимые шаги, начиная от регистрации на PythonAnywhere и создания нового проекта, до настройки веб-сервера, запуска приложения и автоматического деплоя изменений из репозитория на GitHub. Эта статья будет полезна для тех, кто только начинает знакомиться с Python и ищет бесплатный и удобный способ размещения своих проектов в Интернете.
+categories: python
+catname: Python
+image: "images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/1.jpg"
+thumb: "images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/1t.jpg"
+permalink: "blog/:categories/:slug.html"
+---
+<div class="post-body">
+  
+  <nav>
+    <b>Содержание:</b>
+    <ol>
+      <li><a href="{{page.url}}#registrationPythonAnywhere">Регистрация в PythonAnywhere.com</a>
+      <li><a href="{{page.url}}#createWebAppInPythonAnywhere">Создание веб приложения в PythonAnywhere.com</a>
+      <li><a href="{{page.url}}#gitSync">Перенос проекта из Github в PythonAnywhere</a>
+      <li><a href="{{page.url}}#GitAutoDeploySetting">Настройка автоматической загрузки изменений из Git в PythonAnyWhere</a>
+      <li><a href="{{page.url}}#Testing">Тестирование</a>
+    </ol>
+  </nav>
+
+
+  <p>Всё то, о чём пойдет речь ниже, можно посмотреть в этом видео
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/BSKcM6YieaY?si=4QXMNEsd0Z7jnFZs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </p>
+
+  <h2 id="registrationPythonAnywhere">ШАГ 1. Регистрация в PythonAnywhere.com</h2>
+
+  <ul>
+    <li>Переходим на официальный сайт PythonAnywhere, сразу в раздел {% extlink выбора тарифа https://www.pythonanywhere.com/pricing/ %} и выбираем бесплатный тариф <b>Create a Beginner account</b>
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-choose-free-price.png" alt="Выбор бесплатного тарифа в PythonAnywhere" title="Выбор бесплатного тарифа в PythonAnywhere">
+    </li>
+    <li>Заполняем поля в форме и нажимаем <b>Register</b>. <br>
+      <span>Важно</span>, тот username, который вы укажете при создании аккаутна будет частью адреса вашего сайта, например для username = bestmanual адрес сайта будет такой "http://bestmanual.pythonanywhere.com/"
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-create-account.png" alt="Регистрация аккаунта в PythonAnywhere" title="Регистрация аккаунта в PythonAnywhere">
+    </li>
+    <li>Появится обучающее окно ниже, если вы знаете английский то рекомендую прочитать о каждом разделе, либо нажмите <b>End tour</b>.
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-learn-tour.png" alt="Окно обучения в PythonAnywhere" title="Окно обучения в PythonAnywhere">
+    </li>
+    <li>Сразу закройте окно с обучением и зайдите на почту, которую указывали при регистрации и подтвердите регистрацию, чтобы на экран помещалось больше полезной информации и эти окна не мешали.
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-close-useless-windows.png" alt="Закрытие бесполезных окон в PythonAnywhere" title="Закрытие бесполезных окон в PythonAnywhere">
+    </li>
+  </ul>
+  <p>Регистрация завершена. Далее переходим к созданию Web приложения.</p>
+
+
+  <h2 id="createWebAppInPythonAnywhere">ШАГ 2. Создание веб приложения в PythonAnywhere.com</h2>
+
+  <ul>
+    <li>Переходим на вкладку <b>Web</b>.
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-page-web.png" alt="Переход в раздел Web в PythonAnywhere" title="Переход в раздел Web в PythonAnywhere">
+    </li>
+    <li>Нажимаем <b>Add a new web app</b>.
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-add-new-web-app.png" alt="Добавление нового Web приложения в PythonAnywhere" title="Добавление нового Web приложения в PythonAnywhere">
+    </li>
+    <li>Далее жмем <b>Next</b>.
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-add-web-next.png" alt="Добавление нового Web приложения в PythonAnywhere" title="Добавление нового Web приложения в PythonAnywhere">
+    </li>
+    <li>Выбираем <b>Flask</b> фреймворк и последнюю версию Python.
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-choose-framework-and-python-version.png" alt="Выбор фреймворка и версии Python в PythonAnywhere" title="Выбор фреймворка и версии Python в PythonAnywhere">
+    </li>
+    <li>Меняем стандартное название <b>Flask_app.py</b> на <b>main.py</b>.
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-change-main-file-name.png" alt="Изменение названия главного исполняемого файла программы в PythonAnywhere" title="Изменение названия главного исполняемого файла программы в PythonAnywhere">
+    </li>
+  </ul>
+  <p>Веб приложение создано. Для проверки нажмите на ссылку на вкладке Web.</p>
+  <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-web-app-ready.png" alt="Вкладка Web в PythonAnywhere" title="Вкладка Web в PythonAnywhere">
+  <p>Пример успешно созданного веб приложения</p>
+  <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-hello-from-flask.png" alt="Работающее Web приложение в PythonAnywhere" title="Работающее Web приложение в PythonAnywhere">
+
+
+
+  <h2 id="gitSync">ШАГ 3. Перенос проекта из Github в PythonAnywhere</h2>
+  <p><a href="/blog/diy/2022-02-03-besplatnyj-hosting-heroku-dlya-python-botov---nastrojka-s-nulya.html">Тут</a> мы создавали простое приложение на python - его и будем переносить.</p>
+  <ul>
+    <li>Копируем SHH ключ из вашего проекта в GitHub<br>
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-copy-ssh-git.png" alt="Копирование SSH ключа из GitHub" title="Копирование SSH ключа из GitHub">
+    </li>
+    <li>На сайте PythonAnyWhere переходим в раздел Files и нажимаем "Open Bash console here" 
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-open-bash.png" alt="Открытие консоли в PythonAnywhere" title="Открытие консоли в PythonAnywhere">
+    </li>
+    <li>В консоли вводим git clone и после вставляем скопированный SSH ключ, пример команды ниже:<br>
+      <code class="gitbash">
+        <div class="gitbash-row">git clone git@github.com:best-manual/python-bot.git</div>
+      </code>
+    </li>
+    <li>Затем пишем "yes", ждем Enter и появится ошибка <b>git@github.com: Permission denied (publickey). fatal: Could not read from remote repository.</b> - это нормально, для устранения ошибки настраиваем SSH согласно <a href="/blog/diy/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos.html">инструкции</a>.<br>
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-git-clone.png" alt="Клонирование проекта из Git в PythonAnywhere" title="Клонирование проекта из Git в PythonAnywhere">
+    </li>
+    <li>Если вы все настроили правильно в корневом каталоге pythonAnyWhere у вас должна появится папка с проектом, в моем примере это "python-bot"<br>
+      <img src="images/python/2023/2023-09-18-besplatnyj-hosting-pythonanywhere-dlya-python-prilozhenij-s-avtomaticheskim-deploem-iz-git---nastrojka-s-nulya/pyany-git-project-cloned.png" alt="Склонированный проект из Git в PythonAnywhere" title="Склонированный проект из Git в PythonAnywhere">
+    </li>
+  </ul>
+
+
+
+  <h2 id="GitAutoDeploySetting">ШАГ 4. Настройка автоматической загрузки изменений из Git в PythonAnyWhere</h2>
+  <p>Чтобы после разработки и выполнении команды Git Push ваши изменения автоматически прогружались в GitHub, а потом в PythonAnyWhere вам нужно настроить Webhook, нашел отчет подробную статью на habr.com, которая поможет это сделать. Поэтому сейчас настройте автодеплой согласно {% extlink инструкции https://habr.com/ru/articles/457348/ %}. <br> Если будут трудности с настройкой смотрите видео в начале статьи - там я делаю настройку по этой инструкции.</p>
+
+
+  <h2 id="Testing">ШАГ 5. Тестирование</h2>
+  <ul>
+    <li>Все изменения в шаге 4 вы должны закоммитить в PythonAnyWhere, для этог откройте Bash console в папке Python-bot и введите две команды ниже: <br>
+      <code class="gitbash">
+        <div class="gitbash-row">git add .</div>
+        <div class="gitbash-row">git commit -m 'Настройка автоматической загрузки изменений из Git в PythonAnyWhere'</div>
+        <div class="gitbash-row">git push</div>
+      </code>
+    </li>
+  
+ 
+    <li>Выгрузите проект из Github себе на компьютер по аналогии с шагом 3, также есть более подробная <a href="/blog/diy/2020-06-08-perevodim-proekt-na-github.html#settings">инструкции</a> (только копируйте путь SSH.</li>
+    <li>Сделайте любое изменение в проекте у себя на компьютере, сохраните и отправьте изменения по аналогии с пунктом 1 выше.</li>
+  </ul>
+  <p>Данное изменение должно автоматически загрузиться к вам на PyhtonAnyWhere!</p>
+  <br>
+
+  <p>Спасибо за внимание!</p>
+
+</div>

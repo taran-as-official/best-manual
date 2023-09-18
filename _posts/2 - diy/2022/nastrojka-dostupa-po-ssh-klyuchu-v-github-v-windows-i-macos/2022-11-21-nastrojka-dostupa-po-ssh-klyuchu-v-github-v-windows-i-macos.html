@@ -1,0 +1,140 @@
+---
+layout: post
+title: Настройка доступа по SSH ключу в GitHub в Windows и MacOS
+description: В данной статье детально разберем как забыть об ошибке git@github.com Permission denied (publickey). fatal Could not read from remote repository 
+categories: diy
+catname: DIY
+image: "images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/1.jpg"
+thumb: "images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/1t.jpg"
+permalink: "blog/:categories/:year-:month-:day-:slug.html"
+---
+<div class="post-body">
+  <br>
+  <p>При первой загрузке/выгрузке изменений в/из Github часто возникает ошибка <b>git@github.com: Permission denied (publickey). fatal: Could not read from remote repository.</b> Данная статья раз и навсегда положит этим ошибкам конец!
+    <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-key-error.png" alt="Ошибка git@github.com: Permission denied (publickey)" title="Ошибка git@github.com: Permission denied (publickey)">
+  </p>
+
+  <nav>
+    <b>Содержание:</b>
+    <ol>
+      <li><a href="{{page.url}}#searchExistingSSHKey">Поиск существующего SSH ключа</a>
+      <li><a href="{{page.url}}#generateSSH">Генерация нового SSH ключа</a>
+      <li><a href="{{page.url}}#addSSHInSSHAgent">Добавление SSH ключа в SSH-agent</a>
+      <li><a href="{{page.url}}#addSSHInGithub">Добавление SSH ключа в Github</a>
+    </ol>
+  </nav>
+
+  <p>Всё то, о чём пойдет речь ниже, можно посмотреть в этом видео
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/0SWM5H2EFWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </p>
+  
+  <h2 id="searchExistingSSHKey">ШАГ 1. Поиск существующего SSH ключа</h2>
+
+   <p> Открываем терминал в том месте где у вас лежит код, который вы хотите интегрировать в Github или Gitlab. Проверяем есть ли уже существующий SSH ключ, для этого вводим команду ниже:
+    <span class="code-block console">ls -al ~/.ssh</span><br>
+    Пример НЕсуществующего ключа SSH:
+    <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-example-no-ssh.png" alt="Пример несуществующего SSH" title="Пример несуществующего SSH"><br>
+ 
+    Пример существующего ключа SSH:
+    <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-example-existing-ssh.png" alt="Пример существующего SSH" title="Пример существующего SSH"><br>
+    Если ключ существует переходите сразу к шагу 4 или создайте отдельный новый ключ специально для Github.
+  </p>
+
+
+  <h2 id="generateSSH">ШАГ 2. Генерация нового SSH ключа</h2>
+
+  <ul>
+    <li>Введите в терминале команду ниже:<br>
+      <span class="code-block console">ssh-keygen -t ed25519 -C "your_email@example.com"</span><br>
+      <b>Пояснения команды:</b><br>
+      <table>
+        <tbody>
+          <tr>
+            <td>ssh-keygen</td>
+            <td>команда для генерации SSH ключа</td>
+          </tr>
+          <tr>
+            <td>-t ed25519</td>
+            <td>алгоритм шифрования, по умолчанию алгоритм rsa, Github рекомендует использовать алгоритм ed25519</td>
+          </tr>
+          <tr>
+            <td>-C</td>
+            <td>значит "комментарий", все что после этой команды в кавычках будет комментарием</td>
+          </tr>
+          <tr>
+            <td>"your_email@example.com"</td>
+            <td>комментарий, замените на свой email в Github - это нужно чтобы различать SSH ключи между собой, их может быть несколько</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>Теперь нужно указать путь и название файла, можно оставить по умолчанию и нажать Enter, но давайте поменяем имя файла, чтобы понимать что он сгенерирован именно для Github! <br>
+      Скопируйте и вставьте путь по умолчанию, поменяйте имя файла и нажмите Enter.
+      <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-enter-file-path.png" alt="Ввод названия для SSH ключа" title="Ввод названия для SSH ключа">
+    </li>
+    <li>Далее нужно будет задать пароль (кодовую фразу) для нашего ключа, пропускаем этот шаг, просто два раза нажимаем Enter, иначе придется постоянно вводить этот пароль. 
+      <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-enter-passphrase.png" alt="Ввод пароля для SSH ключа" title="Ввод пароля для SSH ключа">
+    </li>
+    <li>Если вы все сделали правильно будет примерно также, как на скриншоте ниже:
+      <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-success-generate.png" alt="Успешно сгенерированный SSH ключ" title="Успешно сгенерированный SSH ключ">
+    </li>
+  </ul>
+  
+  <h2 id="addSSHInSSHAgent">ШАГ 3. Добавление SSH ключа в SSH-agent</h2>
+  <p><b>Не пропускайте этот шаг! Без него ничего работать не будет.</b></p><br>
+  <p>Что же такое SSH-agent на сайте habr.com вот такое описание: "ssh-agent — это менеджер ключей для SSH. Он хранит ваши ключи и сертификаты в памяти, незашифрованные и готовые к использованию ssh . Это избавляет вас от необходимости вводить пароль каждый раз, когда вы подключаетесь к серверу."
+  </p>
+  <ul>
+    <li>Сначала запустим SSH-agent командой ниже:<br>
+      <span class="code-block console">eval "$(ssh-agent -s)"</span><br>
+    надпись <b>Agent pid 61</b> (у вас будет любое другое число) говорит о том, что агент успешно запущен!<br>
+    <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-agent-started.png" alt="SSH-agent запущен" title="SSH-agent запущен">
+    </li>
+    <li>Добавьте SSH ключ в SSH агент командой ниже, предварительно поменяв название SSH ключа на ваше:<br>
+      <span class="code-block console">ssh-add ~/.ssh/id_ed25519_github</span><br>
+      надпись примерная как на скрине ниже, говорит о том, что ключ успешно добавлен<br>
+      <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-agent-add-ssh.png" alt="SSH ключ добавлен в SSH-agent" title="SSH ключ добавлен в SSH-agent">
+    </li>
+    <li>Добавим конфигурационный файл, чтобы SSH ключ автоматически добавлялся в SSH-agent, введите команду ниже, она создаст файл <b>config</b>, если он отсутствует:<br>
+      <span class="code-block console">touch ~/.ssh/config</span>
+    </li>
+    <li>Теперь в созданный файл config добавим следующий текст, заменив id_ed25519_github на название своего ключа, если нужно:<br>
+      <span class="code-block console"><pre>Host *
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ed25519_github</pre></span><br>
+  <ul class="circle">
+    <li>Для пользователей <b>MacOS</b> вводим команду ниже, откроется обычный редактор текста, вставляем в него текст и сохраняем изменения<br> <span class="code-block console">open ~/.ssh/config</span><br></li>
+    <li>Для пользователей <b>Windows</b> вводим команду ниже и нажимаем Enter<br><span class="code-block console">cat &gt; ~/.ssh/config &lt;&lt;EOF</span><br> далее вставить текст, нажать Enter, ввести команду ниже и нажать Enter <br><span class="code-block console">EOF</span><br> 
+      <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-agent-add-in-config.png" alt="Настройка config для автоматического добавления SSH ключа в SSH-agent" title="Настройка config для автоматического добавления SSH ключа в SSH-agent">
+    </li>
+  </ul>
+    </li>
+    <li>Проверьте что текст был добавлен в файл config командой<br> <span class="code-block console">cat ~/.ssh/config</span><br> должно быть как на скриншоте:
+      <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-agent-add-in-config-success.png" alt="Успешно добавленный текст в файл config" title="Успешно добавленный текст в файл config">
+    </li>
+  </ul>
+
+  <h2 id="addSSHInGithub">ШАГ 4. Добавление SSH в Github</h2>
+  
+  <ul>
+    <li>Откройте файл где хранится публичный SSH ключ (.pub) и скопируте его содержимое:<br>
+      <span class="code-block console">cat ~/.ssh/id_ed25519_github.pub</span> (меняйте на название своего ключа, если нужно)
+    <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-key-copy.png" alt="Копирование SSH ключа" title="Копирование SSH ключа">
+    </li>
+    <li>Переходим на сайт {% extlink Github https://github.com/ %} заходим в <b>Settings</b>-><b>SSH and GPG keys</b>-><b>New SSH key</b><br>
+      <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-key-github-settings.png" alt="Настройки Github" title="Настройки Github">
+    </li>
+    <li>Вводим название SSH ключа, вставим ранее скопированный ключ и нажмем <b>Add SSH key</b><br>
+      <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-key-add-in-github.png" alt="Добавление SSH ключа в Github" title="Добавление SSH ключа в Github">
+    </li>
+  </ul>
+
+  <p>Готово! Проверьте что ключ работает</p>
+
+  <p>Возвращаемся в наш терминал и вводим команду <b>git pull</b>, файлы должны загрузиться или как в моем случае должна появиться надпись, что все уже обновлено.<br>
+    <img src="images/diy/2022/2022-11-21-nastrojka-dostupa-po-ssh-klyuchu-v-github-v-windows-i-macos/ssh-key-finish.png" alt="Успешное соединение по SSH ключу с Github" title="Успешное соединение по SSH ключу с Github">
+  </p>
+  
+  <p>Спасибо за внимание!</p>
+
+</div>
